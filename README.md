@@ -26,6 +26,15 @@ Python標準ライブラリのみで動作するため、追加パッケージ�
 
 ---
 
+## サンプル
+
+実際に生成したレポートのサンプルを以下から確認できます。
+
+- **HTMLレポート**: [サンプルレポートを見る（GitHub Pages）](https://bookbear.github.io/hs-battlegrounds-review-tool/sample/bg_review_rolls.html)
+- **AI分析用Markdown**: [`sample/bg_review_rolls_ai.md`](sample/bg_review_rolls_ai.md)
+
+---
+
 ## 必要環境
 
 - **Python 3.x**（標準ライブラリのみ使用：`argparse`, `glob`, `gzip`, `html`, `json`, `os`, `re`, `sys`, `urllib.request`）
