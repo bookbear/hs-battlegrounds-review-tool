@@ -1,0 +1,7 @@
+dist/
+build/
+*.spec
+bg_review*html
+Power.log
+__pycache__/
+*.pyc

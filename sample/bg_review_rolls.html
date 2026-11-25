@@ -104,12 +104,26 @@
   .badge-buy { background: #4caf50; color: #fff; }
   .badge-freeze { background: #008ba3; color: #fff; }
   .badge-dg-chosen { background: #b25cff; color: #fff; }
+  .badge-discover-chosen { background: #00acc1; color: #fff; }
+  .badge-hp-changed { background: #ef6c00; color: #fff; }
   .dg-block { background: #221d2e; border-left: 4px solid #b25cff; border-radius: 4px; padding: 12px; margin-bottom: 12px; }
   .dg-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; font-weight: bold; color: #d7a6ff; margin-bottom: 10px; font-size: 0.95em; }
   .dg-option { width: 148px; background: #191623; border: 1px solid #382e4d; border-radius: 8px; padding: 8px; box-sizing: border-box; }
   .dg-option img { width: 130px; margin: 0 auto; }
   .dg-option-chosen { border: 2px solid #b25cff; background: #261c38; box-shadow: 0 0 12px rgba(178, 92, 255, 0.35); }
   .dg-option-unchosen { opacity: 0.72; }
+  .discover-block { background: #19242b; border-left: 4px solid #26c6da; border-radius: 4px; padding: 12px; margin-bottom: 12px; }
+  .discover-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; font-weight: bold; color: #7ce8f5; margin-bottom: 10px; font-size: 0.95em; }
+  .discover-option { width: 140px; background: #151e24; border: 1px solid #2b444f; border-radius: 8px; padding: 8px; box-sizing: border-box; }
+  .discover-option img { width: 122px; margin: 0 auto; }
+  .discover-option-chosen { border: 2px solid #26c6da; background: #182b33; box-shadow: 0 0 12px rgba(38, 198, 218, 0.35); }
+  .discover-option-unchosen { opacity: 0.72; }
+  .discover-opt-name { margin-top: 5px; font-size: 0.74em; color: #d5e8ef; line-height: 1.3; word-break: break-word; }
+  .hp-card img { border-radius: 6px; }
+  .hp-changed img { outline: 2px solid #ff9800; box-shadow: 0 0 10px rgba(255, 152, 0, 0.45); }
+  .hp-changed-pill { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 4px; background: #ef6c00; color: #fff; font-size: 0.85em; font-weight: bold; }
+  .hp-caption { margin-top: 5px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px; font-size: 0.74em; color: #e2e8f4; line-height: 1.3; }
+  .hp-cost-pill { background: #3b3117; border: 1px solid #b58c28; color: #ffd75e; font-weight: bold; padding: 0 5px; border-radius: 4px; font-size: 0.92em; }
   .dg-effect-box { margin-top: 6px; padding: 4px 6px; border-radius: 5px; background: #2b1f3d; border: 1px solid #6b469e; text-align: left; }
   .dg-name { font-size: 0.73em; font-weight: bold; color: #e0b8ff; line-height: 1.3; }
   .dg-desc { font-size: 0.66em; color: #d5cce6; line-height: 1.35; margin-top: 2px; }
@@ -145,8 +159,24 @@
   .combat-res-win { background: #1a3b28; border: 1px solid #4caf50; color: #9cf0be; }
   .combat-res-loss { background: #3f1c22; border: 1px solid #e05263; color: #ffb3bc; }
   .combat-res-tie { background: #262c3a; border: 1px solid #5a667d; color: #cbd5e6; }
-  .opp-summary-card { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; background: #1b161a; border: 1px solid #3f2d34; border-radius: 6px; padding: 8px 12px; margin-bottom: 12px; }
+  .opp-summary-card { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; background: #1b161a; border: 1px solid #3f2d34; border-radius: 6px; padding: 8px 12px; margin-bottom: 10px; }
+  .my-summary-card { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; background: #1c1d19; border: 1px solid #544726; border-radius: 6px; padding: 8px 12px; margin-bottom: 10px; }
+  .side-tag { font-size: 0.72em; font-weight: bold; padding: 1px 6px; border-radius: 4px; }
+  .side-tag-opp { background: #521e27; border: 1px solid #e05263; color: #ffb3bc; }
+  .side-tag-me { background: #4d3f12; border: 1px solid #f0b429; color: #ffe57f; }
+  .combat-divider { border: none; border-top: 1px dashed #4a3c44; margin: 14px 0 12px; }
+  .combat-my-boards { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+  .hp-inline-list { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .hp-inline-box { display: inline-flex; align-items: center; gap: 8px; background: #141720; border: 1px solid #3b4257; border-radius: 6px; padding: 5px 10px 5px 6px; max-width: 440px; }
+  .hp-inline-changed { border-color: #ff9800; background: #241b12; box-shadow: 0 0 8px rgba(255, 152, 0, 0.28); }
+  .hp-inline-thumb { width: 42px; height: auto; border-radius: 5px; display: block; flex-shrink: 0; }
+  .hp-inline-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .hp-inline-top { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; font-size: 0.8em; }
+  .hp-inline-label { color: #8f9bb0; font-size: 0.88em; }
+  .hp-inline-name { font-weight: bold; color: #f0f4fa; }
+  .hp-inline-desc { font-size: 0.72em; color: #b7c2d4; line-height: 1.35; }
   .opp-hero-thumb { width: 48px; height: 48px; border-radius: 6px; object-fit: cover; display: block; border: 1px solid #5c434d; }
+  .my-hero-thumb { width: 48px; height: 48px; border-radius: 6px; object-fit: cover; display: block; border: 1px solid #8a7230; }
   .opp-summary-info { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 200px; }
   .opp-summary-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-weight: bold; color: #f5e6e8; font-size: 0.95em; }
   .opp-meta-chip { font-size: 0.78em; font-weight: normal; background: #262027; border: 1px solid #423540; border-radius: 999px; padding: 1px 8px; color: #d4c6ce; }
@@ -350,31 +380,26 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-tie'>引き分け</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+18</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG28_HERO_801.png' data-cid='BG28_HERO_801' data-hero='1' onerror='fallbackImg(this)' alt='ドクター・ホリ＝デイ' title='ドクター・ホリ＝デイ (BG28_HERO_801)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>ドクター・ホリ＝デイ</span><span class='opp-meta-chip'>順位 3位</span><span class='opp-meta-chip'>グレード ★1 → ★1</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+14</span></span><span class='opp-meta-chip'>トリプル 0回</span></div>
-
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG28_HERO_801.png' data-cid='BG28_HERO_801' data-hero='1' onerror='fallbackImg(this)' alt='ドクター・ホリ＝デイ' title='ドクター・ホリ＝デイ (BG28_HERO_801)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>ドクター・ホリ＝デイ</span><span class='opp-meta-chip'>順位 3位</span><span class='opp-meta-chip'>グレード ★1 → ★1</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+14</span></span><span class='opp-meta-chip'>トリプル 0回</span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_HERO_801p.png' data-cid='BG28_HERO_801p' onerror='fallbackImg(this)' alt='9匹のカエルの祝福' title='9匹のカエルの祝福 (BG28_HERO_801p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>1G</span><span class='hp-inline-name'>9匹のカエルの祝福</span></div><div class='hp-inline-desc'>ランダムな酒場の呪文を1つ得る。</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（1体）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG26_135.png' data-cid='BG26_135' onerror='fallbackImg(this)' alt='南海の大道芸人' title='南海の大道芸人 (BG26_135)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>3</span><span class='stat-hp'>1</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★1</span></span><span class='gold-group' title='所持金 0/3'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='3'></span><span class='gold-num'>0/3</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip'>グレード ★1 → ★1</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+18</span></span><span class='opp-meta-chip'>トリプル 0回</span><span class='gold-group' title='所持金 0/3'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='3'></span><span class='gold-num'>0/3</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（1体）</div>
+<div class='sub-label'>自分の盤面（1体）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_100.png' data-cid='BG20_100' onerror='fallbackImg(this)' alt='レイザーフェンの地霊術師' title='レイザーフェンの地霊術師 (BG20_100)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>4</span><span class='stat-hp'>3</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（0枚）</div>
+<div class='sub-label'>自分の手札（0枚）</div>
 <div class='card-row'>
 <span class='empty-note'>手札なし</span>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-2' class='turn-box'>
@@ -411,31 +436,26 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-loss'>敗北 (-3)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+18</span><span class='gold-arrow'>→</span><span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_21.png' data-cid='TB_BaconShop_HERO_21' data-hero='1' onerror='fallbackImg(this)' alt='偉大なるアカザムザラク' title='偉大なるアカザムザラク (TB_BaconShop_HERO_21)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>偉大なるアカザムザラク</span><span class='opp-meta-chip'>順位 4位</span><span class='opp-meta-chip opp-tier-up'>グレード ★1 → ★2 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+12</span></span><span class='opp-meta-chip'>トリプル 0回</span></div>
-
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_21.png' data-cid='TB_BaconShop_HERO_21' data-hero='1' onerror='fallbackImg(this)' alt='偉大なるアカザムザラク' title='偉大なるアカザムザラク (TB_BaconShop_HERO_21)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>偉大なるアカザムザラク</span><span class='opp-meta-chip'>順位 4位</span><span class='opp-meta-chip opp-tier-up'>グレード ★1 → ★2 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+12</span></span><span class='opp-meta-chip'>トリプル 0回</span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_020.png' data-cid='TB_BaconShop_HP_020' onerror='fallbackImg(this)' alt='奇術' title='奇術 (TB_BaconShop_HP_020)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>奇術</span></div><div class='hp-inline-desc'>秘策を1つ選択する。それを準備する。</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（1体）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_814.png' data-cid='BG35_814' onerror='fallbackImg(this)' alt='スカーレット・サバイバー' title='スカーレット・サバイバー (BG35_814)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>3</span><span class='stat-hp'>3</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★2</span></span><span class='gold-group' title='所持金 0/4'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='4'></span><span class='gold-num'>0/4</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip opp-tier-up'>グレード ★1 → ★2 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+18</span></span><span class='opp-meta-chip'>トリプル 0回</span><span class='gold-group' title='所持金 0/4'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='4'></span><span class='gold-num'>0/4</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（1体）</div>
+<div class='sub-label'>自分の盤面（1体）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_100.png' data-cid='BG20_100' onerror='fallbackImg(this)' alt='レイザーフェンの地霊術師' title='レイザーフェンの地霊術師 (BG20_100)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>4</span><span class='stat-hp'>3</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（0枚）</div>
+<div class='sub-label'>自分の手札（0枚）</div>
 <div class='card-row'>
 <span class='empty-note'>手札なし</span>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-3' class='turn-box'>
@@ -474,32 +494,27 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+4)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG21_HERO_020.png' data-cid='BG21_HERO_020' data-hero='1' onerror='fallbackImg(this)' alt='コックのクッキー' title='コックのクッキー (BG21_HERO_020)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>コックのクッキー</span><span class='opp-meta-chip'>順位 7位</span><span class='opp-meta-chip'>グレード ★2 → ★2</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+8</span></span><span class='opp-meta-chip'>トリプル 1回</span></div>
-
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG21_HERO_020.png' data-cid='BG21_HERO_020' data-hero='1' onerror='fallbackImg(this)' alt='コックのクッキー' title='コックのクッキー (BG21_HERO_020)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>コックのクッキー</span><span class='opp-meta-chip'>順位 7位</span><span class='opp-meta-chip'>グレード ★2 → ★2</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+8</span></span><span class='opp-meta-chip'>トリプル 1回</span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG21_HERO_020p.png' data-cid='BG21_HERO_020p' onerror='fallbackImg(this)' alt='ごった煮闇鍋' title='ごった煮闇鍋 (BG21_HERO_020p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>ごった煮闇鍋</span></div><div class='hp-inline-desc'>ミニオン1体を鍋に入れる。3体入れたらそれらのミニオンの種族から発見する。（あと3体！）</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（0体）</div>
 <div class='card-row'>
 <span class='empty-note'>ミニオンなし</span>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★2</span></span><span class='gold-group' title='所持金 0/5'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='5'></span><span class='gold-num'>0/5</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip'>グレード ★2 → ★2</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span><span class='opp-meta-chip'>トリプル 0回</span><span class='gold-group' title='所持金 0/5'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='5'></span><span class='gold-num'>0/5</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（2体）</div>
+<div class='sub-label'>自分の盤面（2体）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_100.png' data-cid='BG20_100' onerror='fallbackImg(this)' alt='レイザーフェンの地霊術師' title='レイザーフェンの地霊術師 (BG20_100)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>6</span><span class='stat-hp'>6</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG26_135.png' data-cid='BG26_135' onerror='fallbackImg(this)' alt='南海の大道芸人' title='南海の大道芸人 (BG26_135)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>3</span><span class='stat-hp'>1</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（0枚）</div>
+<div class='sub-label'>自分の手札（0枚）</div>
 <div class='card-row'>
 <span class='empty-note'>手札なし</span>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-4' class='turn-box'>
@@ -540,23 +555,18 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+10)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_59.png' data-cid='TB_BaconShop_HERO_59' data-hero='1' onerror='fallbackImg(this)' alt='アランナ・スターシーカー' title='アランナ・スターシーカー (TB_BaconShop_HERO_59)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>アランナ・スターシーカー</span><span class='opp-meta-chip'>順位 5位</span><span class='opp-meta-chip'>グレード ★3 → ★3</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+7</span></span><span class='opp-meta-chip'>トリプル 0回</span></div>
-
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_59.png' data-cid='TB_BaconShop_HERO_59' data-hero='1' onerror='fallbackImg(this)' alt='アランナ・スターシーカー' title='アランナ・スターシーカー (TB_BaconShop_HERO_59)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>アランナ・スターシーカー</span><span class='opp-meta-chip'>順位 5位</span><span class='opp-meta-chip'>グレード ★3 → ★3</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+7</span></span><span class='opp-meta-chip'>トリプル 0回</span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_065.png' data-cid='TB_BaconShop_HP_065' onerror='fallbackImg(this)' alt='デーモンハンター訓練' title='デーモンハンター訓練 (TB_BaconShop_HP_065)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>デーモンハンター訓練</span></div><div class='hp-inline-desc'>味方のミニオンが14回攻撃した後毎ターン最初に買うミニオンが無料になる（あと14回！）</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（2体）</div>
 <div class='card-row'>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_521.png' data-cid='BG36_521' onerror='fallbackImg(this)' alt='閉じ込められた暴徒' title='閉じ込められた暴徒 (BG36_521)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>9</span><span class='stat-hp'>3</span></div><div class='dg-effect-box' title='研がれた剣: 自分がカードを使う度、攻撃力+3を獲得する。'><div class='dg-name'>✦ 研がれた剣</div><div class='dg-desc'>自分がカードを使う度、攻撃力+3を獲得する。</div></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_521.png' data-cid='BG36_521' onerror='fallbackImg(this)' alt='閉じ込められた暴徒' title='閉じ込められた暴徒 (BG36_521)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>6</span><span class='stat-hp'>3</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★2</span></span><span class='gold-group' title='所持金 0/6'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='6'></span><span class='gold-num'>0/6</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip'>グレード ★2 → ★2</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span><span class='opp-meta-chip'>トリプル 0回</span><span class='gold-group' title='所持金 0/6'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='6'></span><span class='gold-num'>0/6</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（5体）</div>
+<div class='sub-label'>自分の盤面（5体）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_100.png' data-cid='BG20_100' onerror='fallbackImg(this)' alt='レイザーフェンの地霊術師' title='レイザーフェンの地霊術師 (BG20_100)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>14</span><span class='stat-hp'>16</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_815.png' data-cid='BG31_815' onerror='fallbackImg(this)' alt='モリモリな砂丘' title='モリモリな砂丘 (BG31_815)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>3</span><span class='stat-hp'>3</span></div></div>
@@ -565,11 +575,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG_LOE_077.png' data-cid='BG_LOE_077' onerror='fallbackImg(this)' alt='ブラン・ブロンズビアード' title='ブラン・ブロンズビアード (BG_LOE_077)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>2</span><span class='stat-hp'>4</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（0枚）</div>
+<div class='sub-label'>自分の手札（0枚）</div>
 <div class='card-row'>
 <span class='empty-note'>手札なし</span>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-5' class='turn-box'>
@@ -614,12 +624,7 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+4)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG36_HERO_105.png' data-cid='BG36_HERO_105' data-hero='1' onerror='fallbackImg(this)' alt='悪夢の王ザヴィウス' title='悪夢の王ザヴィウス (BG36_HERO_105)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>悪夢の王ザヴィウス</span><span class='opp-meta-chip'>順位 5位</span><span class='opp-meta-chip opp-tier-up'>グレード ★3 → ★4 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+6</span></span><span class='opp-meta-chip'>トリプル 0回</span></div>
-
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG36_HERO_105.png' data-cid='BG36_HERO_105' data-hero='1' onerror='fallbackImg(this)' alt='悪夢の王ザヴィウス' title='悪夢の王ザヴィウス (BG36_HERO_105)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>悪夢の王ザヴィウス</span><span class='opp-meta-chip'>順位 5位</span><span class='opp-meta-chip opp-tier-up'>グレード ★3 → ★4 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+6</span></span><span class='opp-meta-chip'>トリプル 0回</span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_HERO_105p.png' data-cid='BG36_HERO_105p' onerror='fallbackImg(this)' alt='惨状の感覚' title='惨状の感覚 (BG36_HERO_105p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>惨状の感覚</span></div><div class='hp-inline-desc'>4ターンごとに悪夢の恵みを1つ得たミニオン1体を発見する。（あと4ターン！）</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（5体）</div>
 <div class='card-row'>
@@ -629,11 +634,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_300.png' data-cid='BG28_300' onerror='fallbackImg(this)' alt='無害なボンクラ' title='無害なボンクラ (BG28_300)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>1</span><span class='stat-hp'>1</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG24_715.png' data-cid='BG24_715' onerror='fallbackImg(this)' alt='辛抱強い斥候' title='辛抱強い斥候 (BG24_715)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>1</span><span class='stat-hp'>1</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★3</span></span><span class='gold-group' title='所持金 0/7'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='7'></span><span class='gold-num'>0/7</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip opp-tier-up'>グレード ★2 → ★3 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span><span class='opp-meta-chip'>トリプル 0回</span><span class='gold-group' title='所持金 0/7'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='7'></span><span class='gold-num'>0/7</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（6体）</div>
+<div class='sub-label'>自分の盤面（6体）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_100.png' data-cid='BG20_100' onerror='fallbackImg(this)' alt='レイザーフェンの地霊術師' title='レイザーフェンの地霊術師 (BG20_100)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>17</span><span class='stat-hp'>19</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_815.png' data-cid='BG31_815' onerror='fallbackImg(this)' alt='モリモリな砂丘' title='モリモリな砂丘 (BG31_815)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>3</span><span class='stat-hp'>3</span></div></div>
@@ -643,11 +648,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG_LOE_077.png' data-cid='BG_LOE_077' onerror='fallbackImg(this)' alt='ブラン・ブロンズビアード' title='ブラン・ブロンズビアード (BG_LOE_077)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>2</span><span class='stat-hp'>4</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（0枚）</div>
+<div class='sub-label'>自分の手札（0枚）</div>
 <div class='card-row'>
 <span class='empty-note'>手札なし</span>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-6' class='turn-box'>
@@ -672,6 +677,14 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_518.png' data-cid='BG28_518' onerror='fallbackImg(this)' alt='シェフのおすすめ' title='シェフのおすすめ (BG28_518)' loading='lazy'></div>
 </div></div>
 </div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：下級装飾品（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 8/8'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='8' data-off='0'></span><span class='gold-num'>8/8</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_410.png' data-cid='BG30_MagicItem_410' onerror='fallbackImg(this)' alt='棘書道セット' title='棘書道セット (BG30_MagicItem_410)' loading='lazy'><div class='discover-opt-name'>棘書道セット</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_423.png' data-cid='BG30_MagicItem_423' onerror='fallbackImg(this)' alt='酒場のオヤジのジョッキ' title='酒場のオヤジのジョッキ (BG30_MagicItem_423)' loading='lazy'><div class='discover-opt-name'>酒場のオヤジのジョッキ</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><div class='discover-opt-name'>ドラゴンの頭蓋骨</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_703.png' data-cid='BG30_MagicItem_703' onerror='fallbackImg(this)' alt='謎めいた立方体' title='謎めいた立方体 (BG30_MagicItem_703)' loading='lazy'><div class='discover-opt-name'>謎めいた立方体</div></div>
+</div></div>
 <details class='lb-details'>
 <summary>ロビー全員の状況（全8人：順位・開始/終了グレード・体力・トリプル・装飾品）</summary>
 <div class='lb-table-wrap'><table class='lb-table'>
@@ -687,12 +700,7 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+7)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG22_HERO_201_SKIN_C.png' data-cid='BG22_HERO_201_SKIN_C' data-hero='1' onerror='fallbackImg(this)' alt='フェイリン大使' title='貴族フェイリン (BG22_HERO_201_SKIN_C)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>フェイリン大使</span><span class='opp-meta-chip'>順位 7位</span><span class='opp-meta-chip'>グレード ★4 → ★4</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥22</span></span><span class='opp-meta-chip'>トリプル 1回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: 使い古された燭台 — 小さなタイムワープのコスト2のミニオン1体を発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_MagicItem_823.png' data-cid='BG35_MagicItem_823' onerror='fallbackImg(this)' alt='使い古された燭台' title='使い古された燭台 (BG35_MagicItem_823)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>使い古された燭台</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG22_HERO_201_SKIN_C.png' data-cid='BG22_HERO_201_SKIN_C' data-hero='1' onerror='fallbackImg(this)' alt='フェイリン大使' title='貴族フェイリン (BG22_HERO_201_SKIN_C)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>フェイリン大使</span><span class='opp-meta-chip'>順位 7位</span><span class='opp-meta-chip'>グレード ★4 → ★4</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥22</span></span><span class='opp-meta-chip'>トリプル 1回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: 使い古された燭台 — 小さなタイムワープのコスト2のミニオン1体を発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_MagicItem_823.png' data-cid='BG35_MagicItem_823' onerror='fallbackImg(this)' alt='使い古された燭台' title='使い古された燭台 (BG35_MagicItem_823)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>使い古された燭台</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG22_HERO_201p.png' data-cid='BG22_HERO_201p' onerror='fallbackImg(this)' alt='探検計画' title='探検計画 (BG22_HERO_201p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>探検計画</span></div><div class='hp-inline-desc'>最初の1ターンは何もしない。グレード6、4、2のミニオンを1体ずつ発見しそれぞれのグレード到達時にそれらを獲得する。</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（5体）</div>
 <div class='card-row'>
@@ -702,11 +710,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item golden'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG_ICC_026t_G.png' data-cid='BG_ICC_026t_G' onerror='fallbackImg(this)' alt='スケルトン' title='スケルトン (BG_ICC_026t_G)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>2</span><span class='stat-hp'>2</span></div><div class='kw-row'><span class='kw-tag kw-gold'>ゴールデン</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG24_500.png' data-cid='BG24_500' onerror='fallbackImg(this)' alt='アンバーの守護者' title='アンバーの守護者 (BG24_500)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>3</span><span class='stat-hp'>2</span></div><div class='kw-row'><span class='kw-tag kw-taunt'>挑発</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★3</span></span><span class='gold-group' title='所持金 0/8'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='8'></span><span class='gold-num'>0/8</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip'>グレード ★3 → ★3</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span><span class='opp-meta-chip'>トリプル 0回</span><span class='gold-group' title='所持金 0/8'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='8'></span><span class='gold-num'>0/8</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_240.png' data-cid='BG36_240' onerror='fallbackImg(this)' alt='雇われ乗騎' title='雇われ乗騎 (BG36_240)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>15</span><span class='stat-hp'>21</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_100.png' data-cid='BG20_100' onerror='fallbackImg(this)' alt='レイザーフェンの地霊術師' title='レイザーフェンの地霊術師 (BG20_100)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>17</span><span class='stat-hp'>19</span></div></div>
@@ -717,13 +725,13 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG_LOE_077.png' data-cid='BG_LOE_077' onerror='fallbackImg(this)' alt='ブラン・ブロンズビアード' title='ブラン・ブロンズビアード (BG_LOE_077)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>12</span><span class='stat-hp'>14</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（3枚）</div>
+<div class='sub-label'>自分の手札（3枚）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_320.png' data-cid='BG31_320' onerror='fallbackImg(this)' alt='クレーター採掘工' title='クレーター採掘工 (BG31_320)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>2</span><span class='stat-hp'>2</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_330.png' data-cid='BG36_330' onerror='fallbackImg(this)' alt='ずる賢い潜入者' title='ずる賢い潜入者 (BG36_330)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>4</span><span class='stat-hp'>5</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_893.png' data-cid='BG31_893' onerror='fallbackImg(this)' alt='自珠トレ' title='自珠トレ (BG31_893)' loading='lazy'></div>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-7' class='turn-box'>
@@ -768,12 +776,7 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+10)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG23_HERO_303.png' data-cid='BG23_HERO_303' data-hero='1' onerror='fallbackImg(this)' alt='マーロック・ホームズ' title='マーロック・ホームズ (BG23_HERO_303)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>マーロック・ホームズ</span><span class='opp-meta-chip'>順位 3位</span><span class='opp-meta-chip'>グレード ★4 → ★4</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+10</span></span><span class='opp-meta-chip'>トリプル 0回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: バーテンド・トロンのオイル缶 — 酒場のアップグレードコストを（3）減らす。各ターンの開始時これを繰り返す。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_705.png' data-cid='BG30_MagicItem_705' onerror='fallbackImg(this)' alt='バーテンド・トロンのオイル缶' title='バーテンド・トロンのオイル缶 (BG30_MagicItem_705)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>バーテンド・トロンのオイル缶</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG23_HERO_303.png' data-cid='BG23_HERO_303' data-hero='1' onerror='fallbackImg(this)' alt='マーロック・ホームズ' title='マーロック・ホームズ (BG23_HERO_303)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>マーロック・ホームズ</span><span class='opp-meta-chip'>順位 3位</span><span class='opp-meta-chip'>グレード ★4 → ★4</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+10</span></span><span class='opp-meta-chip'>トリプル 0回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: バーテンド・トロンのオイル缶 — 酒場のアップグレードコストを（3）減らす。各ターンの開始時これを繰り返す。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_705.png' data-cid='BG30_MagicItem_705' onerror='fallbackImg(this)' alt='バーテンド・トロンのオイル缶' title='バーテンド・トロンのオイル缶 (BG30_MagicItem_705)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>バーテンド・トロンのオイル缶</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG23_HERO_303p2.png' data-cid='BG23_HERO_303p2' onerror='fallbackImg(this)' alt='犯人当てクイズ' title='犯人当てクイズ (BG23_HERO_303p2)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>犯人当てクイズ</span></div><div class='hp-inline-desc'>ミニオンを2体表示。次の対戦相手が直前の戦闘で使ったミニオンを当てると「酒場のコイン」を1枚得る。</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（7体）</div>
 <div class='card-row'>
@@ -785,11 +788,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BGS_034.png' data-cid='BGS_034' onerror='fallbackImg(this)' alt='ブロンズの番兵' title='ブロンズの番兵 (BGS_034)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>6</span><span class='stat-hp'>4</span></div><div class='kw-row'><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-reborn'>蘇り</span></div><div class='dg-effect-box' title='親和力: 2ターンごとの終了時これと同じ種族のランダムなミニオン1体を得る。'><div class='dg-name'>✦ 親和力</div><div class='dg-desc'>2ターンごとの終了時これと同じ種族のランダムなミニオン1体を得る。</div></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG21_015.png' data-cid='BG21_015' onerror='fallbackImg(this)' alt='タレクゴサ' title='タレクゴサ (BG21_015)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>8</span><span class='stat-hp'>7</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★4</span></span><span class='gold-group' title='所持金 0/9'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='9'></span><span class='gold-num'>0/9</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip opp-tier-up'>グレード ★3 → ★4 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span><span class='opp-meta-chip'>トリプル 0回</span><span class='gold-group' title='所持金 0/9'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='9'></span><span class='gold-num'>0/9</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>22</span><span class='stat-hp'>25</span></div><div class='kw-row'><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div><div class='dg-effect-box' title='ハーピィのカギ爪: 聖なる盾、疾風'><div class='dg-name'>✦ ハーピィのカギ爪</div><div class='dg-desc'>聖なる盾、疾風</div></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_240.png' data-cid='BG36_240' onerror='fallbackImg(this)' alt='雇われ乗騎' title='雇われ乗騎 (BG36_240)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>15</span><span class='stat-hp'>21</span></div></div>
@@ -800,11 +803,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG_LOE_077.png' data-cid='BG_LOE_077' onerror='fallbackImg(this)' alt='ブラン・ブロンズビアード' title='ブラン・ブロンズビアード (BG_LOE_077)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>22</span><span class='stat-hp'>24</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（0枚）</div>
+<div class='sub-label'>自分の手札（0枚）</div>
 <div class='card-row'>
 <span class='empty-note'>手札なし</span>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-8' class='turn-box'>
@@ -828,6 +831,20 @@ document.addEventListener('keydown', function(e) {
 <span class='empty-note'>購入なし</span>
 </div></div>
 </div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：トリプル報酬（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 10/11'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='10' data-off='1'></span><span class='gold-num'>10/11</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_514.png' data-cid='BG36_514' onerror='fallbackImg(this)' alt='バリアバンシー' title='バリアバンシー (BG36_514)' loading='lazy'><div class='discover-opt-name'>バリアバンシー</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG33_885.png' data-cid='BG33_885' onerror='fallbackImg(this)' alt='鮮赤の精製者' title='鮮赤の精製者 (BG33_885)' loading='lazy'><div class='discover-opt-name'>鮮赤の精製者</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_821.png' data-cid='BG32_821' onerror='fallbackImg(this)' alt='フェルの炎吹師' title='フェルの炎吹師 (BG32_821)' loading='lazy'><div class='discover-opt-name'>フェルの炎吹師</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：開かれた進路（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 1/11'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='1' data-off='10'></span><span class='gold-num'>1/11</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG33_883.png' data-cid='BG33_883' onerror='fallbackImg(this)' alt='レイザーフェンの樹術師' title='レイザーフェンの樹術師 (BG33_883)' loading='lazy'><div class='discover-opt-name'>レイザーフェンの樹術師</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG33_885.png' data-cid='BG33_885' onerror='fallbackImg(this)' alt='鮮赤の精製者' title='鮮赤の精製者 (BG33_885)' loading='lazy'><div class='discover-opt-name'>鮮赤の精製者</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_111.png' data-cid='BG32_111' onerror='fallbackImg(this)' alt='悪夢の茶会の客人' title='悪夢の茶会の客人 (BG32_111)' loading='lazy'><div class='discover-opt-name'>悪夢の茶会の客人</div></div>
+</div></div>
 <div class='dg-block'>
 <div class='dg-header'><span>✦ 悪夢の恵み（発見・リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 0/11'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='0' data-off='11'></span><span class='gold-num'>0/11</span></span></span></div>
 <div class='card-row'>
@@ -850,12 +867,7 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+9)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG28_HERO_801.png' data-cid='BG28_HERO_801' data-hero='1' onerror='fallbackImg(this)' alt='ドクター・ホリ＝デイ' title='ドクター・ホリ＝デイ (BG28_HERO_801)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>ドクター・ホリ＝デイ</span><span class='opp-meta-chip'>順位 5位</span><span class='opp-meta-chip opp-tier-up'>グレード ★4 → ★5 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥21</span></span><span class='opp-meta-chip'>トリプル 0回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: カラフルコンパス — ランダムな92を1枚得る。各ターンの開始時もう1枚得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_426.png' data-cid='BG30_MagicItem_426' onerror='fallbackImg(this)' alt='カラフルコンパス' title='カラフルコンパス (BG30_MagicItem_426)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>カラフルコンパス</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG28_HERO_801.png' data-cid='BG28_HERO_801' data-hero='1' onerror='fallbackImg(this)' alt='ドクター・ホリ＝デイ' title='ドクター・ホリ＝デイ (BG28_HERO_801)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>ドクター・ホリ＝デイ</span><span class='opp-meta-chip'>順位 5位</span><span class='opp-meta-chip opp-tier-up'>グレード ★4 → ★5 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥21</span></span><span class='opp-meta-chip'>トリプル 0回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: カラフルコンパス — ランダムな92を1枚得る。各ターンの開始時もう1枚得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_426.png' data-cid='BG30_MagicItem_426' onerror='fallbackImg(this)' alt='カラフルコンパス' title='カラフルコンパス (BG30_MagicItem_426)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>カラフルコンパス</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_HERO_801p.png' data-cid='BG28_HERO_801p' onerror='fallbackImg(this)' alt='9匹のカエルの祝福' title='9匹のカエルの祝福 (BG28_HERO_801p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>1G</span><span class='hp-inline-name'>9匹のカエルの祝福</span></div><div class='hp-inline-desc'>ランダムな酒場の呪文を1つ得る。</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（7体）</div>
 <div class='card-row'>
@@ -867,11 +879,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_582.png' data-cid='BG28_582' onerror='fallbackImg(this)' alt='ズタズタの盗賊' title='ズタズタの盗賊 (BG28_582)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>3</span><span class='stat-hp'>3</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG33_430.png' data-cid='BG33_430' onerror='fallbackImg(this)' alt='天才タスカー' title='天才タスカー (BG33_430)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>15</span><span class='stat-hp'>25</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★5</span></span><span class='gold-group' title='所持金 0/11'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='11'></span><span class='gold-num'>0/11</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip opp-tier-up'>グレード ★4 → ★5 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span><span class='opp-meta-chip'>トリプル 1回</span><span class='gold-group' title='所持金 0/11'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='11'></span><span class='gold-num'>0/11</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>50</span><span class='stat-hp'>53</span></div><div class='kw-row'><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div><div class='dg-effect-box' title='ハーピィのカギ爪: 聖なる盾、疾風'><div class='dg-name'>✦ ハーピィのカギ爪</div><div class='dg-desc'>聖なる盾、疾風</div></div></div>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>3</span><span class='stat-hp'>6</span></div><div class='dg-effect-box' title='カリスマ性: 勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。'><div class='dg-name'>✦ カリスマ性</div><div class='dg-desc'>勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。</div></div></div>
@@ -882,11 +894,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG_LOE_077.png' data-cid='BG_LOE_077' onerror='fallbackImg(this)' alt='ブラン・ブロンズビアード' title='ブラン・ブロンズビアード (BG_LOE_077)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>32</span><span class='stat-hp'>34</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（0枚）</div>
+<div class='sub-label'>自分の手札（0枚）</div>
 <div class='card-row'>
 <span class='empty-note'>手札なし</span>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-9' class='turn-box'>
@@ -909,6 +921,14 @@ document.addEventListener('keydown', function(e) {
 <div class='card-row'>
 <span class='empty-note'>購入なし</span>
 </div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：上級装飾品（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 11/11'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='11' data-off='0'></span><span class='gold-num'>11/11</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_MagicItem_361t.png' data-cid='BG32_MagicItem_361t' onerror='fallbackImg(this)' alt='移動式工場' title='移動式工場 (BG32_MagicItem_361t)' loading='lazy'><div class='discover-opt-name'>移動式工場</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_308.png' data-cid='BG36_MagicItem_308' onerror='fallbackImg(this)' alt='先遣者のステッカー' title='先遣者のステッカー (BG36_MagicItem_308)' loading='lazy'><div class='discover-opt-name'>先遣者のステッカー</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_MagicItem_808t.png' data-cid='BG32_MagicItem_808t' onerror='fallbackImg(this)' alt='血盟石のイヤリング' title='血盟石のイヤリング (BG32_MagicItem_808t)' loading='lazy'><div class='discover-opt-name'>血盟石のイヤリング</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_993.png' data-cid='BG30_MagicItem_993' onerror='fallbackImg(this)' alt='ペイグルの釣り竿' title='ペイグルの釣り竿 (BG30_MagicItem_993)' loading='lazy'><div class='discover-opt-name'>ペイグルの釣り竿</div></div>
 </div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>1回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 7/11'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='7' data-off='4'></span><span class='gold-num'>7/11</span></span></span></div>
@@ -968,6 +988,34 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_550.png' data-cid='BG28_550' onerror='fallbackImg(this)' alt='ロデオ名人' title='ロデオ名人 (BG28_550)' loading='lazy'></div>
 </div></div>
 </div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：雇われヘッドハンター（3回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 2/11'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='2' data-off='9'></span><span class='gold-num'>2/11</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_303.png' data-cid='BG28_303' onerror='fallbackImg(this)' alt='変葬する墓泥棒' title='変葬する墓泥棒 (BG28_303)' loading='lazy'><div class='discover-opt-name'>変葬する墓泥棒</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BGS_123.png' data-cid='BGS_123' onerror='fallbackImg(this)' alt='酒場の逆巻き風' title='酒場の逆巻き風 (BGS_123)' loading='lazy'><div class='discover-opt-name'>酒場の逆巻き風</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BGS_116.png' data-cid='BGS_116' onerror='fallbackImg(this)' alt='入替異常体' title='入替異常体 (BGS_116)' loading='lazy'><div class='discover-opt-name'>入替異常体</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：ロデオ名人（3回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 3/11'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='3' data-off='8'></span><span class='gold-num'>3/11</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_GIL_836.png' data-cid='BG28_GIL_836' onerror='fallbackImg(this)' alt='雇われヘッドハンター' title='雇われヘッドハンター (BG28_GIL_836)' loading='lazy'><div class='discover-opt-name'>雇われヘッドハンター</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_845.png' data-cid='BG28_845' onerror='fallbackImg(this)' alt='天然の祝福' title='天然の祝福 (BG28_845)' loading='lazy'><div class='discover-opt-name'>天然の祝福</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG34_444.png' data-cid='BG34_444' onerror='fallbackImg(this)' alt='東からの風' title='東からの風 (BG34_444)' loading='lazy'><div class='discover-opt-name'>東からの風</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：ロデオ名人（3回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 3/11'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='3' data-off='8'></span><span class='gold-num'>3/11</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_168.png' data-cid='BG28_168' onerror='fallbackImg(this)' alt='キラリング' title='キラリング (BG28_168)' loading='lazy'><div class='discover-opt-name'>キラリング</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_884.png' data-cid='BG28_884' onerror='fallbackImg(this)' alt='自信過剰' title='自信過剰 (BG28_884)' loading='lazy'><div class='discover-opt-name'>自信過剰</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_518.png' data-cid='BG28_518' onerror='fallbackImg(this)' alt='シェフのおすすめ' title='シェフのおすすめ (BG28_518)' loading='lazy'><div class='discover-opt-name'>シェフのおすすめ</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：雇われヘッドハンター（3回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 4/11'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='4' data-off='7'></span><span class='gold-num'>4/11</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BGS_116.png' data-cid='BGS_116' onerror='fallbackImg(this)' alt='入替異常体' title='入替異常体 (BGS_116)' loading='lazy'><div class='discover-opt-name'>入替異常体</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_340.png' data-cid='BG32_340' onerror='fallbackImg(this)' alt='アギトの術師' title='アギトの術師 (BG32_340)' loading='lazy'><div class='discover-opt-name'>アギトの術師</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_520.png' data-cid='BG36_520' onerror='fallbackImg(this)' alt='ビルジウォーターの脱走者' title='ビルジウォーターの脱走者 (BG36_520)' loading='lazy'><div class='discover-opt-name'>ビルジウォーターの脱走者</div></div>
+</div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>4回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 4/11'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='4' data-off='7'></span><span class='gold-num'>4/11</span></span><span class='gold-arrow'>→</span><span class='gold-group' title='所持金 5/11'><span class='gold-label'>行動後</span><span class='coin-tray' data-on='5' data-off='6'></span><span class='gold-num'>5/11</span></span></span></div>
 <div class='roll-content'>
@@ -1025,6 +1073,13 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_521.png' data-cid='BG28_521' onerror='fallbackImg(this)' alt='次元界望遠鏡' title='次元界望遠鏡 (BG28_521)' loading='lazy'></div>
 </div></div>
 </div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：次元界望遠鏡（6回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 0/11'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='0' data-off='11'></span><span class='gold-num'>0/11</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_332.png' data-cid='BG36_332' onerror='fallbackImg(this)' alt='くくり罠仕掛け人' title='くくり罠仕掛け人 (BG36_332)' loading='lazy'><div class='discover-opt-name'>くくり罠仕掛け人</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_100.png' data-cid='BG20_100' onerror='fallbackImg(this)' alt='レイザーフェンの地霊術師' title='レイザーフェンの地霊術師 (BG20_100)' loading='lazy'><div class='discover-opt-name'>レイザーフェンの地霊術師</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_326.png' data-cid='BG31_326' onerror='fallbackImg(this)' alt='珠玉のトレーニー' title='珠玉のトレーニー (BG31_326)' loading='lazy'><div class='discover-opt-name'>珠玉のトレーニー</div></div>
+</div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>7回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 0/12'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='0' data-off='12'></span><span class='gold-num'>0/12</span></span></span></div>
 <div class='roll-content'>
@@ -1059,12 +1114,7 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-loss'>敗北 (-15)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+15</span><span class='gold-arrow'>→</span><span class='life-hp'>♥30</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG36_HERO_105.png' data-cid='BG36_HERO_105' data-hero='1' onerror='fallbackImg(this)' alt='悪夢の王ザヴィウス' title='悪夢の王ザヴィウス (BG36_HERO_105)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>悪夢の王ザヴィウス</span><span class='opp-meta-chip'>順位 2位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+2</span></span><span class='opp-meta-chip'>トリプル 4回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: 不吉な石 — 悪夢の恵みを1つ得た自分の戦団で最も多い種族のグレード4のミニオンを1体発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_206.png' data-cid='BG36_MagicItem_206' onerror='fallbackImg(this)' alt='不吉な石' title='不吉な石 (BG36_MagicItem_206)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>不吉な石</span></span><span class='trinket-chip' title='上級: 食肉処理鎌 — 「食肉処理」を1体得る。各ターンの開始時もう1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_406.png' data-cid='BG30_MagicItem_406' onerror='fallbackImg(this)' alt='食肉処理鎌' title='食肉処理鎌 (BG30_MagicItem_406)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>食肉処理鎌</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG36_HERO_105.png' data-cid='BG36_HERO_105' data-hero='1' onerror='fallbackImg(this)' alt='悪夢の王ザヴィウス' title='悪夢の王ザヴィウス (BG36_HERO_105)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>悪夢の王ザヴィウス</span><span class='opp-meta-chip'>順位 2位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+2</span></span><span class='opp-meta-chip'>トリプル 4回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: 不吉な石 — 悪夢の恵みを1つ得た自分の戦団で最も多い種族のグレード4のミニオンを1体発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_206.png' data-cid='BG36_MagicItem_206' onerror='fallbackImg(this)' alt='不吉な石' title='不吉な石 (BG36_MagicItem_206)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>不吉な石</span></span><span class='trinket-chip' title='上級: 食肉処理鎌 — 「食肉処理」を1体得る。各ターンの開始時もう1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_406.png' data-cid='BG30_MagicItem_406' onerror='fallbackImg(this)' alt='食肉処理鎌' title='食肉処理鎌 (BG30_MagicItem_406)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>食肉処理鎌</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_HERO_105p.png' data-cid='BG36_HERO_105p' onerror='fallbackImg(this)' alt='惨状の感覚' title='惨状の感覚 (BG36_HERO_105p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>惨状の感覚</span></div><div class='hp-inline-desc'>4ターンごとに悪夢の恵みを1つ得たミニオン1体を発見する。（あと4ターン！）</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（7体）</div>
 <div class='card-row'>
@@ -1076,11 +1126,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_515.png' data-cid='BG36_515' onerror='fallbackImg(this)' alt='しゃれた幽霊' title='しゃれた幽霊 (BG36_515)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>52</span><span class='stat-hp'>26</span></div><div class='kw-row'><span class='kw-tag kw-reborn'>蘇り</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_324.png' data-cid='BG32_324' onerror='fallbackImg(this)' alt='ドラストフォールンの肉屋' title='ドラストフォールンの肉屋 (BG32_324)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>30</span><span class='stat-hp'>7</span></div><div class='kw-row'><span class='kw-tag kw-reborn'>蘇り</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★5</span></span><span class='gold-group' title='所持金 0/12'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='12'></span><span class='gold-num'>0/12</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip'>グレード ★5 → ★5</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+15</span></span><span class='opp-meta-chip'>トリプル 1回</span><span class='gold-group' title='所持金 0/12'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='12'></span><span class='gold-num'>0/12</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span><span class='trinket-chip' title='上級: 先遣者のステッカー — 自分の選択カードの効果は選べる2つの効果を組み合わせたものになる。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_308.png' data-cid='BG36_MagicItem_308' onerror='fallbackImg(this)' alt='先遣者のステッカー' title='先遣者のステッカー (BG36_MagicItem_308)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>先遣者のステッカー</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>157</span><span class='stat-hp'>169</span></div><div class='kw-row'><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div><div class='dg-effect-box' title='ハーピィのカギ爪: 聖なる盾、疾風'><div class='dg-name'>✦ ハーピィのカギ爪</div><div class='dg-desc'>聖なる盾、疾風</div></div></div>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>6</span><span class='stat-hp'>12</span></div><div class='dg-effect-box' title='カリスマ性: 勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。'><div class='dg-name'>✦ カリスマ性</div><div class='dg-desc'>勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。</div></div></div>
@@ -1091,14 +1141,14 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG_LOE_077.png' data-cid='BG_LOE_077' onerror='fallbackImg(this)' alt='ブラン・ブロンズビアード' title='ブラン・ブロンズビアード (BG_LOE_077)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>85</span><span class='stat-hp'>90</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（4枚）</div>
+<div class='sub-label'>自分の手札（4枚）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_GEM.png' data-cid='BG20_GEM' onerror='fallbackImg(this)' alt='血の宝石' title='血の宝石 (BG20_GEM)' loading='lazy'></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_GEM.png' data-cid='BG20_GEM' onerror='fallbackImg(this)' alt='血の宝石' title='血の宝石 (BG20_GEM)' loading='lazy'></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_GEM.png' data-cid='BG20_GEM' onerror='fallbackImg(this)' alt='血の宝石' title='血の宝石 (BG20_GEM)' loading='lazy'></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_GEM.png' data-cid='BG20_GEM' onerror='fallbackImg(this)' alt='血の宝石' title='血の宝石 (BG20_GEM)' loading='lazy'></div>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-10' class='turn-box'>
@@ -1121,6 +1171,55 @@ document.addEventListener('keydown', function(e) {
 <div class='card-row'>
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_330.png' data-cid='BG36_330' onerror='fallbackImg(this)' alt='ずる賢い潜入者' title='ずる賢い潜入者 (BG36_330)' loading='lazy'></div>
 </div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：開かれた進路（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 13/13'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='13' data-off='0'></span><span class='gold-num'>13/13</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BGS_041.png' data-cid='BGS_041' onerror='fallbackImg(this)' alt='魔力のアスペクト・カレクゴス' title='魔力のアスペクト・カレクゴス (BGS_041)' loading='lazy'><div class='discover-opt-name'>魔力のアスペクト・カレクゴス</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG33_828.png' data-cid='BG33_828' onerror='fallbackImg(this)' alt='船旅の達人ユードラ' title='船旅の達人ユードラ (BG33_828)' loading='lazy'><div class='discover-opt-name'>船旅の達人ユードラ</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_550.png' data-cid='BG28_550' onerror='fallbackImg(this)' alt='ロデオ名人' title='ロデオ名人 (BG28_550)' loading='lazy'><div class='discover-opt-name'>ロデオ名人</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：開かれた進路（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 13/13'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='13' data-off='0'></span><span class='gold-num'>13/13</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_500.png' data-cid='BG28_500' onerror='fallbackImg(this)' alt='秘蔵の鎧' title='秘蔵の鎧 (BG28_500)' loading='lazy'><div class='discover-opt-name'>秘蔵の鎧</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_882.png' data-cid='BG28_882' onerror='fallbackImg(this)' alt='契約済みの死体' title='契約済みの死体 (BG28_882)' loading='lazy'><div class='discover-opt-name'>契約済みの死体</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/EBG_Spell_032.png' data-cid='EBG_Spell_032' onerror='fallbackImg(this)' alt='貪り喰らうものとの交信' title='貪り喰らうものとの交信 (EBG_Spell_032)' loading='lazy'><div class='discover-opt-name'>貪り喰らうものとの交信</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：ロデオ名人（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 13/13'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='13' data-off='0'></span><span class='gold-num'>13/13</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_805.png' data-cid='BG28_805' onerror='fallbackImg(this)' alt='石油を掘り当てた！' title='石油を掘り当てた！ (BG28_805)' loading='lazy'><div class='discover-opt-name'>石油を掘り当てた！</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_951.png' data-cid='BG35_951' onerror='fallbackImg(this)' alt='ストームウィンド魂' title='ストームウィンド魂 (BG35_951)' loading='lazy'><div class='discover-opt-name'>ストームウィンド魂</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_246.png' data-cid='BG36_246' onerror='fallbackImg(this)' alt='力強きドラゴンブレス' title='力強きドラゴンブレス (BG36_246)' loading='lazy'><div class='discover-opt-name'>力強きドラゴンブレス</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：ロデオ名人（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 13/13'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='13' data-off='0'></span><span class='gold-num'>13/13</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_520.png' data-cid='BG28_520' onerror='fallbackImg(this)' alt='ずば抜けたズボン' title='ずば抜けたズボン (BG28_520)' loading='lazy'><div class='discover-opt-name'>ずば抜けたズボン</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_246.png' data-cid='BG36_246' onerror='fallbackImg(this)' alt='力強きドラゴンブレス' title='力強きドラゴンブレス (BG36_246)' loading='lazy'><div class='discover-opt-name'>力強きドラゴンブレス</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_884.png' data-cid='BG28_884' onerror='fallbackImg(this)' alt='自信過剰' title='自信過剰 (BG28_884)' loading='lazy'><div class='discover-opt-name'>自信過剰</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：開かれた進路（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 15/15'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='15' data-off='0'></span><span class='gold-num'>15/15</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_523.png' data-cid='BG36_523' onerror='fallbackImg(this)' alt='斬新な脱走者' title='斬新な脱走者 (BG36_523)' loading='lazy'><div class='discover-opt-name'>斬新な脱走者</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_111.png' data-cid='BG32_111' onerror='fallbackImg(this)' alt='悪夢の茶会の客人' title='悪夢の茶会の客人 (BG32_111)' loading='lazy'><div class='discover-opt-name'>悪夢の茶会の客人</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG33_885.png' data-cid='BG33_885' onerror='fallbackImg(this)' alt='鮮赤の精製者' title='鮮赤の精製者 (BG33_885)' loading='lazy'><div class='discover-opt-name'>鮮赤の精製者</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：開かれた進路（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 15/15'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='15' data-off='0'></span><span class='gold-num'>15/15</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_GIL_836.png' data-cid='BG28_GIL_836' onerror='fallbackImg(this)' alt='雇われヘッドハンター' title='雇われヘッドハンター (BG28_GIL_836)' loading='lazy'><div class='discover-opt-name'>雇われヘッドハンター</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG34_990.png' data-cid='BG34_990' onerror='fallbackImg(this)' alt='ゴールドの波' title='ゴールドの波 (BG34_990)' loading='lazy'><div class='discover-opt-name'>ゴールドの波</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/EBG_Spell_032.png' data-cid='EBG_Spell_032' onerror='fallbackImg(this)' alt='貪り喰らうものとの交信' title='貪り喰らうものとの交信 (EBG_Spell_032)' loading='lazy'><div class='discover-opt-name'>貪り喰らうものとの交信</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：雇われヘッドハンター（リロール前）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 16/16'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='16' data-off='0'></span><span class='gold-num'>16/16</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG33_830.png' data-cid='BG33_830' onerror='fallbackImg(this)' alt='アズシャラのカトラス剣士' title='アズシャラのカトラス剣士 (BG33_830)' loading='lazy'><div class='discover-opt-name'>アズシャラのカトラス剣士</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_100.png' data-cid='BG20_100' onerror='fallbackImg(this)' alt='レイザーフェンの地霊術師' title='レイザーフェンの地霊術師 (BG20_100)' loading='lazy'><div class='discover-opt-name'>レイザーフェンの地霊術師</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_340.png' data-cid='BG32_340' onerror='fallbackImg(this)' alt='アギトの術師' title='アギトの術師 (BG32_340)' loading='lazy'><div class='discover-opt-name'>アギトの術師</div></div>
 </div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>1回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 3/13'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='3' data-off='10'></span><span class='gold-num'>3/13</span></span><span class='gold-arrow'>→</span><span class='gold-group' title='所持金 2/13'><span class='gold-label'>行動後</span><span class='coin-tray' data-on='2' data-off='11'></span><span class='gold-num'>2/13</span></span></span></div>
@@ -1177,22 +1276,17 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-loss'>敗北 (-7)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥30</span><span class='armor-num'>+5</span><span class='gold-arrow'>→</span><span class='life-hp'>♥28</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_21.png' data-cid='TB_BaconShop_HERO_21' data-hero='1' onerror='fallbackImg(this)' alt='偉大なるアカザムザラク' title='偉大なるアカザムザラク (TB_BaconShop_HERO_21)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>偉大なるアカザムザラク</span><span class='opp-meta-chip'>順位 4位</span><span class='opp-meta-chip'>グレード ★5 → ★5</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥14</span></span><span class='opp-meta-chip'>トリプル 1回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: 訓練修了証書 — 戦闘開始時:味方の最も攻撃力が低いミニオン2体の攻撃力・体力を2倍にする。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_962.png' data-cid='BG30_MagicItem_962' onerror='fallbackImg(this)' alt='訓練修了証書' title='訓練修了証書 (BG30_MagicItem_962)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>訓練修了証書</span></span><span class='trinket-chip' title='上級: 無貌の肖像画 — 「無貌の操り手」を1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_876.png' data-cid='BG30_MagicItem_876' onerror='fallbackImg(this)' alt='無貌の肖像画' title='無貌の肖像画 (BG30_MagicItem_876)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>無貌の肖像画</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_21.png' data-cid='TB_BaconShop_HERO_21' data-hero='1' onerror='fallbackImg(this)' alt='偉大なるアカザムザラク' title='偉大なるアカザムザラク (TB_BaconShop_HERO_21)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>偉大なるアカザムザラク</span><span class='opp-meta-chip'>順位 4位</span><span class='opp-meta-chip'>グレード ★5 → ★5</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥14</span></span><span class='opp-meta-chip'>トリプル 1回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: 訓練修了証書 — 戦闘開始時:味方の最も攻撃力が低いミニオン2体の攻撃力・体力を2倍にする。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_962.png' data-cid='BG30_MagicItem_962' onerror='fallbackImg(this)' alt='訓練修了証書' title='訓練修了証書 (BG30_MagicItem_962)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>訓練修了証書</span></span><span class='trinket-chip' title='上級: 無貌の肖像画 — 「無貌の操り手」を1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_876.png' data-cid='BG30_MagicItem_876' onerror='fallbackImg(this)' alt='無貌の肖像画' title='無貌の肖像画 (BG30_MagicItem_876)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>無貌の肖像画</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_020.png' data-cid='TB_BaconShop_HP_020' onerror='fallbackImg(this)' alt='奇術' title='奇術 (TB_BaconShop_HP_020)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>奇術</span></div><div class='hp-inline-desc'>秘策を1つ選択する。それを準備する。</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（1体）</div>
 <div class='card-row'>
 <div class='card-item golden'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG21_015_G.png' data-cid='BG21_015_G' onerror='fallbackImg(this)' alt='タレクゴサ' title='タレクゴサ (BG21_015_G)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>205</span><span class='stat-hp'>214</span></div><div class='kw-row'><span class='kw-tag kw-gold'>ゴールデン</span><span class='kw-tag kw-ds'>聖盾</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★6</span></span><span class='gold-group' title='所持金 0/13'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='13'></span><span class='gold-num'>0/13</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip opp-tier-up'>グレード ★5 → ★6 UP</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+5</span></span><span class='opp-meta-chip'>トリプル 1回</span><span class='gold-group' title='所持金 0/13'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='13'></span><span class='gold-num'>0/13</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span><span class='trinket-chip' title='上級: 先遣者のステッカー — 自分の選択カードの効果は選べる2つの効果を組み合わせたものになる。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_308.png' data-cid='BG36_MagicItem_308' onerror='fallbackImg(this)' alt='先遣者のステッカー' title='先遣者のステッカー (BG36_MagicItem_308)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>先遣者のステッカー</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>447</span><span class='stat-hp'>459</span></div><div class='kw-row'><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div><div class='dg-effect-box' title='ハーピィのカギ爪: 聖なる盾、疾風'><div class='dg-name'>✦ ハーピィのカギ爪</div><div class='dg-desc'>聖なる盾、疾風</div></div></div>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>8</span><span class='stat-hp'>18</span></div><div class='dg-effect-box' title='カリスマ性: 勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。'><div class='dg-name'>✦ カリスマ性</div><div class='dg-desc'>勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。</div></div></div>
@@ -1203,11 +1297,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_121.png' data-cid='BG30_121' onerror='fallbackImg(this)' alt='気球乗りの測量士' title='気球乗りの測量士 (BG30_121)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>9</span><span class='stat-hp'>20</span></div><div class='kw-row'><span class='kw-tag kw-taunt'>挑発</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（1枚）</div>
+<div class='sub-label'>自分の手札（1枚）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BGS_123.png' data-cid='BGS_123' onerror='fallbackImg(this)' alt='酒場の逆巻き風' title='酒場の逆巻き風 (BGS_123)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>18</span><span class='stat-hp'>24</span></div></div>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-11' class='turn-box'>
@@ -1272,6 +1366,13 @@ document.addEventListener('keydown', function(e) {
 <div class='card-row'>
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_GIL_836.png' data-cid='BG28_GIL_836' onerror='fallbackImg(this)' alt='雇われヘッドハンター' title='雇われヘッドハンター (BG28_GIL_836)' loading='lazy'></div>
 </div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：雇われヘッドハンター（2回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 13/13'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='13' data-off='0'></span><span class='gold-num'>13/13</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG26_135.png' data-cid='BG26_135' onerror='fallbackImg(this)' alt='南海の大道芸人' title='南海の大道芸人 (BG26_135)' loading='lazy'><div class='discover-opt-name'>南海の大道芸人</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_520.png' data-cid='BG36_520' onerror='fallbackImg(this)' alt='ビルジウォーターの脱走者' title='ビルジウォーターの脱走者 (BG36_520)' loading='lazy'><div class='discover-opt-name'>ビルジウォーターの脱走者</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG34_865.png' data-cid='BG34_865' onerror='fallbackImg(this)' alt='火を吹くエンジンの精' title='火を吹くエンジンの精 (BG34_865)' loading='lazy'><div class='discover-opt-name'>火を吹くエンジンの精</div></div>
 </div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>3回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 13/13'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='13' data-off='0'></span><span class='gold-num'>13/13</span></span><span class='gold-arrow'>→</span><span class='gold-group' title='所持金 14/14'><span class='gold-label'>行動後</span><span class='coin-tray' data-on='14' data-off='0'></span><span class='gold-num'>14/14</span></span></span></div>
@@ -1488,12 +1589,7 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+15)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥28</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG22_HERO_201_SKIN_C.png' data-cid='BG22_HERO_201_SKIN_C' data-hero='1' onerror='fallbackImg(this)' alt='フェイリン大使' title='貴族フェイリン (BG22_HERO_201_SKIN_C)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>フェイリン大使</span><span class='opp-meta-chip'>順位 6位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥2</span></span><span class='opp-meta-chip'>トリプル 5回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: 使い古された燭台 — 小さなタイムワープのコスト2のミニオン1体を発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_MagicItem_823.png' data-cid='BG35_MagicItem_823' onerror='fallbackImg(this)' alt='使い古された燭台' title='使い古された燭台 (BG35_MagicItem_823)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>使い古された燭台</span></span><span class='trinket-chip' title='上級: カラフルコンパス — ランダムな92を2枚得る。各ターンの開始時さらに2枚得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_426t.png' data-cid='BG30_MagicItem_426t' onerror='fallbackImg(this)' alt='カラフルコンパス' title='カラフルコンパス (BG30_MagicItem_426t)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>カラフルコンパス</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG22_HERO_201_SKIN_C.png' data-cid='BG22_HERO_201_SKIN_C' data-hero='1' onerror='fallbackImg(this)' alt='フェイリン大使' title='貴族フェイリン (BG22_HERO_201_SKIN_C)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>フェイリン大使</span><span class='opp-meta-chip'>順位 6位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥2</span></span><span class='opp-meta-chip'>トリプル 5回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: 使い古された燭台 — 小さなタイムワープのコスト2のミニオン1体を発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_MagicItem_823.png' data-cid='BG35_MagicItem_823' onerror='fallbackImg(this)' alt='使い古された燭台' title='使い古された燭台 (BG35_MagicItem_823)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>使い古された燭台</span></span><span class='trinket-chip' title='上級: カラフルコンパス — ランダムな92を2枚得る。各ターンの開始時さらに2枚得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_426t.png' data-cid='BG30_MagicItem_426t' onerror='fallbackImg(this)' alt='カラフルコンパス' title='カラフルコンパス (BG30_MagicItem_426t)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>カラフルコンパス</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG22_HERO_201p.png' data-cid='BG22_HERO_201p' onerror='fallbackImg(this)' alt='探検計画' title='探検計画 (BG22_HERO_201p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>探検計画</span></div><div class='hp-inline-desc'>最初の1ターンは何もしない。グレード6、4、2のミニオンを1体ずつ発見しそれぞれのグレード到達時にそれらを獲得する。</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（7体）</div>
 <div class='card-row'>
@@ -1505,11 +1601,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_515.png' data-cid='BG36_515' onerror='fallbackImg(this)' alt='しゃれた幽霊' title='しゃれた幽霊 (BG36_515)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>45</span><span class='stat-hp'>14</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_324.png' data-cid='BG32_324' onerror='fallbackImg(this)' alt='ドラストフォールンの肉屋' title='ドラストフォールンの肉屋 (BG32_324)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>128</span><span class='stat-hp'>65</span></div><div class='kw-row'><span class='kw-tag kw-reborn'>蘇り</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★6</span></span><span class='gold-group' title='所持金 0/13'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='13'></span><span class='gold-num'>0/13</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 2位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥28</span></span><span class='opp-meta-chip'>トリプル 1回</span><span class='gold-group' title='所持金 0/13'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='13'></span><span class='gold-num'>0/13</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span><span class='trinket-chip' title='上級: 先遣者のステッカー — 自分の選択カードの効果は選べる2つの効果を組み合わせたものになる。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_308.png' data-cid='BG36_MagicItem_308' onerror='fallbackImg(this)' alt='先遣者のステッカー' title='先遣者のステッカー (BG36_MagicItem_308)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>先遣者のステッカー</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>884</span><span class='stat-hp'>899</span></div><div class='kw-row'><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div><div class='dg-effect-box' title='ハーピィのカギ爪: 聖なる盾、疾風'><div class='dg-name'>✦ ハーピィのカギ爪</div><div class='dg-desc'>聖なる盾、疾風</div></div></div>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>119</span><span class='stat-hp'>132</span></div><div class='dg-effect-box' title='カリスマ性: 勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。'><div class='dg-name'>✦ カリスマ性</div><div class='dg-desc'>勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。</div></div></div>
@@ -1520,11 +1616,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_121.png' data-cid='BG30_121' onerror='fallbackImg(this)' alt='気球乗りの測量士' title='気球乗りの測量士 (BG30_121)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>160</span><span class='stat-hp'>174</span></div><div class='kw-row'><span class='kw-tag kw-taunt'>挑発</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（0枚）</div>
+<div class='sub-label'>自分の手札（0枚）</div>
 <div class='card-row'>
 <span class='empty-note'>手札なし</span>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-12' class='turn-box'>
@@ -1568,6 +1664,13 @@ document.addEventListener('keydown', function(e) {
 <div class='card-row'>
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331.png' data-cid='BG36_331' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331)' loading='lazy'></div>
 </div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：トリプル報酬（1回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 16/16'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='16' data-off='0'></span><span class='gold-num'>16/16</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG33_823.png' data-cid='BG33_823' onerror='fallbackImg(this)' alt='空軍提督ロジャース' title='空軍提督ロジャース (BG33_823)' loading='lazy'><div class='discover-opt-name'>空軍提督ロジャース</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG26_175.png' data-cid='BG26_175' onerror='fallbackImg(this)' alt='意外精' title='意外精 (BG26_175)' loading='lazy'><div class='discover-opt-name'>意外精</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_883.png' data-cid='BG35_883' onerror='fallbackImg(this)' alt='バリンダ・ストーンハース' title='バリンダ・ストーンハース (BG35_883)' loading='lazy'><div class='discover-opt-name'>バリンダ・ストーンハース</div></div>
 </div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>2回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 16/16'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='16' data-off='0'></span><span class='gold-num'>16/16</span></span></span></div>
@@ -1744,23 +1847,18 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-tie'>引き分け</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥28</span><span class='armor-num'>+5</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_21.png' data-cid='TB_BaconShop_HERO_21' data-hero='1' onerror='fallbackImg(this)' alt='偉大なるアカザムザラク' title='偉大なるアカザムザラク (TB_BaconShop_HERO_21)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>偉大なるアカザムザラク</span><span class='opp-meta-chip'>順位 6位</span><span class='opp-meta-chip'>グレード ★5 → ★5</span><span class='opp-meta-chip'>体力 <span class='life-dead'>💀 -1</span></span><span class='opp-meta-chip'>トリプル 1回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: 訓練修了証書 — 戦闘開始時:味方の最も攻撃力が低いミニオン2体の攻撃力・体力を2倍にする。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_962.png' data-cid='BG30_MagicItem_962' onerror='fallbackImg(this)' alt='訓練修了証書' title='訓練修了証書 (BG30_MagicItem_962)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>訓練修了証書</span></span><span class='trinket-chip' title='上級: 無貌の肖像画 — 「無貌の操り手」を1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_876.png' data-cid='BG30_MagicItem_876' onerror='fallbackImg(this)' alt='無貌の肖像画' title='無貌の肖像画 (BG30_MagicItem_876)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>無貌の肖像画</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_21.png' data-cid='TB_BaconShop_HERO_21' data-hero='1' onerror='fallbackImg(this)' alt='偉大なるアカザムザラク' title='偉大なるアカザムザラク (TB_BaconShop_HERO_21)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>偉大なるアカザムザラク</span><span class='opp-meta-chip'>ゴースト</span><span class='opp-meta-chip'>順位 6位</span><span class='opp-meta-chip'>グレード ★5 → ★5</span><span class='opp-meta-chip'>体力 <span class='life-dead'>💀 -1</span></span><span class='opp-meta-chip'>トリプル 1回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: 訓練修了証書 — 戦闘開始時:味方の最も攻撃力が低いミニオン2体の攻撃力・体力を2倍にする。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_962.png' data-cid='BG30_MagicItem_962' onerror='fallbackImg(this)' alt='訓練修了証書' title='訓練修了証書 (BG30_MagicItem_962)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>訓練修了証書</span></span><span class='trinket-chip' title='上級: 無貌の肖像画 — 「無貌の操り手」を1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_876.png' data-cid='BG30_MagicItem_876' onerror='fallbackImg(this)' alt='無貌の肖像画' title='無貌の肖像画 (BG30_MagicItem_876)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>無貌の肖像画</span></span></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（2体）</div>
 <div class='card-row'>
 <div class='card-item golden'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG21_015_G.png' data-cid='BG21_015_G' onerror='fallbackImg(this)' alt='タレクゴサ' title='タレクゴサ (BG21_015_G)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>1887</span><span class='stat-hp'>1968</span></div><div class='kw-row'><span class='kw-tag kw-gold'>ゴールデン</span><span class='kw-tag kw-ds'>聖盾</span></div></div>
 <div class='card-item has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_883.png' data-cid='BG35_883' onerror='fallbackImg(this)' alt='バリンダ・ストーンハース' title='バリンダ・ストーンハース (BG35_883)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>52</span><span class='stat-hp'>52</span></div><div class='dg-effect-box' title='融合体: 全てのミニオンの種族を持つ。'><div class='dg-name'>✦ 融合体</div><div class='dg-desc'>全てのミニオンの種族を持つ。</div></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★6</span></span><span class='gold-group' title='所持金 1/15'><span class='gold-label'>残り</span><span class='coin-tray' data-on='1' data-off='14'></span><span class='gold-num'>1/15</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥28</span><span class='armor-num'>+5</span></span><span class='opp-meta-chip'>トリプル 2回</span><span class='gold-group' title='所持金 1/15'><span class='gold-label'>残金</span><span class='coin-tray' data-on='1' data-off='14'></span><span class='gold-num'>1/15</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span><span class='trinket-chip' title='上級: 先遣者のステッカー — 自分の選択カードの効果は選べる2つの効果を組み合わせたものになる。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_308.png' data-cid='BG36_MagicItem_308' onerror='fallbackImg(this)' alt='先遣者のステッカー' title='先遣者のステッカー (BG36_MagicItem_308)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>先遣者のステッカー</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item golden has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331_G.png' data-cid='BG36_331_G' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331_G)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>2284</span><span class='stat-hp'>2348</span></div><div class='kw-row'><span class='kw-tag kw-gold'>ゴールデン</span><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div><div class='dg-effect-box' title='ハーピィのカギ爪: 聖なる盾、疾風'><div class='dg-name'>✦ ハーピィのカギ爪</div><div class='dg-desc'>聖なる盾、疾風</div></div><div class='dg-effect-box' title='カリスマ性: 勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。'><div class='dg-name'>✦ カリスマ性</div><div class='dg-desc'>勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。</div></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_633.png' data-cid='BG28_633' onerror='fallbackImg(this)' alt='フェルボア' title='フェルボア (BG28_633)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>1473</span><span class='stat-hp'>1766</span></div></div>
@@ -1771,11 +1869,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_121.png' data-cid='BG30_121' onerror='fallbackImg(this)' alt='気球乗りの測量士' title='気球乗りの測量士 (BG30_121)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>482</span><span class='stat-hp'>505</span></div><div class='kw-row'><span class='kw-tag kw-taunt'>挑発</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（0枚）</div>
+<div class='sub-label'>自分の手札（0枚）</div>
 <div class='card-row'>
 <span class='empty-note'>手札なし</span>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-13' class='turn-box'>
@@ -1820,6 +1918,13 @@ document.addEventListener('keydown', function(e) {
 <div class='card-row'>
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG23_017.png' data-cid='BG23_017' onerror='fallbackImg(this)' alt='鮮赤の勇者' title='鮮赤の勇者 (BG23_017)' loading='lazy'></div>
 </div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：トリプル報酬（1回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 16/16'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='16' data-off='0'></span><span class='gold-num'>16/16</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_341.png' data-cid='BG36_341' onerror='fallbackImg(this)' alt='ベテラン追いはぎ' title='ベテラン追いはぎ (BG36_341)' loading='lazy'><div class='discover-opt-name'>ベテラン追いはぎ</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG34_692.png' data-cid='BG34_692' onerror='fallbackImg(this)' alt='フォーセイクンの織り手' title='フォーセイクンの織り手 (BG34_692)' loading='lazy'><div class='discover-opt-name'>フォーセイクンの織り手</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_370.png' data-cid='BG36_370' onerror='fallbackImg(this)' alt='勝ち誇る地霊術使い' title='勝ち誇る地霊術使い (BG36_370)' loading='lazy'><div class='discover-opt-name'>勝ち誇る地霊術使い</div></div>
 </div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>2回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 13/16'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='13' data-off='3'></span><span class='gold-num'>13/16</span></span><span class='gold-arrow'>→</span><span class='gold-group' title='所持金 11/16'><span class='gold-label'>行動後</span><span class='coin-tray' data-on='11' data-off='5'></span><span class='gold-num'>11/16</span></span></span></div>
@@ -1998,12 +2103,7 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+21)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥28</span><span class='armor-num'>+5</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG36_HERO_105.png' data-cid='BG36_HERO_105' data-hero='1' onerror='fallbackImg(this)' alt='悪夢の王ザヴィウス' title='悪夢の王ザヴィウス (BG36_HERO_105)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>悪夢の王ザヴィウス</span><span class='opp-meta-chip'>順位 2位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+2</span></span><span class='opp-meta-chip'>トリプル 6回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: 不吉な石 — 悪夢の恵みを1つ得た自分の戦団で最も多い種族のグレード4のミニオンを1体発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_206.png' data-cid='BG36_MagicItem_206' onerror='fallbackImg(this)' alt='不吉な石' title='不吉な石 (BG36_MagicItem_206)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>不吉な石</span></span><span class='trinket-chip' title='上級: 食肉処理鎌 — 「食肉処理」を1体得る。各ターンの開始時もう1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_406.png' data-cid='BG30_MagicItem_406' onerror='fallbackImg(this)' alt='食肉処理鎌' title='食肉処理鎌 (BG30_MagicItem_406)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>食肉処理鎌</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG36_HERO_105.png' data-cid='BG36_HERO_105' data-hero='1' onerror='fallbackImg(this)' alt='悪夢の王ザヴィウス' title='悪夢の王ザヴィウス (BG36_HERO_105)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>悪夢の王ザヴィウス</span><span class='opp-meta-chip'>順位 2位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥30</span><span class='armor-num'>+2</span></span><span class='opp-meta-chip'>トリプル 6回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: 不吉な石 — 悪夢の恵みを1つ得た自分の戦団で最も多い種族のグレード4のミニオンを1体発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_206.png' data-cid='BG36_MagicItem_206' onerror='fallbackImg(this)' alt='不吉な石' title='不吉な石 (BG36_MagicItem_206)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>不吉な石</span></span><span class='trinket-chip' title='上級: 食肉処理鎌 — 「食肉処理」を1体得る。各ターンの開始時もう1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_406.png' data-cid='BG30_MagicItem_406' onerror='fallbackImg(this)' alt='食肉処理鎌' title='食肉処理鎌 (BG30_MagicItem_406)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>食肉処理鎌</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_HERO_105p.png' data-cid='BG36_HERO_105p' onerror='fallbackImg(this)' alt='惨状の感覚' title='惨状の感覚 (BG36_HERO_105p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>惨状の感覚</span></div><div class='hp-inline-desc'>4ターンごとに悪夢の恵みを1つ得たミニオン1体を発見する。（あと4ターン！）</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（7体）</div>
 <div class='card-row'>
@@ -2015,11 +2115,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_835.png' data-cid='BG31_835' onerror='fallbackImg(this)' alt='殺り手の死事人' title='殺り手の死事人 (BG31_835)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>790</span><span class='stat-hp'>536</span></div><div class='kw-row'><span class='kw-tag kw-reborn'>蘇り</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_324.png' data-cid='BG32_324' onerror='fallbackImg(this)' alt='ドラストフォールンの肉屋' title='ドラストフォールンの肉屋 (BG32_324)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>2038</span><span class='stat-hp'>1789</span></div><div class='kw-row'><span class='kw-tag kw-reborn'>蘇り</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★6</span></span><span class='gold-group' title='所持金 0/16'><span class='gold-label'>残り</span><span class='coin-tray' data-on='0' data-off='16'></span><span class='gold-num'>0/16</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥28</span><span class='armor-num'>+5</span></span><span class='opp-meta-chip'>トリプル 3回</span><span class='gold-group' title='所持金 0/16'><span class='gold-label'>残金</span><span class='coin-tray' data-on='0' data-off='16'></span><span class='gold-num'>0/16</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span><span class='trinket-chip' title='上級: 先遣者のステッカー — 自分の選択カードの効果は選べる2つの効果を組み合わせたものになる。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_308.png' data-cid='BG36_MagicItem_308' onerror='fallbackImg(this)' alt='先遣者のステッカー' title='先遣者のステッカー (BG36_MagicItem_308)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>先遣者のステッカー</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_048.png' data-cid='TB_BaconShop_HP_048' onerror='fallbackImg(this)' alt='闘いの印' title='闘いの印 (TB_BaconShop_HP_048)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>闘いの印</span></div><div class='hp-inline-desc'>自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG25_016.png' data-cid='BG25_016' onerror='fallbackImg(this)' alt='シーンドライの聖射手' title='シーンドライの聖射手 (BG25_016)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>222</span><span class='stat-hp'>262</span></div><div class='kw-row'><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div></div>
 <div class='card-item golden has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331_G.png' data-cid='BG36_331_G' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331_G)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>3323</span><span class='stat-hp'>3399</span></div><div class='kw-row'><span class='kw-tag kw-gold'>ゴールデン</span><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div><div class='dg-effect-box' title='ハーピィのカギ爪: 聖なる盾、疾風'><div class='dg-name'>✦ ハーピィのカギ爪</div><div class='dg-desc'>聖なる盾、疾風</div></div><div class='dg-effect-box' title='カリスマ性: 勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。'><div class='dg-name'>✦ カリスマ性</div><div class='dg-desc'>勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。</div></div></div>
@@ -2030,11 +2130,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_121.png' data-cid='BG30_121' onerror='fallbackImg(this)' alt='気球乗りの測量士' title='気球乗りの測量士 (BG30_121)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>943</span><span class='stat-hp'>978</span></div><div class='kw-row'><span class='kw-tag kw-taunt'>挑発</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（1枚）</div>
+<div class='sub-label'>自分の手札（1枚）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_883.png' data-cid='BG35_883' onerror='fallbackImg(this)' alt='バリンダ・ストーンハース' title='バリンダ・ストーンハース (BG35_883)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>48</span><span class='stat-hp'>60</span></div></div>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-14' class='turn-box'>
@@ -2078,6 +2178,20 @@ document.addEventListener('keydown', function(e) {
 <div class='card-row'>
 <span class='empty-note'>購入なし</span>
 </div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：開かれた進路（1回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 15/16'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='15' data-off='1'></span><span class='gold-num'>15/16</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_515.png' data-cid='BG36_515' onerror='fallbackImg(this)' alt='しゃれた幽霊' title='しゃれた幽霊 (BG36_515)' loading='lazy'><div class='discover-opt-name'>しゃれた幽霊</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_835.png' data-cid='BG31_835' onerror='fallbackImg(this)' alt='殺り手の死事人' title='殺り手の死事人 (BG31_835)' loading='lazy'><div class='discover-opt-name'>殺り手の死事人</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG23_017.png' data-cid='BG23_017' onerror='fallbackImg(this)' alt='鮮赤の勇者' title='鮮赤の勇者 (BG23_017)' loading='lazy'><div class='discover-opt-name'>鮮赤の勇者</div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：開かれた進路（1回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 15/16'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='15' data-off='1'></span><span class='gold-num'>15/16</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_838.png' data-cid='BG28_838' onerror='fallbackImg(this)' alt='フィジカル二重丸' title='フィジカル二重丸 (BG28_838)' loading='lazy'><div class='discover-opt-name'>フィジカル二重丸</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/EBG_Spell_038.png' data-cid='EBG_Spell_038' onerror='fallbackImg(this)' alt='ハムウルが失くした杖' title='ハムウルが失くした杖 (EBG_Spell_038)' loading='lazy'><div class='discover-opt-name'>ハムウルが失くした杖</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/EBG_Spell_017.png' data-cid='EBG_Spell_017' onerror='fallbackImg(this)' alt='地母神のまなざし' title='地母神のまなざし (EBG_Spell_017)' loading='lazy'><div class='discover-opt-name'>地母神のまなざし</div></div>
 </div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>2回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 15/16'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='15' data-off='1'></span><span class='gold-num'>15/16</span></span></span></div>
@@ -2138,6 +2252,13 @@ document.addEventListener('keydown', function(e) {
 <div class='card-row'>
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/EBG_Spell_037.png' data-cid='EBG_Spell_037' onerror='fallbackImg(this)' alt='仮面の下の正体' title='仮面の下の正体 (EBG_Spell_037)' loading='lazy'></div>
 </div></div>
+</div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：仮面の下の正体（4回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 15/16'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='15' data-off='1'></span><span class='gold-num'>15/16</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_066.png' data-cid='TB_BaconShop_HP_066' onerror='fallbackImg(this)' alt='ヴァーダント・スフィア' title='ヴァーダント・スフィア (TB_BaconShop_HP_066)' loading='lazy'><div class='discover-opt-name'>ヴァーダント・スフィア</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_041g.png' data-cid='TB_BaconShop_HP_041g' onerror='fallbackImg(this)' alt='海賊の王' title='海賊の王 (TB_BaconShop_HP_041g)' loading='lazy'><div class='discover-opt-name'>海賊の王</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_HERO_201p.png' data-cid='BG20_HERO_201p' onerror='fallbackImg(this)' alt='魂入れ替え' title='魂入れ替え (BG20_HERO_201p)' loading='lazy'><div class='discover-opt-name'>魂入れ替え</div></div>
 </div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>5回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 15/16'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='15' data-off='1'></span><span class='gold-num'>15/16</span></span><span class='gold-arrow'>→</span><span class='gold-group' title='所持金 13/16'><span class='gold-label'>行動後</span><span class='coin-tray' data-on='13' data-off='3'></span><span class='gold-num'>13/16</span></span></span></div>
@@ -2234,12 +2355,7 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+11)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥28</span><span class='armor-num'>+5</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG28_HERO_801.png' data-cid='BG28_HERO_801' data-hero='1' onerror='fallbackImg(this)' alt='ドクター・ホリ＝デイ' title='ドクター・ホリ＝デイ (BG28_HERO_801)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>ドクター・ホリ＝デイ</span><span class='opp-meta-chip'>順位 3位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥7</span></span><span class='opp-meta-chip'>トリプル 3回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: カラフルコンパス — ランダムな92を1枚得る。各ターンの開始時もう1枚得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_426.png' data-cid='BG30_MagicItem_426' onerror='fallbackImg(this)' alt='カラフルコンパス' title='カラフルコンパス (BG30_MagicItem_426)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>カラフルコンパス</span></span><span class='trinket-chip' title='上級: 見通しのグラス — ランダムな選択カードを2枚得る。各ターンの開始時もう2枚得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_303t.png' data-cid='BG36_MagicItem_303t' onerror='fallbackImg(this)' alt='見通しのグラス' title='見通しのグラス (BG36_MagicItem_303t)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>見通しのグラス</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG28_HERO_801.png' data-cid='BG28_HERO_801' data-hero='1' onerror='fallbackImg(this)' alt='ドクター・ホリ＝デイ' title='ドクター・ホリ＝デイ (BG28_HERO_801)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>ドクター・ホリ＝デイ</span><span class='opp-meta-chip'>順位 3位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥7</span></span><span class='opp-meta-chip'>トリプル 3回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: カラフルコンパス — ランダムな92を1枚得る。各ターンの開始時もう1枚得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_426.png' data-cid='BG30_MagicItem_426' onerror='fallbackImg(this)' alt='カラフルコンパス' title='カラフルコンパス (BG30_MagicItem_426)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>カラフルコンパス</span></span><span class='trinket-chip' title='上級: 見通しのグラス — ランダムな選択カードを2枚得る。各ターンの開始時もう2枚得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_303t.png' data-cid='BG36_MagicItem_303t' onerror='fallbackImg(this)' alt='見通しのグラス' title='見通しのグラス (BG36_MagicItem_303t)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>見通しのグラス</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/TB_BaconShop_HP_080.png' data-cid='TB_BaconShop_HP_080' onerror='fallbackImg(this)' alt='ケルスザードの愛猫' title='ケルスザードの愛猫 (TB_BaconShop_HP_080)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>ケルスザードの愛猫</span></div><div class='hp-inline-desc'>他のヒーローが死んだ後その戦団のミニオン1体を発見する。付与された効果はそのまま維持される。</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（7体）</div>
 <div class='card-row'>
@@ -2251,11 +2367,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_633.png' data-cid='BG28_633' onerror='fallbackImg(this)' alt='フェルボア' title='フェルボア (BG28_633)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>5353</span><span class='stat-hp'>6927</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_633.png' data-cid='BG28_633' onerror='fallbackImg(this)' alt='フェルボア' title='フェルボア (BG28_633)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>5144</span><span class='stat-hp'>6681</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★6</span></span><span class='gold-group' title='所持金 11/17'><span class='gold-label'>残り</span><span class='coin-tray' data-on='11' data-off='6'></span><span class='gold-num'>11/17</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥28</span><span class='armor-num'>+5</span></span><span class='opp-meta-chip'>トリプル 3回</span><span class='gold-group' title='所持金 11/17'><span class='gold-label'>残金</span><span class='coin-tray' data-on='11' data-off='6'></span><span class='gold-num'>11/17</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span><span class='trinket-chip' title='上級: 先遣者のステッカー — 自分の選択カードの効果は選べる2つの効果を組み合わせたものになる。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_308.png' data-cid='BG36_MagicItem_308' onerror='fallbackImg(this)' alt='先遣者のステッカー' title='先遣者のステッカー (BG36_MagicItem_308)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>先遣者のステッカー</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box hp-inline-changed'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_HERO_201p.png' data-cid='BG20_HERO_201p' onerror='fallbackImg(this)' alt='魂入れ替え' title='魂入れ替え (BG20_HERO_201p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>魂入れ替え</span><span class='hp-changed-pill'>変更</span></div><div class='hp-inline-desc'>ミニオンを2体選択。それらは次のターンまで片割れの攻撃力を追加で得る。</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item golden has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331_G.png' data-cid='BG36_331_G' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331_G)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>5038</span><span class='stat-hp'>4898</span></div><div class='kw-row'><span class='kw-tag kw-gold'>ゴールデン</span><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div><div class='dg-effect-box' title='ハーピィのカギ爪: 聖なる盾、疾風'><div class='dg-name'>✦ ハーピィのカギ爪</div><div class='dg-desc'>聖なる盾、疾風</div></div><div class='dg-effect-box' title='カリスマ性: 勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。'><div class='dg-name'>✦ カリスマ性</div><div class='dg-desc'>勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。</div></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_323.png' data-cid='BG31_323' onerror='fallbackImg(this)' alt='爆速ホグライダー' title='爆速ホグライダー (BG31_323)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>1370</span><span class='stat-hp'>1414</span></div></div>
@@ -2266,12 +2382,12 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_121.png' data-cid='BG30_121' onerror='fallbackImg(this)' alt='気球乗りの測量士' title='気球乗りの測量士 (BG30_121)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>1417</span><span class='stat-hp'>1458</span></div><div class='kw-row'><span class='kw-tag kw-taunt'>挑発</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（2枚）</div>
+<div class='sub-label'>自分の手札（2枚）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_883.png' data-cid='BG35_883' onerror='fallbackImg(this)' alt='バリンダ・ストーンハース' title='バリンダ・ストーンハース (BG35_883)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>48</span><span class='stat-hp'>60</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG28_633.png' data-cid='BG28_633' onerror='fallbackImg(this)' alt='フェルボア' title='フェルボア (BG28_633)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>2</span><span class='stat-hp'>6</span></div></div>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='game-1-turn-15' class='turn-box'>
@@ -2516,6 +2632,13 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG35_883.png' data-cid='BG35_883' onerror='fallbackImg(this)' alt='バリンダ・ストーンハース' title='バリンダ・ストーンハース (BG35_883)' loading='lazy'></div>
 </div></div>
 </div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：トリプル報酬（11回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 8/18'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='8' data-off='10'></span><span class='gold-num'>8/18</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_241.png' data-cid='BG36_241' onerror='fallbackImg(this)' alt='クリムゾンの擁護者' title='クリムゾンの擁護者 (BG36_241)' loading='lazy'><div class='discover-opt-name'>クリムゾンの擁護者</div></div>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_849.png' data-cid='BG36_849' onerror='fallbackImg(this)' alt='勇敢なる太母' title='勇敢なる太母 (BG36_849)' loading='lazy'><div class='discover-opt-name'>勇敢なる太母</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_352.png' data-cid='BG36_352' onerror='fallbackImg(this)' alt='解き放たれし嵐' title='解き放たれし嵐 (BG36_352)' loading='lazy'><div class='discover-opt-name'>解き放たれし嵐</div></div>
+</div></div>
 <div class='roll-block'>
 <div class='roll-header'><span>12回目リロール後</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 7/18'><span class='gold-label'>ロール時</span><span class='coin-tray' data-on='7' data-off='11'></span><span class='gold-num'>7/18</span></span><span class='gold-arrow'>→</span><span class='gold-group' title='所持金 2/18'><span class='gold-label'>行動後</span><span class='coin-tray' data-on='2' data-off='16'></span><span class='gold-num'>2/18</span></span></span></div>
 <div class='roll-content'>
@@ -2537,6 +2660,13 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item bought'><span class='badge badge-buy'>購入</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG23_318.png' data-cid='BG23_318' onerror='fallbackImg(this)' alt='大暴走リロイ' title='大暴走リロイ (BG23_318)' loading='lazy'></div>
 </div></div>
 </div></div>
+<div class='discover-block'>
+<div class='discover-header'><span>🔎 発見：トリプル報酬（12回目リロール後）</span><span class='roll-gold-bar'><span class='gold-group' title='所持金 4/18'><span class='gold-label'>発見時</span><span class='coin-tray' data-on='4' data-off='14'></span><span class='gold-num'>4/18</span></span></span></div>
+<div class='card-row'>
+<div class='card-item discover-option discover-option-chosen'><span class='badge badge-discover-chosen'>選択</span><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_343.png' data-cid='BG36_343' onerror='fallbackImg(this)' alt='無音の配達屋' title='無音の配達屋 (BG36_343)' loading='lazy'><div class='discover-opt-name'>無音の配達屋</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_849.png' data-cid='BG36_849' onerror='fallbackImg(this)' alt='勇敢なる太母' title='勇敢なる太母 (BG36_849)' loading='lazy'><div class='discover-opt-name'>勇敢なる太母</div></div>
+<div class='card-item discover-option discover-option-unchosen'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_810.png' data-cid='BG31_810' onerror='fallbackImg(this)' alt='ウルトラヴァイオレットの超越者' title='ウルトラヴァイオレットの超越者 (BG31_810)' loading='lazy'><div class='discover-opt-name'>ウルトラヴァイオレットの超越者</div></div>
+</div></div>
 <details class='lb-details'>
 <summary>ロビー全員の状況（全8人：順位・開始/終了グレード・体力・トリプル・装飾品）</summary>
 <div class='lb-table-wrap'><table class='lb-table'>
@@ -2552,12 +2682,7 @@ document.addEventListener('keydown', function(e) {
 </tbody></table></div></details>
 <div class='combat-block'>
 <div class='combat-header'><span>⚔ 戦闘結果・対戦相手</span><span class='roll-gold-bar'><span class='combat-res-badge combat-res-win'>勝利 (+17)</span><span class='life-pill'><span class='tier-label'>自ライフ</span><span class='life-hp'>♥28</span><span class='armor-num'>+5</span></span></span></div>
-<div class='opp-summary-card'>
-<img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG36_HERO_105.png' data-cid='BG36_HERO_105' data-hero='1' onerror='fallbackImg(this)' alt='悪夢の王ザヴィウス' title='悪夢の王ザヴィウス (BG36_HERO_105)' loading='lazy'>
-<div class='opp-summary-info'>
-<div class='opp-summary-top'><span>悪夢の王ザヴィウス</span><span class='opp-meta-chip'>順位 2位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥11</span></span><span class='opp-meta-chip'>トリプル 7回</span></div>
-<div class='trinket-row'><span class='trinket-chip' title='下級: 不吉な石 — 悪夢の恵みを1つ得た自分の戦団で最も多い種族のグレード4のミニオンを1体発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_206.png' data-cid='BG36_MagicItem_206' onerror='fallbackImg(this)' alt='不吉な石' title='不吉な石 (BG36_MagicItem_206)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>不吉な石</span></span><span class='trinket-chip' title='上級: 食肉処理鎌 — 「食肉処理」を1体得る。各ターンの開始時もう1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_406.png' data-cid='BG30_MagicItem_406' onerror='fallbackImg(this)' alt='食肉処理鎌' title='食肉処理鎌 (BG30_MagicItem_406)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>食肉処理鎌</span></span></div>
-</div></div>
+<div class='opp-summary-card'><img class='opp-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/BG36_HERO_105.png' data-cid='BG36_HERO_105' data-hero='1' onerror='fallbackImg(this)' alt='悪夢の王ザヴィウス' title='悪夢の王ザヴィウス (BG36_HERO_105)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-opp'>相手</span><span>悪夢の王ザヴィウス</span><span class='opp-meta-chip'>順位 2位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥11</span></span><span class='opp-meta-chip'>トリプル 7回</span></div><div class='trinket-row'><span class='trinket-chip' title='下級: 不吉な石 — 悪夢の恵みを1つ得た自分の戦団で最も多い種族のグレード4のミニオンを1体発見する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_206.png' data-cid='BG36_MagicItem_206' onerror='fallbackImg(this)' alt='不吉な石' title='不吉な石 (BG36_MagicItem_206)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>不吉な石</span></span><span class='trinket-chip' title='上級: 食肉処理鎌 — 「食肉処理」を1体得る。各ターンの開始時もう1体得る。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_MagicItem_406.png' data-cid='BG30_MagicItem_406' onerror='fallbackImg(this)' alt='食肉処理鎌' title='食肉処理鎌 (BG30_MagicItem_406)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>食肉処理鎌</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_HERO_105p.png' data-cid='BG36_HERO_105p' onerror='fallbackImg(this)' alt='惨状の感覚' title='惨状の感覚 (BG36_HERO_105p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>惨状の感覚</span></div><div class='hp-inline-desc'>4ターンごとに悪夢の恵みを1つ得たミニオン1体を発見する。（あと4ターン！）</div></div></div></div></div>
 <div class='sub-group'>
 <div class='sub-label'>相手の盤面（7体）</div>
 <div class='card-row'>
@@ -2569,11 +2694,11 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item golden'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG31_835_G.png' data-cid='BG31_835_G' onerror='fallbackImg(this)' alt='殺り手の死事人' title='殺り手の死事人 (BG31_835_G)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>1110</span><span class='stat-hp'>550</span></div><div class='kw-row'><span class='kw-tag kw-gold'>ゴールデン</span><span class='kw-tag kw-reborn'>蘇り</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG32_324.png' data-cid='BG32_324' onerror='fallbackImg(this)' alt='ドラストフォールンの肉屋' title='ドラストフォールンの肉屋 (BG32_324)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>7282</span><span class='stat-hp'>6795</span></div><div class='kw-row'><span class='kw-tag kw-reborn'>蘇り</span></div></div>
 </div></div>
-<div class='end-turn-block'>
-<div class='end-turn-header'><span>ターン終了時の状況</span><span class='roll-gold-bar'><span class='tier-badge'><span class='tier-label'>終了時グレード</span><span class='tier-val'>★6</span></span><span class='gold-group' title='所持金 2/18'><span class='gold-label'>残り</span><span class='coin-tray' data-on='2' data-off='16'></span><span class='gold-num'>2/18</span></span></span></div>
-<div class='end-turn-content'>
+<hr class='combat-divider'>
+<div class='my-summary-card'><img class='my-hero-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/render/latest/jaJP/256x/TB_BaconShop_HERO_43.png' data-cid='TB_BaconShop_HERO_43' data-hero='1' onerror='fallbackImg(this)' alt='恐竜使いブラン' title='恐竜使いブラン (TB_BaconShop_HERO_43)' loading='lazy'><div class='opp-summary-info'><div class='opp-summary-top'><span class='side-tag side-tag-me'>自分</span><span>恐竜使いブラン</span><span class='opp-meta-chip'>順位 1位</span><span class='opp-meta-chip'>グレード ★6 → ★6</span><span class='opp-meta-chip'>体力 <span class='life-hp'>♥28</span><span class='armor-num'>+5</span></span><span class='opp-meta-chip'>トリプル 5回</span><span class='gold-group' title='所持金 2/18'><span class='gold-label'>残金</span><span class='coin-tray' data-on='2' data-off='16'></span><span class='gold-num'>2/18</span></span></div><div class='trinket-row'><span class='trinket-chip' title='下級: ドラゴンの頭蓋骨 — 自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_203.png' data-cid='BG36_MagicItem_203' onerror='fallbackImg(this)' alt='ドラゴンの頭蓋骨' title='ドラゴンの頭蓋骨 (BG36_MagicItem_203)' loading='lazy'><span class='trinket-slot'>下級</span><span class='trinket-name'>ドラゴンの頭蓋骨</span></span><span class='trinket-chip' title='上級: 先遣者のステッカー — 自分の選択カードの効果は選べる2つの効果を組み合わせたものになる。'><img class='trinket-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_MagicItem_308.png' data-cid='BG36_MagicItem_308' onerror='fallbackImg(this)' alt='先遣者のステッカー' title='先遣者のステッカー (BG36_MagicItem_308)' loading='lazy'><span class='trinket-slot'>上級</span><span class='trinket-name'>先遣者のステッカー</span></span></div></div><div class='hp-inline-list'><div class='hp-inline-box'><img class='hp-inline-thumb zoomable-img' src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG20_HERO_201p.png' data-cid='BG20_HERO_201p' onerror='fallbackImg(this)' alt='魂入れ替え' title='魂入れ替え (BG20_HERO_201p)' loading='lazy'><div class='hp-inline-meta'><div class='hp-inline-top'><span class='hp-inline-label'>ヒロパ</span><span class='hp-cost-pill'>0G</span><span class='hp-inline-name'>魂入れ替え</span></div><div class='hp-inline-desc'>ミニオンを2体選択。それらは次のターンまで片割れの攻撃力を追加で得る。</div></div></div></div></div>
+<div class='combat-my-boards'>
 <div class='sub-group'>
-<div class='sub-label'>自分のミニオン（7体）</div>
+<div class='sub-label'>自分の盤面（7体）</div>
 <div class='card-row'>
 <div class='card-item golden'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG26_817_G.png' data-cid='BG26_817_G' onerror='fallbackImg(this)' alt='刀狩' title='刀狩 (BG26_817_G)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>32257</span><span class='stat-hp'>4</span></div><div class='kw-row'><span class='kw-tag kw-gold'>ゴールデン</span></div></div>
 <div class='card-item golden has-dg'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_331_G.png' data-cid='BG36_331_G' onerror='fallbackImg(this)' alt='イバラの穴掘り' title='イバラの穴掘り (BG36_331_G)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>6089</span><span class='stat-hp'>6171</span></div><div class='kw-row'><span class='kw-tag kw-gold'>ゴールデン</span><span class='kw-tag kw-ds'>聖盾</span><span class='kw-tag kw-wf'>疾風</span></div><div class='dg-effect-box' title='ハーピィのカギ爪: 聖なる盾、疾風'><div class='dg-name'>✦ ハーピィのカギ爪</div><div class='dg-desc'>聖なる盾、疾風</div></div><div class='dg-effect-box' title='カリスマ性: 勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。'><div class='dg-name'>✦ カリスマ性</div><div class='dg-desc'>勝鬨:自分の戦団で最も多い種族のランダムなミニオンを1体得る。</div></div></div>
@@ -2584,13 +2709,13 @@ document.addEventListener('keydown', function(e) {
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_121.png' data-cid='BG30_121' onerror='fallbackImg(this)' alt='気球乗りの測量士' title='気球乗りの測量士 (BG30_121)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>1638</span><span class='stat-hp'>1679</span></div><div class='kw-row'><span class='kw-tag kw-taunt'>挑発</span></div></div>
 </div></div>
 <div class='sub-group'>
-<div class='sub-label'>手札（3枚）</div>
+<div class='sub-label'>自分の手札（3枚）</div>
 <div class='card-row'>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG30_121.png' data-cid='BG30_121' onerror='fallbackImg(this)' alt='気球乗りの測量士' title='気球乗りの測量士 (BG30_121)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>300</span><span class='stat-hp'>352</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG36_849.png' data-cid='BG36_849' onerror='fallbackImg(this)' alt='勇敢なる太母' title='勇敢なる太母 (BG36_849)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>7</span><span class='stat-hp'>7</span></div></div>
 <div class='card-item'><img src='https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x/BG23_318.png' data-cid='BG23_318' onerror='fallbackImg(this)' alt='大暴走リロイ' title='大暴走リロイ (BG23_318)' loading='lazy'><div class='stat-pill'><span class='stat-atk'>331</span><span class='stat-hp'>378</span></div></div>
 </div></div>
-</div></div>
+</div>
 </div>
 </div>
 <div id='card-modal' class='card-modal' role='dialog' aria-modal='true'>
@@ -2607,13 +2732,17 @@ document.addEventListener('keydown', function(e) {
   "BG20_101": {"name":"ロードボア","type":"MINION","tier":2,"tribes":["キルボア"],"atk":2,"hp":4,"text":"勝鬨:血の宝石1個を得る。"},
   "BG20_104": {"name":"ナグルボア","type":"MINION","tier":4,"tribes":["キルボア"],"atk":2,"hp":7,"text":"疾風、勝鬨:自身を除く味方のミニオン全てに血の宝石を1個ずつ使用する。"},
   "BG20_GEM": {"name":"血の宝石","type":"SPELL","cost":0,"text":"ミニオン1体に+1/+1を付与する。"},
+  "BG20_HERO_201p": {"name":"魂入れ替え","type":"HERO_POWER","cost":0,"text":"ミニオンを2体選択。それらは次のターンまで片割れの攻撃力を追加で得る。"},
   "BG21_015": {"name":"タレクゴサ","type":"MINION","tier":2,"tribes":["ドラゴン"],"atk":4,"hp":4,"text":"これは自分が戦闘時に獲得したボーナスキーワードと攻撃力・体力を永続的に維持する。"},
   "BG21_015_G": {"name":"タレクゴサ","type":"MINION","tier":2,"tribes":["ドラゴン"],"atk":8,"hp":8,"text":"これは自分が戦闘時に獲得したボーナスキーワードと攻撃力・体力を2倍にし永続的に維持する。"},
   "BG21_HERO_020": {"name":"コックのクッキー","type":"HERO","hero_power":{"id":"BG21_HERO_020p","name":"ごった煮闇鍋","cost":0,"text":"ミニオン1体を鍋に入れる。3体入れたらそれらのミニオンの種族から発見する。（あと3体！）"}},
+  "BG21_HERO_020p": {"name":"ごった煮闇鍋","type":"HERO_POWER","cost":0,"text":"ミニオン1体を鍋に入れる。3体入れたらそれらのミニオンの種族から発見する。（あと3体！）"},
   "BG22_HERO_201_SKIN_C": {"name":"貴族フェイリン","type":"HERO","hero_power":{"id":"BG22_HERO_201p","name":"探検計画","cost":0,"text":"最初の1ターンは何もしない。グレード6、4、2のミニオンを1体ずつ発見しそれぞれのグレード到達時にそれらを獲得する。"}},
+  "BG22_HERO_201p": {"name":"探検計画","type":"HERO_POWER","cost":0,"text":"最初の1ターンは何もしない。グレード6、4、2のミニオンを1体ずつ発見しそれぞれのグレード到達時にそれらを獲得する。"},
   "BG23_017": {"name":"鮮赤の勇者","type":"MINION","tier":6,"tribes":["キルボア"],"atk":9,"hp":4,"text":"雄叫び＆断末魔:自分の血の宝石はこの対戦中、追加で+2/+1を付与する。"},
   "BG23_318": {"name":"大暴走リロイ","type":"MINION","tier":5,"atk":6,"hp":2,"text":"断末魔:これを倒したミニオンを破壊する。"},
   "BG23_HERO_303": {"name":"マーロック・ホームズ","type":"HERO","hero_power":{"id":"BG23_HERO_303p2","name":"犯人当てクイズ","cost":0,"text":"ミニオンを2体表示。次の対戦相手が直前の戦闘で使ったミニオンを当てると「酒場のコイン」を1枚得る。"}},
+  "BG23_HERO_303p2": {"name":"犯人当てクイズ","type":"HERO_POWER","cost":0,"text":"ミニオンを2体表示。次の対戦相手が直前の戦闘で使ったミニオンを当てると「酒場のコイン」を1枚得る。"},
   "BG24_018": {"name":"青甲羅トートラン","type":"MINION","tier":4,"atk":3,"hp":6,"text":"自分が直前の戦闘で負けた場合このミニオンは5ゴールドで売れる。"},
   "BG24_500": {"name":"アンバーの守護者","type":"MINION","tier":3,"tribes":["ドラゴン"],"atk":3,"hp":2,"text":"挑発、戦闘開始時:自身を除く味方のドラゴン1体に+2/+2と聖なる盾を付与する。"},
   "BG24_715": {"name":"辛抱強い斥候","type":"MINION","tier":2,"atk":1,"hp":1,"text":"これを売った時グレード1のミニオンを1体発見する。（毎ターン強化！）"},
@@ -2627,6 +2756,7 @@ document.addEventListener('keydown', function(e) {
   "BG25_354": {"name":"タイタス・リーヴェンデア","type":"MINION","tier":5,"atk":1,"hp":7,"text":"味方の断末魔は1回追加で発動する。"},
   "BG25_354_G": {"name":"タイタス・リーヴェンデア","type":"MINION","tier":5,"atk":2,"hp":14,"text":"味方の断末魔は2回追加で発動する。"},
   "BG26_135": {"name":"南海の大道芸人","type":"MINION","tier":1,"tribes":["海賊"],"atk":3,"hp":1,"text":"雄叫び:次のターン1ゴールドを獲得する。"},
+  "BG26_175": {"name":"意外精","type":"MINION","tier":6,"tribes":["エレメンタル"],"atk":8,"hp":8,"text":"聖なる盾このミニオンはあらゆるエレメンタルとトリプルになれる。"},
   "BG26_810": {"name":"火薬の運び屋","type":"MINION","tier":4,"tribes":["海賊"],"atk":2,"hp":5,"text":"自分が5ゴールド消費する度味方の海賊全てに+3/+1を付与する。（あと5ゴールド！）"},
   "BG26_814": {"name":"恋煩いのバラード歌手","type":"MINION","tier":4,"tribes":["海賊"],"atk":3,"hp":4,"text":"雄叫び: 海賊1体に体力+2を付与する。（このターン使ったゴールドに応じて強化！）"},
   "BG26_817": {"name":"刀狩","type":"MINION","tier":4,"tribes":["海賊"],"atk":3,"hp":2,"text":"攻撃対象と隣接する敵にもダメージを与える。"},
@@ -2635,6 +2765,7 @@ document.addEventListener('keydown', function(e) {
   "BG26_ICC_901": {"name":"ドラッカリの呪い師","type":"MINION","tier":5,"atk":1,"hp":5,"text":"自分のターンの終了時に発動する効果は2回発動する。"},
   "BG27_000": {"name":"鉄の整備員","type":"MINION","tier":3,"atk":2,"hp":2,"text":"雄叫び:「要塞化」を2枚得る。"},
   "BG27_005": {"name":"時賊船長フックテイル","type":"MINION","tier":3,"tribes":["ドラゴン","海賊"],"atk":1,"hp":4,"text":"自分が酒場の呪文を手札から使用する度味方のミニオン全てに攻撃力+1を付与する。"},
+  "BG28_168": {"name":"キラリング","type":"BATTLEGROUND_SPELL","tier":3,"cost":2,"text":"味方のミニオン全てに+1/+1を付与する。"},
   "BG28_300": {"name":"無害なボンクラ","type":"MINION","tier":1,"tribes":["アンデッド"],"atk":1,"hp":1,"text":"断末魔:1/1の「スケルトン」を2体召喚する。"},
   "BG28_303": {"name":"変葬する墓泥棒","type":"MINION","tier":3,"atk":4,"hp":4,"text":"雄叫び:味方のアンデッドを1体破壊し、その未強化通常コピーを1体得る。"},
   "BG28_309": {"name":"木乃伊加工者","type":"MINION","tier":3,"tribes":["アンデッド"],"atk":5,"hp":2,"text":"断末魔:味方の別種のアンデッド1体に蘇りを付与する。"},
@@ -2643,6 +2774,7 @@ document.addEventListener('keydown', function(e) {
   "BG28_504": {"name":"訓練生招集","type":"BATTLEGROUND_SPELL","tier":1,"cost":2,"text":"ランダムなグレード1ミニオンを1体得る。"},
   "BG28_512": {"name":"魔法の投げ縄","type":"BATTLEGROUND_SPELL","tier":1,"cost":2,"text":"酒場からランダムなミニオンを1体奪う。"},
   "BG28_518": {"name":"シェフのおすすめ","type":"BATTLEGROUND_SPELL","tier":2,"cost":2,"text":"ミニオンを1体選択。それと同じ種族の違うミニオン1体を得る。"},
+  "BG28_520": {"name":"ずば抜けたズボン","type":"BATTLEGROUND_SPELL","tier":3,"cost":1,"text":"ミニオン1体に+1/+2と挑発を付与する。既に挑発を持つ場合挑発を除去する。"},
   "BG28_521": {"name":"次元界望遠鏡","type":"BATTLEGROUND_SPELL","tier":3,"cost":4,"text":"自分の戦団で最も多い種族のミニオンを1体発見する。"},
   "BG28_550": {"name":"ロデオ名人","type":"MINION","tier":5,"atk":3,"hp":4,"text":"雄叫び:酒場の呪文を1つ発見する。"},
   "BG28_571": {"name":"早まった発掘","type":"BATTLEGROUND_SPELL","tier":2,"cost":3,"text":"1ゴールドを獲得する。これを買うにはゴールドの代わりに体力を消費する。"},
@@ -2657,14 +2789,17 @@ document.addEventListener('keydown', function(e) {
   "BG28_810": {"name":"酒場のコイン","type":"BATTLEGROUND_SPELL","tier":1,"cost":1,"text":"1ゴールドを獲得する。"},
   "BG28_825": {"name":"守護者の秘儀","type":"BATTLEGROUND_SPELL","tier":4,"cost":2,"text":"ミニオン1体に+7/+7と挑発を付与する。"},
   "BG28_827": {"name":"カタログパラパラ","type":"BATTLEGROUND_SPELL","tier":2,"cost":1,"text":"コスト0の入替を2回分獲得する。"},
+  "BG28_838": {"name":"フィジカル二重丸","type":"BATTLEGROUND_SPELL","tier":6,"cost":1,"text":"ミニオン1体の攻撃力・体力を20/20にする。"},
   "BG28_845": {"name":"天然の祝福","type":"BATTLEGROUND_SPELL","tier":4,"cost":2,"text":"ミニオンを1体選択。それと同じ種族を持つミニオン全てに+2/+2を付与する。"},
   "BG28_849": {"name":"サルーンの名物","type":"BATTLEGROUND_SPELL","tier":5,"cost":2,"text":"酒場を入替し酒場の呪文を並べる。"},
   "BG28_882": {"name":"契約済みの死体","type":"BATTLEGROUND_SPELL","tier":5,"cost":3,"text":"断末魔ミニオンを1体発見する。"},
+  "BG28_884": {"name":"自信過剰","type":"BATTLEGROUND_SPELL","tier":3,"cost":1,"text":"自分が次の戦闘で勝ったら3ゴールドを獲得する。引き分けなら1ゴールドを獲得する。"},
   "BG28_886": {"name":"肥沃の杖","type":"BATTLEGROUND_SPELL","tier":3,"cost":2,"text":"酒場のミニオン全てにこの対戦中、+2/+2を付与する。"},
   "BG28_888": {"name":"置き忘れのティーセット","type":"BATTLEGROUND_SPELL","tier":4,"cost":2,"text":"味方のミニオンの各種族1体ずつにそれぞれ+3/+3を付与する。"},
   "BG28_897": {"name":"酒場の名物バナナ","type":"BATTLEGROUND_SPELL","tier":1,"cost":1,"text":"ミニオン1体に+2/+2を付与する。"},
   "BG28_GIL_836": {"name":"雇われヘッドハンター","type":"BATTLEGROUND_SPELL","tier":5,"cost":3,"text":"雄叫びを持つミニオンを1体発見する。"},
   "BG28_HERO_801": {"name":"ドクター・ホリ＝デイ","type":"HERO","hero_power":{"id":"BG28_HERO_801p","name":"9匹のカエルの祝福","cost":1,"text":"ランダムな酒場の呪文を1つ得る。"}},
+  "BG28_HERO_801p": {"name":"9匹のカエルの祝福","type":"HERO_POWER","cost":1,"text":"ランダムな酒場の呪文を1つ得る。"},
   "BG29_813": {"name":"執拗な詩竜","type":"MINION","tier":4,"tribes":["ドラゴン"],"atk":2,"hp":3,"text":"聖なる盾隣接するドラゴンは戦闘時に獲得したボーナスキーワードと攻撃力・体力を永続的に維持する。"},
   "BG29_816": {"name":"咆哮する徴兵官","type":"MINION","tier":3,"tribes":["ドラゴン"],"atk":2,"hp":8,"text":"自身を除く味方のドラゴンが攻撃する度、それに+3/+1を付与する。"},
   "BG29_888": {"name":"灯火の守護者","type":"MINION","tier":1,"tribes":["ドラゴン"],"atk":1,"hp":4,"text":"勝鬨:攻撃力+2を獲得する。"},
@@ -2673,11 +2808,15 @@ document.addEventListener('keydown', function(e) {
   "BG30_125": {"name":"死体の世話係","type":"MINION","tier":3,"tribes":["アンデッド"],"atk":3,"hp":3,"text":"断末魔:1/1のスケルトンを3体召喚する。"},
   "BG30_804": {"name":"頑丈な進化","type":"BATTLEGROUND_SPELL","tier":3,"cost":1,"text":"ミニオンを1体選択。それをグレードの1高いランダムなミニオンに変身させる。攻撃力・体力は元のまま。"},
   "BG30_MagicItem_406": {"name":"食肉処理鎌","type":"BATTLEGROUND_TRINKET","cost":1,"text":"「食肉処理」を1体得る。各ターンの開始時もう1体得る。"},
+  "BG30_MagicItem_410": {"name":"棘書道セット","type":"BATTLEGROUND_TRINKET","cost":0,"text":"仇討（3）:この対戦中、自分の血の宝石は追加で体力+1を付与する。"},
+  "BG30_MagicItem_423": {"name":"酒場のオヤジのジョッキ","type":"BATTLEGROUND_TRINKET","cost":0,"text":"酒場を入替する度酒場グレードが1高いミニオンが1体追加で並ぶ。"},
   "BG30_MagicItem_426": {"name":"カラフルコンパス","type":"BATTLEGROUND_TRINKET","cost":2,"text":"ランダムな92を1枚得る。各ターンの開始時もう1枚得る。"},
   "BG30_MagicItem_426t": {"name":"カラフルコンパス","type":"BATTLEGROUND_TRINKET","cost":2,"text":"ランダムな92を2枚得る。各ターンの開始時さらに2枚得る。"},
+  "BG30_MagicItem_703": {"name":"謎めいた立方体","type":"BATTLEGROUND_TRINKET","cost":5,"text":"2つの新しい下級装飾品から1つを選択し、これとコストなしで交換する。各ターンの開始時これを繰り返す。"},
   "BG30_MagicItem_705": {"name":"バーテンド・トロンのオイル缶","type":"BATTLEGROUND_TRINKET","cost":2,"text":"酒場のアップグレードコストを（3）減らす。各ターンの開始時これを繰り返す。"},
   "BG30_MagicItem_876": {"name":"無貌の肖像画","type":"BATTLEGROUND_TRINKET","cost":1,"text":"「無貌の操り手」を1体得る。"},
   "BG30_MagicItem_962": {"name":"訓練修了証書","type":"BATTLEGROUND_TRINKET","cost":4,"text":"戦闘開始時:味方の最も攻撃力が低いミニオン2体の攻撃力・体力を2倍にする。"},
+  "BG30_MagicItem_993": {"name":"ペイグルの釣り竿","type":"BATTLEGROUND_TRINKET","cost":3,"text":"ランダムなグレード7ミニオンを1体得る。各ターンの開始時もう1体得る。"},
   "BG31_320": {"name":"クレーター採掘工","type":"MINION","tier":2,"tribes":["キルボア"],"atk":2,"hp":2,"text":"選択:血の宝石を2個得る。または、「自珠トレ」を1枚得る。"},
   "BG31_323": {"name":"爆速ホグライダー","type":"MINION","tier":6,"tribes":["キルボア"],"atk":6,"hp":8,"text":"自分が選択カードを1枚手札から使用した後味方のキルボア全てに血の宝石を2個ずつ使用する。"},
   "BG31_326": {"name":"珠玉のトレーニー","type":"MINION","tier":3,"tribes":["キルボア"],"atk":4,"hp":4,"text":"自分のターンの終了時「自珠トレ」を1枚得る。"},
@@ -2706,7 +2845,9 @@ document.addEventListener('keydown', function(e) {
   "BG32_821": {"name":"フェルの炎吹師","type":"MINION","tier":5,"tribes":["悪魔","ドラゴン"],"atk":6,"hp":5,"text":"自分のターンの終了時自分の酒場の呪文はこの対戦中、追加で+1/+1を付与する。"},
   "BG32_880": {"name":"友好的なガイスト","type":"MINION","tier":4,"tribes":["アンデッド"],"atk":6,"hp":3,"text":"断末魔:自分の酒場の呪文はこの対戦中、追加で攻撃力+1を付与する。"},
   "BG32_880_G": {"name":"友好的なガイスト","type":"MINION","tier":4,"tribes":["アンデッド"],"atk":12,"hp":6,"text":"断末魔:自分の酒場の呪文はこの対戦中、追加で攻撃力+2を付与する。"},
+  "BG32_MagicItem_361t": {"name":"移動式工場","type":"BATTLEGROUND_TRINKET","cost":2,"text":"いずれかの種族のグレード6のミニオンを1体発見する。各ターンの開始時、それのコピーを追加でもう1体得る。"},
   "BG32_MagicItem_367": {"name":"不気味なステッカー","type":"BATTLEGROUND_TRINKET","cost":4,"text":"自分のターンの終了時に発動する効果は追加でもう1回発動する。"},
+  "BG32_MagicItem_808t": {"name":"血盟石のイヤリング","type":"BATTLEGROUND_TRINKET","cost":6,"text":"自分が呪文を5回使用した後味方のミニオン全てに血の宝石を2個ずつ使用する。（あと5回！）"},
   "BG32_MagicItem_858": {"name":"探検家の双眼鏡","type":"BATTLEGROUND_TRINKET","cost":0,"text":"ランダムなグレード4ミニオンを3体得る。"},
   "BG33_101": {"name":"新芽の季節","type":"BATTLEGROUND_SPELL","tier":1,"cost":3,"text":"グレード1のミニオンを1体発見する。"},
   "BG33_430": {"name":"天才タスカー","type":"MINION","tier":2,"tribes":["キルボア"],"atk":2,"hp":5,"text":"自身を除く味方のミニオンが攻撃する度これはそのミニオンに血の宝石を1個使用する。"},
@@ -2737,6 +2878,7 @@ document.addEventListener('keydown', function(e) {
   "BG34_690": {"name":"疫病ランナー","type":"MINION","tier":4,"tribes":["アンデッド"],"atk":4,"hp":2,"text":"断末魔: 味方のアンデッド全てはこの対戦中居場所を問わず攻撃力+2を得る。（これが戦闘外で発動時は+4！）"},
   "BG34_692": {"name":"フォーセイクンの織り手","type":"MINION","tier":6,"tribes":["アンデッド"],"atk":3,"hp":8,"text":"自分が酒場の呪文を使った後、味方のアンデッド全てはこの対戦中攻撃力+3を得る。（居場所は問わない）"},
   "BG34_858": {"name":"空気のレヴナント","type":"MINION","tier":5,"tribes":["エレメンタル"],"atk":3,"hp":6,"text":"自分が7ゴールド消費した後「東からの風」を使用する。（あと7ゴールド！）"},
+  "BG34_865": {"name":"火を吹くエンジンの精","type":"MINION","tier":4,"tribes":["エレメンタル"],"atk":5,"hp":5,"text":"雄叫び: この対戦中に酒場を入替した後酒場のランダムなミニオン1体に+10/+10を付与する。"},
   "BG34_888": {"name":"死者の糠喜び","type":"BATTLEGROUND_SPELL","tier":4,"cost":2,"text":"アンデッド1体を発見する。それはこのターン中に手札から使用すると死ぬ。"},
   "BG34_990": {"name":"ゴールドの波","type":"BATTLEGROUND_SPELL","tier":5,"cost":2,"text":"味方のミニオン全てに+3/+3を付与する。ゴールデンミニオンにはさらに+3/+3を付与する。"},
   "BG34_Giant_590": {"name":"時渡のタダレハラワタ","type":"MINION","tier":3,"tribes":["アンデッド"],"atk":7,"hp":3,"text":"断末魔:ランダムな即席のアンデッド1体を召喚＆入手する。"},
@@ -2783,6 +2925,7 @@ document.addEventListener('keydown', function(e) {
   "BG36_515_G": {"name":"しゃれた幽霊","type":"MINION","tier":6,"tribes":["アンデッド"],"atk":12,"hp":16,"text":"味方のミニオンが蘇りした後その攻撃力の2倍に等しい攻撃力・体力を味方の一番右のアンデッドに付与する。"},
   "BG36_520": {"name":"ビルジウォーターの脱走者","type":"MINION","tier":2,"tribes":["海賊"],"atk":3,"hp":2,"text":"雄叫び:「鍵付きの箱」を1個得る。既に持っている場合、それは1ターン早く開く。"},
   "BG36_521": {"name":"閉じ込められた暴徒","type":"MINION","tier":3,"tribes":["海賊"],"atk":6,"hp":3,"text":"断末魔:「鍵付きの箱」を1個得る。既に持っている場合、それは1ターン早く開く。"},
+  "BG36_523": {"name":"斬新な脱走者","type":"MINION","tier":5,"tribes":["海賊"],"atk":7,"hp":5,"text":"5ゴールド消費した後「鍵付きの箱」を1個得る。既に持っている場合、それは1ターン早く開く。（あと5ゴールド！）"},
   "BG36_524": {"name":"海上巻き上げ屋","type":"MINION","tier":4,"tribes":["海賊"],"atk":7,"hp":7,"text":"この対戦で自分が手札から使用したゴールデンミニオン1体につき+7/+7を得る。（居場所は問わない）"},
   "BG36_620": {"name":"びっくり箱ォォーーン","type":"MINION","tier":4,"atk":5,"hp":10,"text":"挑発戦闘開始時:自身を除く全てのミニオンに3ダメージを与える。"},
   "BG36_640": {"name":"門を守る融合体","type":"MINION","tier":6,"tribes":["すべて"],"atk":6,"hp":6,"text":"自分がこれに呪文を使用する度、これは「置き忘れのティーセット」を使用する。"},
@@ -2792,6 +2935,7 @@ document.addEventListener('keydown', function(e) {
   "BG36_883": {"name":"勝者のパン","type":"BATTLEGROUND_SPELL","tier":2,"cost":2,"text":"ミニオン1体に+2/+3を付与する。次の戦闘で勝った場合次の自分のターンの開始時さらに+4/+6を付与する。"},
   "BG36_884": {"name":"武器鍛造","type":"BATTLEGROUND_SPELL","tier":4,"cost":2,"text":"「尖った矢」を3本得る。"},
   "BG36_HERO_105": {"name":"悪夢の王ザヴィウス","type":"HERO","hero_power":{"id":"BG36_HERO_105p","name":"惨状の感覚","cost":0,"text":"4ターンごとに悪夢の恵みを1つ得たミニオン1体を発見する。（あと4ターン！）"}},
+  "BG36_HERO_105p": {"name":"惨状の感覚","type":"HERO_POWER","cost":0,"text":"4ターンごとに悪夢の恵みを1つ得たミニオン1体を発見する。（あと4ターン！）"},
   "BG36_MagicItem_203": {"name":"ドラゴンの頭蓋骨","type":"BATTLEGROUND_TRINKET","cost":2,"text":"自分が雄叫びを発動する度、自陣の左端と右端のミニオンに+5/+5を付与する。"},
   "BG36_MagicItem_206": {"name":"不吉な石","type":"BATTLEGROUND_TRINKET","cost":3,"text":"悪夢の恵みを1つ得た自分の戦団で最も多い種族のグレード4のミニオンを1体発見する。"},
   "BG36_MagicItem_303": {"name":"見通しのグラス","type":"BATTLEGROUND_TRINKET","cost":3,"text":"ランダムな選択カードを1枚得る。各ターンの開始時もう1枚得る。"},
@@ -2808,6 +2952,8 @@ document.addEventListener('keydown', function(e) {
   "BG_DEEP_015": {"name":"義手","type":"MINION","tier":3,"tribes":["アンデッド","メカ"],"atk":3,"hp":1,"text":"超電磁、蘇りメカにもアンデッドにも超電磁合体できる。"},
   "BG_ICC_026t_G": {"name":"スケルトン","type":"MINION","tier":1,"tribes":["アンデッド"],"atk":2,"hp":2},
   "BG_LOE_077": {"name":"ブラン・ブロンズビアード","type":"MINION","tier":5,"atk":2,"hp":4,"text":"味方の雄叫びは2回発動する。"},
+  "EBG_Spell_017": {"name":"地母神のまなざし","type":"BATTLEGROUND_SPELL","tier":6,"cost":4,"text":"グレード4以下の味方のミニオン1体を選択する。それをゴールデンにする。"},
+  "EBG_Spell_032": {"name":"貪り喰らうものとの交信","type":"BATTLEGROUND_SPELL","tier":5,"cost":4,"text":"味方のミニオン1体を売る。その攻撃力・体力をランダムな味方のミニオン1体に付与する。"},
   "EBG_Spell_037": {"name":"仮面の下の正体","type":"BATTLEGROUND_SPELL","tier":5,"cost":3,"text":"新たなヒーローパワー1つを発見する。"},
   "EBG_Spell_038": {"name":"ハムウルが失くした杖","type":"BATTLEGROUND_SPELL","tier":6,"cost":2,"text":"ミニオンを1体選択。酒場を入替し選択したミニオンと同じ種族を並べる。"},
   "TB_BaconShop_HERO_21": {"name":"偉大なるアカザムザラク","type":"HERO","hero_power":{"id":"TB_BaconShop_HP_020","name":"奇術","cost":0,"text":"秘策を1つ選択する。それを準備する。"}},
@@ -2815,7 +2961,13 @@ document.addEventListener('keydown', function(e) {
   "TB_BaconShop_HERO_43": {"name":"恐竜使いブラン","type":"HERO","hero_power":{"id":"TB_BaconShop_HP_048","name":"闘いの印","cost":0,"text":"自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）"}},
   "TB_BaconShop_HERO_59": {"name":"アランナ・スターシーカー","type":"HERO","hero_power":{"id":"TB_BaconShop_HP_065","name":"デーモンハンター訓練","cost":0,"text":"味方のミニオンが14回攻撃した後毎ターン最初に買うミニオンが無料になる（あと14回！）"}},
   "TB_BaconShop_HERO_59t": {"name":"魔解天衝アランナ","type":"HERO","hero_power":{"id":"TB_BaconShop_HP_065t2","name":"霊視力","cost":0,"text":"毎ターン最初に買うミニオンは無料。"}},
-  "TB_BaconShop_HERO_64": {"name":"ユードラ船長","type":"HERO","hero_power":{"id":"TB_BaconShop_HP_074","name":"埋められた宝物","cost":1,"text":"ゴールデンミニオンを1体掘り出す！（あと4回で掘り当てる）"}}
+  "TB_BaconShop_HERO_64": {"name":"ユードラ船長","type":"HERO","hero_power":{"id":"TB_BaconShop_HP_074","name":"埋められた宝物","cost":1,"text":"ゴールデンミニオンを1体掘り出す！（あと4回で掘り当てる）"}},
+  "TB_BaconShop_HP_020": {"name":"奇術","type":"HERO_POWER","cost":0,"text":"秘策を1つ選択する。それを準備する。"},
+  "TB_BaconShop_HP_041g": {"name":"海賊の王","type":"HERO_POWER","cost":2,"text":"海賊を1体発見する。毎ターン種族が入れ替わる。"},
+  "TB_BaconShop_HP_048": {"name":"闘いの印","type":"HERO_POWER","cost":0,"text":"自分が雄叫びミニオンを4体買った後、「ブラン・ブロンズビアード」を1体得る。（対戦中1回のみ）"},
+  "TB_BaconShop_HP_065": {"name":"デーモンハンター訓練","type":"HERO_POWER","cost":0,"text":"味方のミニオンが14回攻撃した後毎ターン最初に買うミニオンが無料になる（あと14回！）"},
+  "TB_BaconShop_HP_066": {"name":"ヴァーダント・スフィア","type":"HERO_POWER","cost":0,"text":"ミニオンを3体買った後「酒場のコイン」を1枚得る。"},
+  "TB_BaconShop_HP_080": {"name":"ケルスザードの愛猫","type":"HERO_POWER","cost":0,"text":"他のヒーローが死んだ後その戦団のミニオン1体を発見する。付与された効果はそのまま維持される。"}
 }
 </script>
 </body>
