@@ -1,5 +1,7 @@
 # Hearthstone Battlegrounds Power.log Analyzer (`bg_review.py`)
 
+**日本語** | [English](README_en.md)
+
 ハースストーン バトルグラウンド（Hearthstone Battlegrounds）の `Power.log` を解析し、試合の振り返り用 **HTMLレポート** および **AI分析用の軽量Markdown（`*_ai.md`）** を生成するPythonスクリプトです。
 
 Python標準ライブラリのみで動作するため、追加パッケージのインストールは不要です。
@@ -20,8 +22,9 @@ Python標準ライブラリのみで動作するため、追加パッケージ�
   - 戦闘結果（勝利／敗北／引き分け・ダメージ・ライフ推移）と対戦相手の盤面・ヒーロー情報
   - ロビー全員（自分＋対戦相手7人）のリーダーボード（順位・ヒーロー・グレード推移・HP／アーマー・トリプル数・下級／上級装飾品）
   - 開始時のヒーロー選択肢と出現／BAN種族の自動判定
-- **日本語カード情報・画像連携**:
-  - [HearthstoneJSON](https://hearthstonejson.com/) の日本語カードマスタ（`jaJP/cards.json`）からカード名・テキスト・スタッツ・種族・装飾品・ヒーローパワー・悪夢の恵みを自動取得します（取得できない場合は CardID で表示）。
+- **日本語・英語レポート出力＆カード情報・画像連携（`--lang ja` / `--lang en`）**:
+  - HTMLレポートおよびAI分析用Markdownの日本語（`ja`）・英語（`en`）出力に対応しています。
+  - [HearthstoneJSON](https://hearthstonejson.com/) の各言語カードマスタ（`jaJP/cards.json` / `enUS/cards.json`）からカード名・テキスト・スタッツ・種族・装飾品・ヒーローパワー・悪夢の恵みおよび対応言語のカード画像を自動取得します（取得できない場合は CardID で表示）。
 - **AI分析用Markdown出力（`--ai-text` / `--ai-only`）**:
   - HTMLと同等の試合情報をCSSやHTMLタグを含まない軽量なMarkdownへ出力し、末尾にその試合に登場したカードのみの「登場カード辞書」を付与します。ChatGPTやClaude、GeminiなどのAIに読み込ませてプレイングの振り返り・コーチングを行う用途に適しています。
 
@@ -71,6 +74,7 @@ python bg_review.py [log_file] [オプション]
 | `--game` | `-g` | 出力する試合番号を指定（1始まり、複数指定可。例: `-g 1 3`） |
 | `--ai-text` | `-a` | HTMLに加えて、AI読み込み用の軽量Markdown（`*_ai.md`）も出力 |
 | `--ai-only` | - | HTMLを生成せず、AI用Markdownのみ出力 |
+| `--lang` | `-l` | 出力レポート（HTML・AI用Markdown）の言語を指定（`ja` / `en`、デフォルト: `ja`） |
 
 ### 実行例
 
@@ -80,6 +84,9 @@ python bg_review.py
 
 # 指定した Power.log を解析し、HTML と AI用Markdown の両方を出力
 python bg_review.py Power.log --ai-text
+
+# 英語で HTML と AI用Markdown を出力
+python bg_review.py Power.log --ai-text --lang en
 
 # 試合ごとにファイルを分割して出力（例: bg_review_rolls_game1.html など）
 python bg_review.py Power.log --split
@@ -114,4 +121,4 @@ python bg_review.py Power.log --ai-only -o review.md
 
 ## 謝辞
 
-- 本ツールのカード情報（日本語カード名・テキスト・スタッツ・種族等）およびカード画像の取得には、[HearthstoneJSON](https://hearthstonejson.com/) のデータを利用させていただいております。素晴らしいAPI・データセットを公開・維持してくださっている開発者・関係者の皆様に感謝いたします。
+- 本ツールのカード情報（カード名・テキスト・スタッツ・種族等）およびカード画像の取得には、[HearthstoneJSON](https://hearthstonejson.com/) のデータを利用させていただいております。素晴らしいAPI・データセットを公開・維持してくださっている開発者・関係者の皆様に感謝いたします。

@@ -22,27 +22,406 @@ BG_BASE_TRIBES = [
     "PIRATE",
     "BEAST",
 ]
-BG_TRIBE_LABELS = {
-    "ABERRATION": "異形",
-    "UNDEAD": "アンデッド",
-    "ELEMENTALS": "エレメンタル",
-    "QUILLBOAR": "キルボア",
-    "DRAGON": "ドラゴン",
-    "MURLOC": "マーロック",
-    "MECH": "メカ",
-    "DEMON": "悪魔",
-    "PIRATE": "海賊",
-    "BEAST": "獣",
-    "NAGA": "ナーガ",
+SUPPORTED_LANGS = ("ja", "en")
+LANG_LOCALE_MAP = {
+    "ja": "jaJP",
+    "en": "enUS",
 }
-# HearthstoneJSON cards.json の race / races 表記用日本語ラベル
-CARD_RACE_LABELS = {
-    **BG_TRIBE_LABELS,
-    "ALL": "すべて",
-    "ELEMENTAL": "エレメンタル",
-    "MECHANICAL": "メカ",
-    "QUILBOAR": "キルボア",
+
+BG_TRIBE_LABELS_BY_LANG = {
+    "ja": {
+        "ABERRATION": "異形",
+        "UNDEAD": "アンデッド",
+        "ELEMENTALS": "エレメンタル",
+        "QUILLBOAR": "キルボア",
+        "DRAGON": "ドラゴン",
+        "MURLOC": "マーロック",
+        "MECH": "メカ",
+        "DEMON": "悪魔",
+        "PIRATE": "海賊",
+        "BEAST": "獣",
+        "NAGA": "ナーガ",
+    },
+    "en": {
+        "ABERRATION": "Aberration",
+        "UNDEAD": "Undead",
+        "ELEMENTALS": "Elemental",
+        "QUILLBOAR": "Quilboar",
+        "DRAGON": "Dragon",
+        "MURLOC": "Murloc",
+        "MECH": "Mech",
+        "DEMON": "Demon",
+        "PIRATE": "Pirate",
+        "BEAST": "Beast",
+        "NAGA": "Naga",
+    },
 }
+BG_TRIBE_LABELS = BG_TRIBE_LABELS_BY_LANG["ja"]
+
+# HearthstoneJSON cards.json の race / races 表記用ラベル
+CARD_RACE_LABELS_BY_LANG = {
+    "ja": {
+        **BG_TRIBE_LABELS_BY_LANG["ja"],
+        "ALL": "すべて",
+        "ELEMENTAL": "エレメンタル",
+        "MECHANICAL": "メカ",
+        "QUILBOAR": "キルボア",
+    },
+    "en": {
+        **BG_TRIBE_LABELS_BY_LANG["en"],
+        "ALL": "All",
+        "ELEMENTAL": "Elemental",
+        "MECHANICAL": "Mech",
+        "QUILBOAR": "Quilboar",
+    },
+}
+CARD_RACE_LABELS = CARD_RACE_LABELS_BY_LANG["ja"]
+
+DISCOVER_SOURCE_LABELS_BY_LANG = {
+    "ja": {
+        "TB_BaconShop_Triples_01": "トリプル報酬",
+        "BG30_Trinket_1st": "下級装飾品",
+        "BG30_Trinket_2nd": "上級装飾品",
+    },
+    "en": {
+        "TB_BaconShop_Triples_01": "Triple Reward",
+        "BG30_Trinket_1st": "Lesser Trinket",
+        "BG30_Trinket_2nd": "Greater Trinket",
+    },
+}
+DISCOVER_SOURCE_LABELS = DISCOVER_SOURCE_LABELS_BY_LANG["ja"]
+
+I18N = {
+    "ja": {
+        "unknown": "不明",
+        "none": "なし",
+        "discover_default": "発見",
+        "trinket_lesser": "下級",
+        "trinket_greater": "上級",
+        "tribe_sep": "・",
+        "kw_golden": "ゴールデン",
+        "kw_taunt": "挑発",
+        "kw_ds": "聖盾",
+        "kw_reborn": "蘇り",
+        "kw_poison": "猛毒",
+        "kw_venom": "毒袋",
+        "kw_wf": "疾風",
+        "gold_title": "所持金 {num}",
+        "tier_cost_title": "ターン開始時の酒場グレードアップ必要コイン数",
+        "tier_cost_label": "開始時UP費用",
+        "tier_label": "酒場グレード",
+        "tier_val": "開始 ★{start} → 終了 ★{end}",
+        "place_prefix": "最終順位: ",
+        "place_incomplete_suffix": "（途中終了）",
+        "page_title_single": "バトルグラウンド振り返りログ（第{game_idx}試合）",
+        "page_title_multi": "バトルグラウンド振り返りログ（リロール別）",
+        "nav_aria": "試合ナビゲーション",
+        "nav_label": "移動:",
+        "nav_toc": "目次",
+        "nav_place_prefix": "{place}・",
+        "nav_game_pill": "第 {game_idx} 試合（{place_str}{turns}T）",
+        "h1_title": "バトルグラウンド 振り返りレポート",
+        "toc_title_single": "目次（第 {game_idx} 試合）",
+        "toc_title_multi": "目次（全 {count} 試合）",
+        "toc_dg_summary": " / 恵み {count}回",
+        "toc_ban_summary": " / BAN: {names}",
+        "game_heading": "第 {game_idx} 試合",
+        "toc_game_meta": "全 {turns} ターン / 最大 ★{max_tier}{dg}{ban}",
+        "toc_turn_title": "第{game_idx}試合 ターン{turn}（★{t_start}→★{t_end}）",
+        "back_to_toc": "↑ 目次へ",
+        "timing_before_reroll": "リロール前",
+        "timing_after_reroll": "{n}回目リロール後",
+        "gold_on_discover": "発見時",
+        "dg_header": "✦ 悪夢の恵み（発見・{timing}）",
+        "badge_chosen": "選択",
+        "discover_header": "🔎 発見：{src}（{timing}）",
+        "active_tribes_complete": "出現種族（{cnt}）",
+        "active_tribes_partial": "確認できた種族（{cnt}/5）",
+        "banned_tribes_complete": "BAN種族（{cnt}）",
+        "banned_tribes_partial": "未出現 / BAN候補（{cnt}）",
+        "tribe_note_complete": "※ Power.log にはBAN一覧が直接記録されないため、試合中に出現した単一種族ミニオンから推定しています",
+        "tribe_note_partial": "※ 早期終了のため全5種族はログ未出現（出現した単一種族ミニオンから推定）",
+        "tribe_section_title": "種族プール / BAN情報",
+        "hero_choices_title": "試合開始時のヒーロー選択肢",
+        "badge_reroll_from": "リロール前",
+        "badge_locked": "ロック",
+        "gold_start_label": "開始時",
+        "reroll_meta": "リロール: {cnt}回",
+        "life_header_title": "ターン開始時の残りライフ（体力+装甲）",
+        "life_label": "自ライフ",
+        "opp_preview_title": "このターンの対戦相手と酒場グレード推移",
+        "turn_heading": "ターン {turn}",
+        "roll_initial": "リロール前（初期提示）",
+        "roll_nth": "{n}回目リロール後",
+        "gold_at_roll": "ロール時",
+        "gold_after_action": "行動後",
+        "shop_lineup": "酒場のラインナップ",
+        "badge_frozen": "凍結継続",
+        "bought_in_roll": "このロールで購入",
+        "badge_bought": "購入",
+        "no_purchases": "購入なし",
+        "gold_end_label": "残金",
+        "hp_changed_badge": "変更",
+        "hp_inline_label": "ヒロパ",
+        "side_me": "自分",
+        "side_opp": "相手",
+        "fallback_me": "自分",
+        "fallback_opp": "対戦相手",
+        "ghost": "ゴースト",
+        "chip_place": "順位 {place}",
+        "chip_tier": "グレード ★{start} → ★{end}{up}",
+        "chip_hp": "体力 {life}",
+        "chip_triples": "トリプル {n}回",
+        "my_board_label": "自分の盤面（{n}体）",
+        "no_minions": "ミニオンなし",
+        "my_hand_label": "自分の手札（{n}枚）",
+        "no_hand": "手札なし",
+        "lb_summary": "ロビー全員の状況（全{n}人：順位・開始/終了グレード・体力・トリプル・装飾品）",
+        "lb_col_place": "順位",
+        "lb_col_hero": "ヒーロー",
+        "lb_col_tier": "酒場グレード",
+        "lb_col_hp": "体力 / 装甲",
+        "lb_col_triples": "トリプル",
+        "lb_col_trinkets": "装飾品",
+        "lb_tag_me": "自分",
+        "lb_tag_opp": "対戦相手",
+        "lb_triples_val": "{n}回",
+        "combat_win": "勝利 (+{dmg})",
+        "combat_loss": "敗北 (-{dmg})",
+        "combat_tie": "引き分け",
+        "combat_header": "⚔ 戦闘結果・対戦相手",
+        "opp_board_label": "相手の盤面（{n}体）",
+        "end_turn_header": "ターン終了時の状況",
+        "modal_close_aria": "閉じる",
+        "modal_hint": "背景クリック または Esc キーで閉じる",
+        "ai_doc_title": "# バトルグラウンド振り返りログ（AI分析用）",
+        "ai_dead": "脱落",
+        "ai_gold_tag": "[金]",
+        "ai_chosen_tag": "[選択]",
+        "ai_locked_tag": "[ロック]",
+        "ai_frozen_tag": "[凍結]",
+        "ai_changed_tag": "[変更]",
+        "ai_role_me": "[自]",
+        "ai_role_opp": "[敵]",
+        "ai_place_known": "最終順位: {place}{suffix}",
+        "ai_place_unknown": "最終順位: 不明",
+        "ai_game_header": "## 第 {game_idx} 試合｜{hero}｜{place}（全{turns}ターン / 最大★{max_tier}）",
+        "ai_active_tribes_complete": "出現種族({cnt})",
+        "ai_active_tribes_partial": "確認できた種族({cnt}/5)",
+        "ai_banned_tribes_complete": "BAN種族({cnt})",
+        "ai_banned_tribes_partial": "未出現/BAN候補({cnt})",
+        "ai_tribes_line": "- {active_lbl}: {active_str} ｜ {ban_lbl}: {ban_str}",
+        "ai_hero_rerolled_from": " ←リロール前:{prev}",
+        "ai_hero_choices_line": "- ヒーロー選択肢: {choices}",
+        "ai_up_cost": "UP費{cost}",
+        "ai_up_cost_max": "UP費MAX",
+        "ai_turn_header": "### T{turn}｜★{t_start}→★{t_end}{up_mark} ({up_cost})｜開始金 {gold}｜自ライフ {life}｜{opp}｜リロール {rerolls}回",
+        "ai_timing_before_reroll": "リロール前",
+        "ai_timing_after_reroll": "R{n}後",
+        "ai_dg_line": "- 悪夢の恵み({timing}, 金{gold}): {opts}",
+        "ai_discover_line": "- 発見({src}, {timing}, 金{gold}): {opts}",
+        "ai_roll_initial": "R0(初期)",
+        "ai_roll_line": "- {r_lbl} ({gold}) 酒場: {shop} ｜ 購入: {bought}",
+        "ai_lobby_line": "- ロビー: {items}",
+        "ai_opp_triples": "トリプル{n}",
+        "ai_opp_hp_prefix": "ヒロパ:",
+        "ai_opp_info": " ｜ 相手: {parts}",
+        "ai_combat_win": "勝利(+{dmg})",
+        "ai_combat_loss": "敗北(-{dmg})",
+        "ai_combat_tie": "引き分け",
+        "ai_combat_line": "- 戦闘: {res} ｜ 自ライフ {life}{opp_info}",
+        "ai_opp_board_line": "  - 相手盤面(左→右,{n}体): {board}",
+        "ai_my_hp_line": "  - 自分ヒロパ: {hp}",
+        "ai_my_board_line": "  - 自分盤面(終了時★{tier}, 残金{gold}, 左→右,{n}体): {board}",
+        "ai_hand_line": "  - 手札({n}枚): {hand}",
+        "ai_end_turn_board_line": "- 終了時(★{tier}, 残金{gold}) 盤面(左→右,{n}体): {board}",
+        "ai_catalog_title": "## 登場カード辞書（このログに出現したカードのみ）",
+        "ai_cat_heroes": "### ヒーロー・ヒーローパワー",
+        "ai_cat_hero_with_hp": "- {name} ({cid}): ヒロパ「{hp_name}」{hp_cost}{hp_text}",
+        "ai_cat_minions": "### ミニオン",
+        "ai_cat_spells": "### 酒場の呪文",
+        "ai_cat_trinkets": "### 装飾品",
+        "ai_cat_hero_powers": "### ヒーローパワー",
+        "ai_cat_others": "### その他カード",
+        "ai_cat_dark_gifts": "### 悪夢の恵み",
+    },
+    "en": {
+        "unknown": "Unknown",
+        "none": "None",
+        "discover_default": "Discover",
+        "trinket_lesser": "Lesser",
+        "trinket_greater": "Greater",
+        "tribe_sep": ", ",
+        "kw_golden": "Golden",
+        "kw_taunt": "Taunt",
+        "kw_ds": "Divine Shield",
+        "kw_reborn": "Reborn",
+        "kw_poison": "Poisonous",
+        "kw_venom": "Venomous",
+        "kw_wf": "Windfury",
+        "gold_title": "Gold {num}",
+        "tier_cost_title": "Tavern upgrade cost at start of turn",
+        "tier_cost_label": "Start Upgrade Cost",
+        "tier_label": "Tavern Tier",
+        "tier_val": "Start ★{start} → End ★{end}",
+        "place_prefix": "Final Place: ",
+        "place_incomplete_suffix": " (Incomplete)",
+        "page_title_single": "Battlegrounds Review Log (Game {game_idx})",
+        "page_title_multi": "Battlegrounds Review Log (By Reroll)",
+        "nav_aria": "Game navigation",
+        "nav_label": "Jump to:",
+        "nav_toc": "Contents",
+        "nav_place_prefix": "{place} · ",
+        "nav_game_pill": "Game {game_idx} ({place_str}{turns}T)",
+        "h1_title": "Battlegrounds Review Report",
+        "toc_title_single": "Table of Contents (Game {game_idx})",
+        "toc_title_multi": "Table of Contents ({count} Games)",
+        "toc_dg_summary": " / Dark Gifts: {count}",
+        "toc_ban_summary": " / Banned: {names}",
+        "game_heading": "Game {game_idx}",
+        "toc_game_meta": "{turns} Turns / Max ★{max_tier}{dg}{ban}",
+        "toc_turn_title": "Game {game_idx} Turn {turn} (★{t_start}→★{t_end})",
+        "back_to_toc": "↑ Top",
+        "timing_before_reroll": "Before Reroll",
+        "timing_after_reroll": "After Reroll #{n}",
+        "gold_on_discover": "On Discover",
+        "dg_header": "✦ Dark Gift (Discover · {timing})",
+        "badge_chosen": "Picked",
+        "discover_header": "🔎 Discover: {src} ({timing})",
+        "active_tribes_complete": "Active Tribes ({cnt})",
+        "active_tribes_partial": "Observed Tribes ({cnt}/5)",
+        "banned_tribes_complete": "Banned Tribes ({cnt})",
+        "banned_tribes_partial": "Unseen / Possible Bans ({cnt})",
+        "tribe_note_complete": "* Power.log does not record banned tribes directly; inferred from single-tribe pool minions seen during the game.",
+        "tribe_note_partial": "* Game ended early before all 5 tribes appeared in the log (inferred from observed single-tribe minions).",
+        "tribe_section_title": "Tribe Pool / Bans",
+        "hero_choices_title": "Starting Hero Choices",
+        "badge_reroll_from": "Before Reroll",
+        "badge_locked": "Locked",
+        "gold_start_label": "Start",
+        "reroll_meta": "Rerolls: {cnt}",
+        "life_header_title": "Remaining life at start of turn (Health + Armor)",
+        "life_label": "Life",
+        "opp_preview_title": "This turn's opponent and Tavern Tier progression",
+        "turn_heading": "Turn {turn}",
+        "roll_initial": "Initial Shop (Before Reroll)",
+        "roll_nth": "After Reroll #{n}",
+        "gold_at_roll": "At Roll",
+        "gold_after_action": "After Actions",
+        "shop_lineup": "Tavern Offerings",
+        "badge_frozen": "Frozen",
+        "bought_in_roll": "Bought This Roll",
+        "badge_bought": "Bought",
+        "no_purchases": "None",
+        "gold_end_label": "Left",
+        "hp_changed_badge": "Changed",
+        "hp_inline_label": "Hero Power",
+        "side_me": "You",
+        "side_opp": "Opp",
+        "fallback_me": "You",
+        "fallback_opp": "Opponent",
+        "ghost": "Ghost",
+        "chip_place": "Place {place}",
+        "chip_tier": "Tier ★{start} → ★{end}{up}",
+        "chip_hp": "Health {life}",
+        "chip_triples": "Triples: {n}",
+        "my_board_label": "Your Board ({n})",
+        "no_minions": "No minions",
+        "my_hand_label": "Your Hand ({n})",
+        "no_hand": "Empty hand",
+        "lb_summary": "Lobby Standings ({n} players: Place, Start/End Tier, Health, Triples, Trinkets)",
+        "lb_col_place": "Place",
+        "lb_col_hero": "Hero",
+        "lb_col_tier": "Tavern Tier",
+        "lb_col_hp": "Health / Armor",
+        "lb_col_triples": "Triples",
+        "lb_col_trinkets": "Trinkets",
+        "lb_tag_me": "You",
+        "lb_tag_opp": "Opponent",
+        "lb_triples_val": "{n}",
+        "combat_win": "Win (+{dmg})",
+        "combat_loss": "Loss (-{dmg})",
+        "combat_tie": "Tie",
+        "combat_header": "⚔ Combat Result & Opponent",
+        "opp_board_label": "Opponent's Board ({n})",
+        "end_turn_header": "End of Turn State",
+        "modal_close_aria": "Close",
+        "modal_hint": "Click backdrop or press Esc to close",
+        "ai_doc_title": "# Battlegrounds Review Log (for AI Analysis)",
+        "ai_dead": "Dead",
+        "ai_gold_tag": "[Gold]",
+        "ai_chosen_tag": "[Picked]",
+        "ai_locked_tag": "[Locked]",
+        "ai_frozen_tag": "[Frozen]",
+        "ai_changed_tag": "[Changed]",
+        "ai_role_me": "[Me]",
+        "ai_role_opp": "[Opp]",
+        "ai_place_known": "Final Place: {place}{suffix}",
+        "ai_place_unknown": "Final Place: Unknown",
+        "ai_game_header": "## Game {game_idx} | {hero} | {place} ({turns} Turns / Max ★{max_tier})",
+        "ai_active_tribes_complete": "Active Tribes({cnt})",
+        "ai_active_tribes_partial": "Observed Tribes({cnt}/5)",
+        "ai_banned_tribes_complete": "Banned Tribes({cnt})",
+        "ai_banned_tribes_partial": "Unseen/Possible Bans({cnt})",
+        "ai_tribes_line": "- {active_lbl}: {active_str} | {ban_lbl}: {ban_str}",
+        "ai_hero_rerolled_from": " <- Before Reroll: {prev}",
+        "ai_hero_choices_line": "- Hero Choices: {choices}",
+        "ai_up_cost": "Upgrade {cost}G",
+        "ai_up_cost_max": "Upgrade MAX",
+        "ai_turn_header": "### T{turn} | ★{t_start}→★{t_end}{up_mark} ({up_cost}) | Start Gold {gold} | Life {life} | {opp} | Rerolls {rerolls}",
+        "ai_timing_before_reroll": "Before Reroll",
+        "ai_timing_after_reroll": "After R{n}",
+        "ai_dg_line": "- Dark Gift ({timing}, Gold {gold}): {opts}",
+        "ai_discover_line": "- Discover ({src}, {timing}, Gold {gold}): {opts}",
+        "ai_roll_initial": "R0(Init)",
+        "ai_roll_line": "- {r_lbl} ({gold}) Shop: {shop} | Bought: {bought}",
+        "ai_lobby_line": "- Lobby: {items}",
+        "ai_opp_triples": "Triples:{n}",
+        "ai_opp_hp_prefix": "HeroPower:",
+        "ai_opp_info": " | Opp: {parts}",
+        "ai_combat_win": "Win(+{dmg})",
+        "ai_combat_loss": "Loss(-{dmg})",
+        "ai_combat_tie": "Tie",
+        "ai_combat_line": "- Combat: {res} | Life {life}{opp_info}",
+        "ai_opp_board_line": "  - Opp Board (L→R, {n}): {board}",
+        "ai_my_hp_line": "  - My Hero Power: {hp}",
+        "ai_my_board_line": "  - My Board (End ★{tier}, Gold Left {gold}, L→R, {n}): {board}",
+        "ai_hand_line": "  - Hand ({n}): {hand}",
+        "ai_end_turn_board_line": "- End of Turn (★{tier}, Gold Left {gold}) Board (L→R, {n}): {board}",
+        "ai_catalog_title": "## Card Glossary (Cards Appearing in This Log Only)",
+        "ai_cat_heroes": "### Heroes & Hero Powers",
+        "ai_cat_hero_with_hp": "- {name} ({cid}): Hero Power \"{hp_name}\" {hp_cost}{hp_text}",
+        "ai_cat_minions": "### Minions",
+        "ai_cat_spells": "### Tavern Spells",
+        "ai_cat_trinkets": "### Trinkets",
+        "ai_cat_hero_powers": "### Hero Powers",
+        "ai_cat_others": "### Other Cards",
+        "ai_cat_dark_gifts": "### Dark Gifts",
+    },
+}
+
+
+def normalize_lang(lang):
+    """言語コードを対応言語（ja / en）へ正規化する"""
+    if lang and lang.lower() in SUPPORTED_LANGS:
+        return lang.lower()
+    return "ja"
+
+
+def get_hs_locale(lang):
+    """言語コードに対応する HearthstoneJSON ロケール名を返す"""
+    return LANG_LOCALE_MAP.get(normalize_lang(lang), "jaJP")
+
+
+def format_place(place, lang="ja"):
+    """順位を言語ごとの表記（1位 / 1st 等）へ整形する"""
+    if normalize_lang(lang) == "en":
+        if 11 <= (place % 100) <= 13:
+            suffix = "th"
+        else:
+            suffix = {1: "st", 2: "nd", 3: "rd"}.get(place % 10, "th")
+        return f"{place}{suffix}"
+    return f"{place}位"
 
 
 def normalize_dark_gift_id(card_id):
@@ -58,20 +437,29 @@ def normalize_dark_gift_id(card_id):
     return ""
 
 
-def clean_card_text(raw_text):
+def clean_card_text(raw_text, lang="ja"):
     """HearthstoneJSON のカードテキストから制御文字・HTMLタグ・テンプレート表記を整形する"""
     if not raw_text:
         return ""
+    lang = normalize_lang(lang)
     text = raw_text.replace("[x]", "").replace("\xa0", " ")
     text = re.sub(r"<[^>]+>", "", text)
-    text = re.sub(r"\s*\n+\s*", "", text)
-    text = re.sub(r"（0[回枚]?）$", "", text).strip()
+    if lang == "ja":
+        text = re.sub(r"\s*\n+\s*", "", text)
+        text = re.sub(r"（0[回枚]?）$", "", text).strip()
+    else:
+        text = re.sub(r"\s*\n+\s*", " ", text)
+        text = re.sub(r"\s{2,}", " ", text)
+        text = re.sub(r"\s*\(0\)$", "", text).strip()
     return text
 
 
-def fetch_card_catalog():
-    """HTML生成時に HearthstoneJSON から悪夢の恵み・装飾品・ヒーロー名マスタを一括取得する"""
-    url = "https://api.hearthstonejson.com/v1/latest/jaJP/cards.json"
+def fetch_card_catalog(lang="ja"):
+    """HTML/Markdown生成時に HearthstoneJSON からカード・悪夢の恵み・装飾品マスタを一括取得する"""
+    lang = normalize_lang(lang)
+    hs_locale = get_hs_locale(lang)
+    race_labels = CARD_RACE_LABELS_BY_LANG[lang]
+    url = f"https://api.hearthstonejson.com/v1/latest/{hs_locale}/cards.json"
     catalog = {"dark_gifts": {}, "by_dbf_id": {}, "by_card_id": {}}
     try:
         req = urllib.request.Request(
@@ -91,10 +479,10 @@ def fetch_card_catalog():
             cid = c.get("id", "")
             dbf_id = c.get("dbfId")
             name = c.get("name", "")
-            text = clean_card_text(c.get("text", ""))
+            text = clean_card_text(c.get("text", ""), lang=lang)
             ctype = c.get("type", "")
             raw_races = c.get("races") or ([c["race"]] if c.get("race") else [])
-            tribes = [CARD_RACE_LABELS.get(r, r) for r in raw_races if r]
+            tribes = [race_labels.get(r, r) for r in raw_races if r]
             entry = {
                 "id": cid,
                 "name": name or cid,
@@ -123,7 +511,7 @@ def fetch_card_catalog():
                 if not norm or norm in dg_db:
                     continue
                 name = c.get("name", cid)
-                text = clean_card_text(c.get("text", ""))
+                text = clean_card_text(c.get("text", ""), lang=lang)
                 dg_db[norm] = (name, text)
     except Exception as e:
         print(f"警告: HearthstoneJSON からカードマスタの取得に失敗しました（{e}）。CardIDで表示します。")
@@ -1218,24 +1606,22 @@ def parse_power_log(log_path):
     return bg_games
 
 
-DISCOVER_SOURCE_LABELS = {
-    "TB_BaconShop_Triples_01": "トリプル報酬",
-    "BG30_Trinket_1st": "下級装飾品",
-    "BG30_Trinket_2nd": "上級装飾品",
-}
-
-
-def generate_html(games, output_path, card_catalog=None, game_numbers=None):
+def generate_html(games, output_path, card_catalog=None, game_numbers=None, lang="ja"):
     """リロールごとの酒場・所持金・グレード・悪夢の恵み・盤面/手札・戦闘結果・ロビー情報をHTML出力する"""
+    lang = normalize_lang(lang)
+    tr = I18N[lang]
+    hs_locale = get_hs_locale(lang)
+    tribe_labels = BG_TRIBE_LABELS_BY_LANG[lang]
+    discover_source_labels = DISCOVER_SOURCE_LABELS_BY_LANG[lang]
     if card_catalog is None:
-        card_catalog = fetch_card_catalog()
+        card_catalog = fetch_card_catalog(lang=lang)
     if game_numbers is None:
         game_numbers = list(range(1, len(games) + 1))
     dark_gift_db = card_catalog.get("dark_gifts", {})
     by_dbf_id = card_catalog.get("by_dbf_id", {})
     by_card_id = card_catalog.get("by_card_id", {})
-    bgs_base = "https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x"
-    render_base = "https://art.hearthstonejson.com/v1/render/latest/jaJP/256x"
+    bgs_base = f"https://art.hearthstonejson.com/v1/bgs/latest/{hs_locale}/256x"
+    render_base = f"https://art.hearthstonejson.com/v1/render/latest/{hs_locale}/256x"
     used_card_ids = set()
 
     def resolve_card_entry(card_id):
@@ -1285,8 +1671,9 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
         spent = max(0, total_slots - gold)
         num_text = f"{gold}/{max_gold}" if max_gold is not None else str(gold)
         label_html = f"<span class='gold-label'>{html.escape(label)}</span>" if label else ""
+        gold_title = html.escape(tr["gold_title"].format(num=num_text))
         return (
-            f"<span class='gold-group' title='所持金 {num_text}'>"
+            f"<span class='gold-group' title='{gold_title}'>"
             f"{label_html}<span class='coin-tray' data-on='{gold}' data-off='{spent}'></span>"
             f"<span class='gold-num'>{num_text}</span>"
             f"</span>"
@@ -1297,10 +1684,14 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
         upgraded = tier_end > tier_start
         cls = "tier-badge tier-up" if upgraded else "tier-badge"
         up_tag = "<span class='tier-up-tag'>UP</span>" if upgraded else ""
+        tier_cost_label = html.escape(tr["tier_cost_label"])
+        tier_cost_title = html.escape(tr["tier_cost_title"])
+        tier_label = html.escape(tr["tier_label"])
+        tier_val = html.escape(tr["tier_val"].format(start=tier_start, end=tier_end))
         if upgrade_cost_start is not None:
             cost_html = (
-                f"<span class='tier-cost' title='ターン開始時の酒場グレードアップ必要コイン数'>"
-                f"<span class='tier-label'>開始時UP費用</span>"
+                f"<span class='tier-cost' title='{tier_cost_title}'>"
+                f"<span class='tier-label'>{tier_cost_label}</span>"
                 f"<svg class='coin-icon' viewBox='0 0 24 24'><use href='#coin-on'/></svg>"
                 f"<span class='gold-num'>{upgrade_cost_start}</span>"
                 f"</span>"
@@ -1308,14 +1699,14 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
         else:
             cost_html = (
                 f"<span class='tier-cost'>"
-                f"<span class='tier-label'>開始時UP費用</span>"
+                f"<span class='tier-label'>{tier_cost_label}</span>"
                 f"<span class='tier-max'>MAX</span>"
                 f"</span>"
             )
         return (
             f"<span class='{cls}'>"
-            f"<span class='tier-label'>酒場グレード</span>"
-            f"<span class='tier-val'>開始 ★{tier_start} → 終了 ★{tier_end}</span>"
+            f"<span class='tier-label'>{tier_label}</span>"
+            f"<span class='tier-val'>{tier_val}</span>"
             f"{up_tag}"
             f"</span>"
             f"{cost_html}"
@@ -1358,26 +1749,27 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
         else:
             cls = "place-badge place-bottom"
             icon = ""
-        prefix = "最終順位: " if show_prefix else ""
-        suffix = "" if completed else "（途中終了）"
-        return f"<span class='{cls}'>{icon}{prefix}{place}位{suffix}</span>"
+        prefix = tr["place_prefix"] if show_prefix else ""
+        suffix = "" if completed else tr["place_incomplete_suffix"]
+        place_text = format_place(place, lang)
+        return f"<span class='{cls}'>{icon}{html.escape(prefix)}{html.escape(place_text)}{html.escape(suffix)}</span>"
 
     def render_minion_badges(m):
         parts = []
         if m["golden"]:
-            parts.append("<span class='kw-tag kw-gold'>ゴールデン</span>")
+            parts.append(f"<span class='kw-tag kw-gold'>{html.escape(tr['kw_golden'])}</span>")
         if m["taunt"]:
-            parts.append("<span class='kw-tag kw-taunt'>挑発</span>")
+            parts.append(f"<span class='kw-tag kw-taunt'>{html.escape(tr['kw_taunt'])}</span>")
         if m["divine_shield"]:
-            parts.append("<span class='kw-tag kw-ds'>聖盾</span>")
+            parts.append(f"<span class='kw-tag kw-ds'>{html.escape(tr['kw_ds'])}</span>")
         if m["reborn"]:
-            parts.append("<span class='kw-tag kw-reborn'>蘇り</span>")
+            parts.append(f"<span class='kw-tag kw-reborn'>{html.escape(tr['kw_reborn'])}</span>")
         if m["poisonous"]:
-            parts.append("<span class='kw-tag kw-poison'>猛毒</span>")
+            parts.append(f"<span class='kw-tag kw-poison'>{html.escape(tr['kw_poison'])}</span>")
         if m["venomous"]:
-            parts.append("<span class='kw-tag kw-poison'>毒袋</span>")
+            parts.append(f"<span class='kw-tag kw-poison'>{html.escape(tr['kw_venom'])}</span>")
         if m["windfury"]:
-            parts.append("<span class='kw-tag kw-wf'>疾風</span>")
+            parts.append(f"<span class='kw-tag kw-wf'>{html.escape(tr['kw_wf'])}</span>")
         if not parts:
             return ""
         return f"<div class='kw-row'>{''.join(parts)}</div>"
@@ -1402,13 +1794,13 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
 
     def resolve_hero_name(entry):
         if not entry:
-            return "不明"
+            return tr["unknown"]
         if entry.get("name"):
             return entry["name"]
         cid = entry.get("card_id", "")
         if cid in by_card_id:
             return by_card_id[cid]["name"]
-        return cid or "不明"
+        return cid or tr["unknown"]
 
     def render_life_span(hp, armor):
         if hp is None:
@@ -1442,17 +1834,17 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
 
     is_single_game = len(games) == 1
     page_title = (
-        f"バトルグラウンド振り返りログ（第{game_numbers[0]}試合）"
+        tr["page_title_single"].format(game_idx=game_numbers[0])
         if is_single_game
-        else "バトルグラウンド振り返りログ（リロール別）"
+        else tr["page_title_multi"]
     )
 
     html_parts = [
         "<!DOCTYPE html>",
-        "<html lang='ja'>",
+        f"<html lang='{lang}'>",
         "<head>",
         "<meta charset='UTF-8'>",
-        f"<title>{page_title}</title>",
+        f"<title>{html.escape(page_title)}</title>",
         "<style>",
         "  html { --nav-offset: 60px; scroll-behavior: smooth; }",
         "  body { font-family: sans-serif; background: #1a1c23; color: #f0f0f0; padding: 0 20px 20px; margin: 0; }",
@@ -1652,8 +2044,8 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
         "  .lb-tag-opp { background: #521e27; border: 1px solid #e05263; color: #ffb3bc; font-size: 0.78em; padding: 0 5px; border-radius: 4px; font-weight: bold; }",
         "</style>",
         "<script>",
-        "const BGS_BASE = 'https://art.hearthstonejson.com/v1/bgs/latest/jaJP/256x';",
-        "const RENDER_BASE = 'https://art.hearthstonejson.com/v1/render/latest/jaJP/256x';",
+        f"const BGS_BASE = 'https://art.hearthstonejson.com/v1/bgs/latest/{hs_locale}/256x';",
+        f"const RENDER_BASE = 'https://art.hearthstonejson.com/v1/render/latest/{hs_locale}/256x';",
         "const ART_BASE = 'https://art.hearthstonejson.com/v1/256x';",
         "function fallbackImg(img) {",
         "  if (!img.dataset.fbInit) {",
@@ -1753,25 +2145,36 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
         "    </symbol>",
         "  </defs>",
         "</svg>",
-        "<nav class='sticky-nav' aria-label='試合ナビゲーション'>",
-        "  <span class='sticky-nav-label'>移動:</span>",
-        "  <a class='nav-pill nav-pill-toc' href='#toc'>目次</a>",
+        f"<nav class='sticky-nav' aria-label='{html.escape(tr['nav_aria'])}'>",
+        f"  <span class='sticky-nav-label'>{html.escape(tr['nav_label'])}</span>",
+        f"  <a class='nav-pill nav-pill-toc' href='#toc'>{html.escape(tr['nav_toc'])}</a>",
     ]
 
     for game_idx, game in zip(game_numbers, games):
         turn_count = len(game["turns"])
         place = game.get("final_place")
-        place_str = f"{place}位・" if place is not None else ""
+        place_str = (
+            tr["nav_place_prefix"].format(place=format_place(place, lang))
+            if place is not None
+            else ""
+        )
+        pill_text = tr["nav_game_pill"].format(
+            game_idx=game_idx, place_str=place_str, turns=turn_count
+        )
         html_parts.append(
-            f"  <a class='nav-pill' href='#game-{game_idx}'>第 {game_idx} 試合（{place_str}{turn_count}T）</a>"
+            f"  <a class='nav-pill' href='#game-{game_idx}'>{html.escape(pill_text)}</a>"
         )
     html_parts.append("</nav>")
-    html_parts.append("<h1>バトルグラウンド 振り返りレポート</h1>")
+    html_parts.append(f"<h1>{html.escape(tr['h1_title'])}</h1>")
 
     # 目次（各試合＋各ターンへのジャンプ）
-    toc_title = f"目次（第 {game_numbers[0]} 試合）" if is_single_game else f"目次（全 {len(games)} 試合）"
+    toc_title = (
+        tr["toc_title_single"].format(game_idx=game_numbers[0])
+        if is_single_game
+        else tr["toc_title_multi"].format(count=len(games))
+    )
     html_parts.append("<div id='toc' class='toc-box'>")
-    html_parts.append(f"<div class='toc-title'>{toc_title}</div>")
+    html_parts.append(f"<div class='toc-title'>{html.escape(toc_title)}</div>")
     html_parts.append("<div class='toc-list'>")
     for game_idx, game in zip(game_numbers, games):
         sorted_turns = sorted(game["turns"].keys())
@@ -1788,19 +2191,28 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             if game["hero_card_id"]
             else ""
         )
-        dg_summary = f" / 恵み {dg_count}回" if dg_count else ""
+        dg_summary = tr["toc_dg_summary"].format(count=dg_count) if dg_count else ""
         ban_summary = ""
         if len(game["active_tribes"]) >= 5 and game["banned_tribes"]:
-            ban_names = "・".join(BG_TRIBE_LABELS.get(t, t) for t in game["banned_tribes"])
-            ban_summary = f" / BAN: {ban_names}"
+            ban_names = tr["tribe_sep"].join(tribe_labels.get(t, t) for t in game["banned_tribes"])
+            ban_summary = tr["toc_ban_summary"].format(names=ban_names)
         toc_place_badge = render_place_badge(game, show_prefix=False)
+        game_heading_txt = html.escape(tr["game_heading"].format(game_idx=game_idx))
+        toc_meta_txt = html.escape(
+            tr["toc_game_meta"].format(
+                turns=len(sorted_turns),
+                max_tier=max_tier,
+                dg=dg_summary,
+                ban=ban_summary,
+            )
+        )
         html_parts.append("<div class='toc-game'>")
         html_parts.append(
             f"<a class='toc-game-link' href='#game-{game_idx}'>"
             f"{hero_thumb}"
             f"<span>"
-            f"<div class='toc-game-name'><span>第 {game_idx} 試合</span>{toc_place_badge}</div>"
-            f"<div class='toc-game-meta'>全 {len(sorted_turns)} ターン / 最大 ★{max_tier}{dg_summary}{ban_summary}</div>"
+            f"<div class='toc-game-name'><span>{game_heading_txt}</span>{toc_place_badge}</div>"
+            f"<div class='toc-game-meta'>{toc_meta_txt}</div>"
             f"</span>"
             f"</a>"
         )
@@ -1810,8 +2222,16 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             has_dg = bool(td["dark_gifts"])
             t_cls = "toc-turn-link toc-turn-dg" if has_dg else "toc-turn-link"
             dg_mark = "✦" if has_dg else ""
+            turn_title_attr = html.escape(
+                tr["toc_turn_title"].format(
+                    game_idx=game_idx,
+                    turn=t,
+                    t_start=td["tier_start"],
+                    t_end=td["tier_end"],
+                )
+            )
             html_parts.append(
-                f"<a class='{t_cls}' href='#game-{game_idx}-turn-{t}' title='第{game_idx}試合 ターン{t}（★{td['tier_start']}→★{td['tier_end']}）'>"
+                f"<a class='{t_cls}' href='#game-{game_idx}-turn-{t}' title='{turn_title_attr}'>"
                 f"T{t}{dg_mark}</a>"
             )
         html_parts.append("</div></div>")
@@ -1819,8 +2239,8 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
 
     def resolve_discover_source_label(disc_ev):
         src_cid = disc_ev.get("source_cid", "")
-        if src_cid in DISCOVER_SOURCE_LABELS:
-            return DISCOVER_SOURCE_LABELS[src_cid]
+        if src_cid in discover_source_labels:
+            return discover_source_labels[src_cid]
         if src_cid:
             info = resolve_card_entry(src_cid)
             if info and info.get("name"):
@@ -1828,20 +2248,26 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 return info["name"]
         if disc_ev.get("source_name"):
             return disc_ev["source_name"]
-        return src_cid or "発見"
+        return src_cid or tr["discover_default"]
 
     def append_dark_gift_block(dg_ev):
         r_idx = dg_ev["roll_index"]
-        timing = "リロール前" if r_idx == 0 else f"{r_idx}回目リロール後"
-        dg_gold_html = render_coins(dg_ev["gold"], dg_ev["max_gold"], label="発見時")
+        timing = (
+            tr["timing_before_reroll"]
+            if r_idx == 0
+            else tr["timing_after_reroll"].format(n=r_idx)
+        )
+        dg_gold_html = render_coins(dg_ev["gold"], dg_ev["max_gold"], label=tr["gold_on_discover"])
         chosen_set = set(
             dg_ev.get("chosen_eids")
             or ([dg_ev["chosen_eid"]] if dg_ev.get("chosen_eid") else [])
         )
+        dg_hdr_txt = html.escape(tr["dg_header"].format(timing=timing))
+        chosen_badge_txt = html.escape(tr["badge_chosen"])
         html_parts.append("<div class='dg-block'>")
         html_parts.append(
             f"<div class='dg-header'>"
-            f"<span>✦ 悪夢の恵み（発見・{timing}）</span>"
+            f"<span>{dg_hdr_txt}</span>"
             f"<span class='roll-gold-bar'>{dg_gold_html}</span>"
             f"</div>"
         )
@@ -1852,7 +2278,11 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             cls_list.append("dg-option-chosen" if is_chosen else "dg-option-unchosen")
             if opt["golden"]:
                 cls_list.append("golden")
-            badge_html = "<span class='badge badge-dg-chosen'>選択</span>" if is_chosen else ""
+            badge_html = (
+                f"<span class='badge badge-dg-chosen'>{chosen_badge_txt}</span>"
+                if is_chosen
+                else ""
+            )
             html_parts.append(
                 f"<div class='{' '.join(cls_list)}'>"
                 f"{badge_html}"
@@ -1864,17 +2294,25 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
 
     def append_discover_block(disc_ev):
         r_idx = disc_ev["roll_index"]
-        timing = "リロール前" if r_idx == 0 else f"{r_idx}回目リロール後"
-        src_label = html.escape(resolve_discover_source_label(disc_ev))
-        disc_gold_html = render_coins(disc_ev["gold"], disc_ev["max_gold"], label="発見時")
+        timing = (
+            tr["timing_before_reroll"]
+            if r_idx == 0
+            else tr["timing_after_reroll"].format(n=r_idx)
+        )
+        src_label = resolve_discover_source_label(disc_ev)
+        disc_gold_html = render_coins(
+            disc_ev["gold"], disc_ev["max_gold"], label=tr["gold_on_discover"]
+        )
         chosen_set = set(
             disc_ev.get("chosen_eids")
             or ([disc_ev["chosen_eid"]] if disc_ev.get("chosen_eid") else [])
         )
+        disc_hdr_txt = html.escape(tr["discover_header"].format(src=src_label, timing=timing))
+        chosen_badge_txt = html.escape(tr["badge_chosen"])
         html_parts.append("<div class='discover-block'>")
         html_parts.append(
             f"<div class='discover-header'>"
-            f"<span>🔎 発見：{src_label}（{timing}）</span>"
+            f"<span>{disc_hdr_txt}</span>"
             f"<span class='roll-gold-bar'>{disc_gold_html}</span>"
             f"</div>"
         )
@@ -1885,7 +2323,11 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             cls_list.append("discover-option-chosen" if is_chosen else "discover-option-unchosen")
             if opt.get("golden"):
                 cls_list.append("golden")
-            badge_html = "<span class='badge badge-discover-chosen'>選択</span>" if is_chosen else ""
+            badge_html = (
+                f"<span class='badge badge-discover-chosen'>{chosen_badge_txt}</span>"
+                if is_chosen
+                else ""
+            )
             opt_cid = opt.get("card_id", "")
             opt_name = (
                 resolve_card_name(opt_cid) if opt_cid else ""
@@ -1921,8 +2363,9 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 )
             )
         header_place_badge = render_place_badge(game, show_prefix=True)
-        html_parts.append(f"<h2><span>第 {game_idx} 試合</span>{header_place_badge}</h2>")
-        html_parts.append("<a class='back-to-toc' href='#toc'>↑ 目次へ</a>")
+        game_heading_txt = html.escape(tr["game_heading"].format(game_idx=game_idx))
+        html_parts.append(f"<h2><span>{game_heading_txt}</span>{header_place_badge}</h2>")
+        html_parts.append(f"<a class='back-to-toc' href='#toc'>{html.escape(tr['back_to_toc'])}</a>")
         html_parts.append("</div>")
 
         # 試合情報（種族BAN・開始時ヒーロー選択肢）
@@ -1933,23 +2376,30 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             if game["active_tribes"] or game["banned_tribes"]:
                 active_cnt = len(game["active_tribes"])
                 is_complete = active_cnt >= 5
-                active_label = f"出現種族（{active_cnt}）" if is_complete else f"確認できた種族（{active_cnt}/5）"
-                ban_label = f"BAN種族（{len(game['banned_tribes'])}）" if is_complete else f"未出現 / BAN候補（{len(game['banned_tribes'])}）"
-                note_html = (
-                    "<span class='game-info-note'>※ Power.log にはBAN一覧が直接記録されないため、試合中に出現した単一種族ミニオンから推定しています</span>"
+                active_label = html.escape(
+                    tr["active_tribes_complete"].format(cnt=active_cnt)
                     if is_complete
-                    else "<span class='game-info-note'>※ 早期終了のため全5種族はログ未出現（出現した単一種族ミニオンから推定）</span>"
+                    else tr["active_tribes_partial"].format(cnt=active_cnt)
                 )
+                ban_label = html.escape(
+                    tr["banned_tribes_complete"].format(cnt=len(game["banned_tribes"]))
+                    if is_complete
+                    else tr["banned_tribes_partial"].format(cnt=len(game["banned_tribes"]))
+                )
+                note_txt = tr["tribe_note_complete"] if is_complete else tr["tribe_note_partial"]
+                note_html = f"<span class='game-info-note'>{html.escape(note_txt)}</span>"
                 active_chips = "".join(
-                    f"<span class='tribe-chip tribe-active'>{html.escape(BG_TRIBE_LABELS.get(t, t))}</span>"
+                    f"<span class='tribe-chip tribe-active'>{html.escape(tribe_labels.get(t, t))}</span>"
                     for t in game["active_tribes"]
                 )
                 ban_chips = "".join(
-                    f"<span class='tribe-chip tribe-ban'>{html.escape(BG_TRIBE_LABELS.get(t, t))}</span>"
+                    f"<span class='tribe-chip tribe-ban'>{html.escape(tribe_labels.get(t, t))}</span>"
                     for t in game["banned_tribes"]
                 )
                 html_parts.append("<div class='game-info-section'>")
-                html_parts.append(f"<div class='game-info-title'>種族プール / BAN情報 {note_html}</div>")
+                html_parts.append(
+                    f"<div class='game-info-title'>{html.escape(tr['tribe_section_title'])} {note_html}</div>"
+                )
                 html_parts.append("<div class='tribe-rows'>")
                 html_parts.append(
                     f"<div class='tribe-line'><span class='tribe-line-label'>{active_label}</span>{active_chips}</div>"
@@ -1962,7 +2412,9 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             # 開始時ヒーロー選択肢
             if game["hero_choices"]:
                 html_parts.append("<div class='game-info-section'>")
-                html_parts.append("<div class='game-info-title'>試合開始時のヒーロー選択肢</div>")
+                html_parts.append(
+                    f"<div class='game-info-title'>{html.escape(tr['hero_choices_title'])}</div>"
+                )
                 html_parts.append("<div class='hero-choices-row'>")
                 # 選択可能（未ロック）を先、ロック枠を後に並べる
                 ordered_heroes = sorted(game["hero_choices"], key=lambda h: (h["locked"], not h["chosen"]))
@@ -1979,16 +2431,16 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                         for prev_cid in hist[:-1]:
                             html_parts.append(
                                 f"<div class='card-item hero-choice-rerolled-from'>"
-                                f"<span class='badge badge-reroll-from'>リロール前</span>"
+                                f"<span class='badge badge-reroll-from'>{html.escape(tr['badge_reroll_from'])}</span>"
                                 f"{build_img_tag(prev_cid, is_hero=True)}"
                                 f"</div>"
                                 f"<span class='hero-reroll-arrow'>→</span>"
                             )
                     badge_html = ""
                     if h_opt["chosen"]:
-                        badge_html = "<span class='badge badge-buy'>選択</span>"
+                        badge_html = f"<span class='badge badge-buy'>{html.escape(tr['badge_chosen'])}</span>"
                     elif h_opt["locked"]:
-                        badge_html = "<span class='badge badge-locked'>ロック</span>"
+                        badge_html = f"<span class='badge badge-locked'>{html.escape(tr['badge_locked'])}</span>"
                     html_parts.append(
                         f"<div class='card-item hero-choice-card'>"
                         f"{badge_html}"
@@ -2013,12 +2465,12 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 ev_list.sort(key=lambda item: item[1].get("seq", 0))
 
             start_gold_html = render_coins(
-                t_data["gold_start"], t_data["max_gold_start"], label="開始時"
+                t_data["gold_start"], t_data["max_gold_start"], label=tr["gold_start_label"]
             )
             tier_html = render_tier_badge(
                 t_data["tier_start"], t_data["tier_end"], t_data["upgrade_cost_start"]
             )
-            reroll_meta = f"リロール: {max(0, len(rolls) - 1)}回"
+            reroll_meta = html.escape(tr["reroll_meta"].format(cnt=max(0, len(rolls) - 1)))
 
             # ターン見出し用の自ライフ（ターン開始時）＆対戦相手プレビュー
             life_header_html = ""
@@ -2030,8 +2482,8 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             )
             if hp_for_header:
                 life_header_html = (
-                    f"<span class='life-pill' title='ターン開始時の残りライフ（体力+装甲）'>"
-                    f"<span class='tier-label'>自ライフ</span>"
+                    f"<span class='life-pill' title='{html.escape(tr['life_header_title'])}'>"
+                    f"<span class='tier-label'>{html.escape(tr['life_label'])}</span>"
                     f"{render_life_span(hp_for_header[0], hp_for_header[1])}"
                     f"</span>"
                 )
@@ -2047,7 +2499,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 )
                 opp_tier_txt = f"★{opp_entry['tier_start']}→★{opp_entry['tier_end']}"
                 opp_preview_html = (
-                    f"<span class='vs-pill' title='このターンの対戦相手と酒場グレード推移'>"
+                    f"<span class='vs-pill' title='{html.escape(tr['opp_preview_title'])}'>"
                     f"{opp_thumb}<span>VS {opp_name} ({opp_tier_txt})</span>"
                     f"</span>"
                 )
@@ -2055,7 +2507,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             html_parts.append(f"<div id='game-{game_idx}-turn-{turn}' class='turn-box'>")
             html_parts.append(
                 f"<div class='turn-title'>"
-                f"<span>ターン {turn}</span>"
+                f"<span>{html.escape(tr['turn_heading'].format(turn=turn))}</span>"
                 f"<span class='turn-meta'>{tier_html}{start_gold_html}{life_header_html}{opp_preview_html}<span>({reroll_meta})</span></span>"
                 f"</div>"
             )
@@ -2063,10 +2515,12 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             rendered_choice_rolls = set()
             for roll in rolls:
                 idx = roll["roll_index"]
-                roll_label = "リロール前（初期提示）" if idx == 0 else f"{idx}回目リロール後"
+                roll_label = html.escape(
+                    tr["roll_initial"] if idx == 0 else tr["roll_nth"].format(n=idx)
+                )
 
                 roll_gold_html = render_coins(
-                    roll["gold_start"], roll["max_gold_start"], label="ロール時"
+                    roll["gold_start"], roll["max_gold_start"], label=tr["gold_at_roll"]
                 )
                 if (
                     roll["gold_end"] != roll["gold_start"]
@@ -2074,7 +2528,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 ):
                     roll_gold_html += (
                         "<span class='gold-arrow'>→</span>"
-                        + render_coins(roll["gold_end"], roll["max_gold_end"], label="行動後")
+                        + render_coins(roll["gold_end"], roll["max_gold_end"], label=tr["gold_after_action"])
                     )
 
                 html_parts.append("<div class='roll-block'>")
@@ -2087,13 +2541,13 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 html_parts.append("<div class='roll-content'>")
 
                 html_parts.append("<div class='sub-group'>")
-                html_parts.append("<div class='sub-label'>酒場のラインナップ</div>")
+                html_parts.append(f"<div class='sub-label'>{html.escape(tr['shop_lineup'])}</div>")
                 html_parts.append("<div class='card-row'>")
 
                 for cid in roll["carried_over"]:
                     html_parts.append(
                         f"<div class='card-item frozen'>"
-                        f"<span class='badge badge-freeze'>凍結継続</span>"
+                        f"<span class='badge badge-freeze'>{html.escape(tr['badge_frozen'])}</span>"
                         f"{build_img_tag(cid)}"
                         f"</div>"
                     )
@@ -2108,18 +2562,18 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 html_parts.append("</div></div>")
 
                 html_parts.append("<div class='sub-group'>")
-                html_parts.append("<div class='sub-label'>このロールで購入</div>")
+                html_parts.append(f"<div class='sub-label'>{html.escape(tr['bought_in_roll'])}</div>")
                 html_parts.append("<div class='card-row'>")
                 if roll["bought"]:
                     for cid in roll["bought"]:
                         html_parts.append(
                             f"<div class='card-item bought'>"
-                            f"<span class='badge badge-buy'>購入</span>"
+                            f"<span class='badge badge-buy'>{html.escape(tr['badge_bought'])}</span>"
                             f"{build_img_tag(cid)}"
                             f"</div>"
                         )
                 else:
-                    html_parts.append("<span class='empty-note'>購入なし</span>")
+                    html_parts.append(f"<span class='empty-note'>{html.escape(tr['no_purchases'])}</span>")
                 html_parts.append("</div></div>")
 
                 html_parts.append("</div></div>")
@@ -2144,7 +2598,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
 
             # ターン終了時の自分のヒーロー情報・ヒーローパワー・盤面・手札を準備
             end_gold_html = render_coins(
-                t_data["gold_end"], t_data["max_gold_end"], label="残金"
+                t_data["gold_end"], t_data["max_gold_end"], label=tr["gold_end_label"]
             )
             hero_powers = t_data.get("hero_powers_end", [])
             cur_hp_keys = tuple(
@@ -2177,7 +2631,11 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                     hp_text = hp_info.get("text", "") if hp_info else ""
                     box_cls = "hp-inline-box hp-inline-changed" if changed else "hp-inline-box"
                     cost_html = f"<span class='hp-cost-pill'>{hp_cost}G</span>" if hp_cost is not None else ""
-                    changed_html = "<span class='hp-changed-pill'>変更</span>" if changed else ""
+                    changed_html = (
+                        f"<span class='hp-changed-pill'>{html.escape(tr['hp_changed_badge'])}</span>"
+                        if changed
+                        else ""
+                    )
                     desc_html = (
                         f"<div class='hp-inline-desc'>{html.escape(hp_text)}</div>"
                         if hp_text
@@ -2193,7 +2651,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                         f"{thumb_html}"
                         f"<div class='hp-inline-meta'>"
                         f"<div class='hp-inline-top'>"
-                        f"<span class='hp-inline-label'>ヒロパ</span>"
+                        f"<span class='hp-inline-label'>{html.escape(tr['hp_inline_label'])}</span>"
                         f"{cost_html}"
                         f"<span class='hp-inline-name'>{html.escape(hp_name)}</span>"
                         f"{changed_html}"
@@ -2216,11 +2674,15 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 card_cls = "my-summary-card" if is_me else "opp-summary-card"
                 thumb_cls = "my-hero-thumb zoomable-img" if is_me else "opp-hero-thumb zoomable-img"
                 side_badge = (
-                    "<span class='side-tag side-tag-me'>自分</span>"
+                    f"<span class='side-tag side-tag-me'>{html.escape(tr['side_me'])}</span>"
                     if is_me
-                    else "<span class='side-tag side-tag-opp'>相手</span>"
+                    else f"<span class='side-tag side-tag-opp'>{html.escape(tr['side_opp'])}</span>"
                 )
-                h_name = html.escape(resolve_hero_name(hero_entry)) if hero_entry else ("自分" if is_me else "対戦相手")
+                h_name = (
+                    html.escape(resolve_hero_name(hero_entry))
+                    if hero_entry
+                    else html.escape(tr["fallback_me"] if is_me else tr["fallback_opp"])
+                )
                 h_img = (
                     build_img_tag(
                         hero_entry["card_id"],
@@ -2233,31 +2695,40 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 )
                 meta_chips = []
                 if is_ghost:
-                    meta_chips.append("<span class='opp-meta-chip'>ゴースト</span>")
+                    meta_chips.append(f"<span class='opp-meta-chip'>{html.escape(tr['ghost'])}</span>")
                 if hero_entry:
                     if hero_entry.get("place"):
-                        meta_chips.append(f"<span class='opp-meta-chip'>順位 {hero_entry['place']}位</span>")
+                        place_txt = format_place(hero_entry["place"], lang)
+                        meta_chips.append(
+                            f"<span class='opp-meta-chip'>{html.escape(tr['chip_place'].format(place=place_txt))}</span>"
+                        )
                     if "tier_start" in hero_entry and "tier_end" in hero_entry:
                         t_up = hero_entry["tier_end"] > hero_entry["tier_start"]
                         t_cls = "opp-meta-chip opp-tier-up" if t_up else "opp-meta-chip"
                         up_s = " UP" if t_up else ""
-                        meta_chips.append(
-                            f"<span class='{t_cls}'>グレード ★{hero_entry['tier_start']} → ★{hero_entry['tier_end']}{up_s}</span>"
+                        tier_chip_txt = tr["chip_tier"].format(
+                            start=hero_entry["tier_start"],
+                            end=hero_entry["tier_end"],
+                            up=up_s,
                         )
+                        meta_chips.append(f"<span class='{t_cls}'>{html.escape(tier_chip_txt)}</span>")
                     if "hp" in hero_entry and hero_entry["hp"] is not None:
+                        life_span = render_life_span(hero_entry["hp"], hero_entry.get("armor", 0))
                         meta_chips.append(
-                            f"<span class='opp-meta-chip'>体力 {render_life_span(hero_entry['hp'], hero_entry.get('armor', 0))}</span>"
+                            f"<span class='opp-meta-chip'>{tr['chip_hp'].format(life=life_span)}</span>"
                         )
                     if "triples" in hero_entry:
-                        meta_chips.append(f"<span class='opp-meta-chip'>トリプル {hero_entry['triples']}回</span>")
+                        meta_chips.append(
+                            f"<span class='opp-meta-chip'>{html.escape(tr['chip_triples'].format(n=hero_entry['triples']))}</span>"
+                        )
                 if extra_top_html:
                     meta_chips.append(extra_top_html)
 
                 tr_chips = ""
                 if hero_entry:
                     tr_chips = (
-                        render_trinket_chip(hero_entry.get("trinket1", 0), "下級")
-                        + render_trinket_chip(hero_entry.get("trinket2", 0), "上級")
+                        render_trinket_chip(hero_entry.get("trinket1", 0), tr["trinket_lesser"])
+                        + render_trinket_chip(hero_entry.get("trinket2", 0), tr["trinket_greater"])
                     )
                 tr_html = f"<div class='trinket-row'>{tr_chips}</div>" if tr_chips else ""
                 hp_html = render_hero_power_inline(hp_list, changed=changed)
@@ -2277,18 +2748,18 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 parts = [
                     "<div class='combat-my-boards'>",
                     "<div class='sub-group'>",
-                    f"<div class='sub-label'>自分の盤面（{len(board)}体）</div>",
+                    f"<div class='sub-label'>{html.escape(tr['my_board_label'].format(n=len(board)))}</div>",
                     "<div class='card-row'>",
                 ]
                 if board:
                     for m in board:
                         parts.append(render_minion_card(m))
                 else:
-                    parts.append("<span class='empty-note'>ミニオンなし</span>")
+                    parts.append(f"<span class='empty-note'>{html.escape(tr['no_minions'])}</span>")
                 parts.append("</div></div>")
 
                 parts.append("<div class='sub-group'>")
-                parts.append(f"<div class='sub-label'>自分の手札（{len(hand)}枚）</div>")
+                parts.append(f"<div class='sub-label'>{html.escape(tr['my_hand_label'].format(n=len(hand)))}</div>")
                 parts.append("<div class='card-row'>")
                 if hand:
                     for h_card in hand:
@@ -2313,7 +2784,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                             f"</div>"
                         )
                 else:
-                    parts.append("<span class='empty-note'>手札なし</span>")
+                    parts.append(f"<span class='empty-note'>{html.escape(tr['no_hand'])}</span>")
                 parts.append("</div></div>")
                 parts.append("</div>")
                 return parts
@@ -2346,12 +2817,17 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
             if lb_list:
                 html_parts.append("<details class='lb-details'>")
                 html_parts.append(
-                    f"<summary>ロビー全員の状況（全{len(lb_list)}人：順位・開始/終了グレード・体力・トリプル・装飾品）</summary>"
+                    f"<summary>{html.escape(tr['lb_summary'].format(n=len(lb_list)))}</summary>"
                 )
                 html_parts.append("<div class='lb-table-wrap'><table class='lb-table'>")
                 html_parts.append(
                     "<thead><tr>"
-                    "<th>順位</th><th>ヒーロー</th><th>酒場グレード</th><th>体力 / 装甲</th><th>トリプル</th><th>装飾品</th>"
+                    f"<th>{html.escape(tr['lb_col_place'])}</th>"
+                    f"<th>{html.escape(tr['lb_col_hero'])}</th>"
+                    f"<th>{html.escape(tr['lb_col_tier'])}</th>"
+                    f"<th>{html.escape(tr['lb_col_hp'])}</th>"
+                    f"<th>{html.escape(tr['lb_col_triples'])}</th>"
+                    f"<th>{html.escape(tr['lb_col_trinkets'])}</th>"
                     "</tr></thead><tbody>"
                 )
                 for p in lb_list:
@@ -2372,23 +2848,25 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                     )
                     role_tag = ""
                     if p["is_me"]:
-                        role_tag = "<span class='lb-tag-me'>自分</span>"
+                        role_tag = f"<span class='lb-tag-me'>{html.escape(tr['lb_tag_me'])}</span>"
                     elif p["is_opponent"]:
-                        role_tag = "<span class='lb-tag-opp'>対戦相手</span>"
+                        role_tag = f"<span class='lb-tag-opp'>{html.escape(tr['lb_tag_opp'])}</span>"
                     t_up = p["tier_end"] > p["tier_start"]
                     t_cls = "opp-meta-chip opp-tier-up" if t_up else "opp-meta-chip"
                     up_s = " UP" if t_up else ""
                     tr_html = (
-                        render_trinket_chip(p["trinket1"], "下級")
-                        + render_trinket_chip(p["trinket2"], "上級")
+                        render_trinket_chip(p["trinket1"], tr["trinket_lesser"])
+                        + render_trinket_chip(p["trinket2"], tr["trinket_greater"])
                     ) or "<span style='color:#6c7586;'>—</span>"
+                    place_txt = html.escape(format_place(p["place"], lang))
+                    triples_txt = html.escape(tr["lb_triples_val"].format(n=p["triples"]))
                     html_parts.append(
                         f"<tr{tr_attr}>"
-                        f"<td><strong>{p['place']}位</strong></td>"
+                        f"<td><strong>{place_txt}</strong></td>"
                         f"<td><span class='lb-hero-cell'>{p_img}<span>{p_name}</span>{role_tag}</span></td>"
                         f"<td><span class='{t_cls}'>★{p['tier_start']} → ★{p['tier_end']}{up_s}</span></td>"
                         f"<td>{render_life_span(p['hp'], p['armor'])}</td>"
-                        f"<td>{p['triples']}回</td>"
+                        f"<td>{triples_txt}</td>"
                         f"<td><div class='trinket-row'>{tr_html}</div></td>"
                         f"</tr>"
                     )
@@ -2399,11 +2877,11 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 res = combat["result"]
                 dmg = combat["damage"]
                 if res == "WIN":
-                    res_html = f"<span class='combat-res-badge combat-res-win'>勝利 (+{dmg})</span>"
+                    res_html = f"<span class='combat-res-badge combat-res-win'>{html.escape(tr['combat_win'].format(dmg=dmg))}</span>"
                 elif res == "LOSS":
-                    res_html = f"<span class='combat-res-badge combat-res-loss'>敗北 (-{dmg})</span>"
+                    res_html = f"<span class='combat-res-badge combat-res-loss'>{html.escape(tr['combat_loss'].format(dmg=dmg))}</span>"
                 else:
-                    res_html = "<span class='combat-res-badge combat-res-tie'>引き分け</span>"
+                    res_html = f"<span class='combat-res-badge combat-res-tie'>{html.escape(tr['combat_tie'])}</span>"
 
                 my_before = combat.get("my_hp_before")
                 my_after = combat.get("my_hp_after")
@@ -2412,7 +2890,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                     if my_before != my_after:
                         life_diff_html = (
                             f"<span class='life-pill'>"
-                            f"<span class='tier-label'>自ライフ</span>"
+                            f"<span class='tier-label'>{html.escape(tr['life_label'])}</span>"
                             f"{render_life_span(my_before[0], my_before[1])}"
                             f"<span class='gold-arrow'>→</span>"
                             f"{render_life_span(my_after[0], my_after[1])}"
@@ -2421,7 +2899,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                     else:
                         life_diff_html = (
                             f"<span class='life-pill'>"
-                            f"<span class='tier-label'>自ライフ</span>"
+                            f"<span class='tier-label'>{html.escape(tr['life_label'])}</span>"
                             f"{render_life_span(my_after[0], my_after[1])}"
                             f"</span>"
                         )
@@ -2429,7 +2907,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 html_parts.append("<div class='combat-block'>")
                 html_parts.append(
                     f"<div class='combat-header'>"
-                    f"<span>⚔ 戦闘結果・対戦相手</span>"
+                    f"<span>{html.escape(tr['combat_header'])}</span>"
                     f"<span class='roll-gold-bar'>{res_html}{life_diff_html}</span>"
                     f"</div>"
                 )
@@ -2447,13 +2925,15 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
 
                 opp_board = combat.get("opp_board", [])
                 html_parts.append("<div class='sub-group'>")
-                html_parts.append(f"<div class='sub-label'>相手の盤面（{len(opp_board)}体）</div>")
+                html_parts.append(
+                    f"<div class='sub-label'>{html.escape(tr['opp_board_label'].format(n=len(opp_board)))}</div>"
+                )
                 html_parts.append("<div class='card-row'>")
                 if opp_board:
                     for om in opp_board:
                         html_parts.append(render_minion_card(om))
                 else:
-                    html_parts.append("<span class='empty-note'>ミニオンなし</span>")
+                    html_parts.append(f"<span class='empty-note'>{html.escape(tr['no_minions'])}</span>")
                 html_parts.append("</div></div>")
 
                 html_parts.append("<hr class='combat-divider'>")
@@ -2463,7 +2943,9 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
                 html_parts.append("</div>")
             else:
                 html_parts.append("<div class='end-turn-block'>")
-                html_parts.append("<div class='end-turn-header'><span>ターン終了時の状況</span></div>")
+                html_parts.append(
+                    f"<div class='end-turn-header'><span>{html.escape(tr['end_turn_header'])}</span></div>"
+                )
                 if my_hero_summary_html:
                     html_parts.append(my_hero_summary_html)
                 html_parts.extend(my_board_hand_parts)
@@ -2486,10 +2968,10 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None):
     html_parts.extend([
         "<div id='card-modal' class='card-modal' role='dialog' aria-modal='true'>",
         "  <div class='card-modal-inner'>",
-        "    <button id='card-modal-close' class='card-modal-close' type='button' aria-label='閉じる'>&times;</button>",
+        f"    <button id='card-modal-close' class='card-modal-close' type='button' aria-label='{html.escape(tr['modal_close_aria'])}'>&times;</button>",
         "    <img id='card-modal-img' class='card-modal-img' src='' alt=''>",
         "    <div id='card-modal-extra' class='card-modal-extra'></div>",
-        "    <div class='card-modal-hint'>背景クリック または Esc キーで閉じる</div>",
+        f"    <div class='card-modal-hint'>{html.escape(tr['modal_hint'])}</div>",
         "  </div>",
         "</div>",
         "<script id='card-catalog' type='application/json'>",
@@ -2545,10 +3027,14 @@ def build_catalog_entries(used_card_ids, card_catalog):
     return catalog_entries
 
 
-def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
+def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None, lang="ja"):
     """HTMLと同等の情報をCSS/タグなしで超軽量にまとめたAI分析用Markdownを出力する"""
+    lang = normalize_lang(lang)
+    tr = I18N[lang]
+    tribe_labels = BG_TRIBE_LABELS_BY_LANG[lang]
+    discover_source_labels = DISCOVER_SOURCE_LABELS_BY_LANG[lang]
     if card_catalog is None:
-        card_catalog = fetch_card_catalog()
+        card_catalog = fetch_card_catalog(lang=lang)
     if game_numbers is None:
         game_numbers = list(range(1, len(games) + 1))
 
@@ -2565,20 +3051,20 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
 
     def resolve_name(cid):
         if not cid:
-            return "不明"
+            return tr["unknown"]
         use_card(cid)
         info = by_card_id.get(cid) or (by_card_id.get(cid[:-2]) if cid.endswith("_G") else None)
         return info["name"] if info and info.get("name") else cid
 
     def resolve_hero(entry):
         if not entry:
-            return "不明"
+            return tr["unknown"]
         cid = entry.get("card_id", "")
         if cid:
             use_card(cid)
         if entry.get("name"):
             return entry["name"]
-        return resolve_name(cid) if cid else "不明"
+        return resolve_name(cid) if cid else tr["unknown"]
 
     def resolve_trinket(dbf_id, slot_label):
         if not dbf_id:
@@ -2593,7 +3079,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
         if hp is None:
             return "?"
         if hp <= 0:
-            return "脱落"
+            return tr["ai_dead"]
         return f"{hp}+{armor}" if armor and armor > 0 else str(hp)
 
     def fmt_gold(gold, max_gold):
@@ -2620,28 +3106,28 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
 
     def fmt_minion(m, idx=None):
         prefix = f"{idx}." if idx is not None else ""
-        gold_tag = "[金]" if m.get("golden") else ""
+        gold_tag = tr["ai_gold_tag"] if m.get("golden") else ""
         name = resolve_name(m["card_id"])
         kws = []
         if m.get("taunt"):
-            kws.append("挑発")
+            kws.append(tr["kw_taunt"])
         if m.get("divine_shield"):
-            kws.append("聖盾")
+            kws.append(tr["kw_ds"])
         if m.get("reborn"):
-            kws.append("蘇り")
+            kws.append(tr["kw_reborn"])
         if m.get("poisonous"):
-            kws.append("猛毒")
+            kws.append(tr["kw_poison"])
         if m.get("venomous"):
-            kws.append("毒袋")
+            kws.append(tr["kw_venom"])
         if m.get("windfury"):
-            kws.append("疾風")
+            kws.append(tr["kw_wf"])
         kw_s = f"[{'/'.join(kws)}]" if kws else ""
         dg_s = fmt_dg_names(m.get("dark_gifts", []), with_desc=False)
         dg_part = f"{{{dg_s}}}" if dg_s else ""
         return f"{prefix}{gold_tag}{name}({m['atk']}/{m['health']}){kw_s}{dg_part}"
 
     def fmt_hand_card(h_card):
-        gold_tag = "[金]" if h_card.get("golden") else ""
+        gold_tag = tr["ai_gold_tag"] if h_card.get("golden") else ""
         name = resolve_name(h_card["card_id"])
         stat_s = f"({h_card['atk']}/{h_card['health']})" if h_card.get("card_type") == "MINION" else ""
         dg_s = fmt_dg_names(h_card.get("dark_gifts", []), with_desc=False)
@@ -2650,51 +3136,86 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
 
     def fmt_trinkets(entry):
         items = [
-            resolve_trinket(entry.get("trinket1", 0), "下級"),
-            resolve_trinket(entry.get("trinket2", 0), "上級"),
+            resolve_trinket(entry.get("trinket1", 0), tr["trinket_lesser"]),
+            resolve_trinket(entry.get("trinket2", 0), tr["trinket_greater"]),
         ]
         items = [x for x in items if x]
         return ", ".join(items)
 
-    lines = ["# バトルグラウンド振り返りログ（AI分析用）", ""]
+    lines = [tr["ai_doc_title"], ""]
 
     for game_idx, game in zip(game_numbers, games):
         sorted_turns = sorted(game["turns"].keys())
         max_tier = max((game["turns"][t]["tier_end"] for t in sorted_turns), default=1)
-        hero_name = resolve_name(game["hero_card_id"]) if game.get("hero_card_id") else "不明"
+        hero_name = resolve_name(game["hero_card_id"]) if game.get("hero_card_id") else tr["unknown"]
         place = game.get("final_place")
         if place is not None:
-            suffix = "" if game.get("game_completed", False) else "（途中終了）"
-            place_str = f"最終順位: {place}位{suffix}"
+            suffix = "" if game.get("game_completed", False) else tr["place_incomplete_suffix"]
+            place_str = tr["ai_place_known"].format(
+                place=format_place(place, lang), suffix=suffix
+            )
         else:
-            place_str = "最終順位: 不明"
+            place_str = tr["ai_place_unknown"]
 
-        lines.append(f"## 第 {game_idx} 試合｜{hero_name}｜{place_str}（全{len(sorted_turns)}ターン / 最大★{max_tier}）")
+        lines.append(
+            tr["ai_game_header"].format(
+                game_idx=game_idx,
+                hero=hero_name,
+                place=place_str,
+                turns=len(sorted_turns),
+                max_tier=max_tier,
+            )
+        )
 
         # 種族プール / BAN
         if game["active_tribes"] or game["banned_tribes"]:
             active_cnt = len(game["active_tribes"])
             is_complete = active_cnt >= 5
-            active_lbl = f"出現種族({active_cnt})" if is_complete else f"確認できた種族({active_cnt}/5)"
-            ban_lbl = f"BAN種族({len(game['banned_tribes'])})" if is_complete else f"未出現/BAN候補({len(game['banned_tribes'])})"
-            active_str = "・".join(BG_TRIBE_LABELS.get(t, t) for t in game["active_tribes"]) or "なし"
-            ban_str = "・".join(BG_TRIBE_LABELS.get(t, t) for t in game["banned_tribes"]) or "なし"
-            lines.append(f"- {active_lbl}: {active_str} ｜ {ban_lbl}: {ban_str}")
+            active_lbl = (
+                tr["ai_active_tribes_complete"].format(cnt=active_cnt)
+                if is_complete
+                else tr["ai_active_tribes_partial"].format(cnt=active_cnt)
+            )
+            ban_lbl = (
+                tr["ai_banned_tribes_complete"].format(cnt=len(game["banned_tribes"]))
+                if is_complete
+                else tr["ai_banned_tribes_partial"].format(cnt=len(game["banned_tribes"]))
+            )
+            active_str = (
+                tr["tribe_sep"].join(tribe_labels.get(t, t) for t in game["active_tribes"])
+                or tr["none"]
+            )
+            ban_str = (
+                tr["tribe_sep"].join(tribe_labels.get(t, t) for t in game["banned_tribes"])
+                or tr["none"]
+            )
+            lines.append(
+                tr["ai_tribes_line"].format(
+                    active_lbl=active_lbl,
+                    active_str=active_str,
+                    ban_lbl=ban_lbl,
+                    ban_str=ban_str,
+                )
+            )
 
         # 開始時ヒーロー選択肢
         if game["hero_choices"]:
             ordered_heroes = sorted(game["hero_choices"], key=lambda h: (h["locked"], not h["chosen"]))
             choice_parts = []
             for h_opt in ordered_heroes:
-                tag = "[選択]" if h_opt["chosen"] else ("[ロック]" if h_opt["locked"] else "")
+                tag = (
+                    tr["ai_chosen_tag"]
+                    if h_opt["chosen"]
+                    else (tr["ai_locked_tag"] if h_opt["locked"] else "")
+                )
                 final_cid = h_opt["final_card_id"]
                 final_s = f"{tag}{resolve_name(final_cid)}({final_cid})"
                 hist = h_opt["history"]
                 if len(hist) > 1:
                     prev_s = "→".join(f"{resolve_name(pc)}({pc})" for pc in hist[:-1])
-                    final_s = f"{final_s} ←リロール前:{prev_s}"
+                    final_s = f"{final_s}{tr['ai_hero_rerolled_from'].format(prev=prev_s)}"
                 choice_parts.append(final_s)
-            lines.append(f"- ヒーロー選択肢: {' | '.join(choice_parts)}")
+            lines.append(tr["ai_hero_choices_line"].format(choices=" | ".join(choice_parts)))
 
         lines.append("")
 
@@ -2703,7 +3224,11 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
             t_data = game["turns"][turn]
             rolls = t_data["rolls"]
             reroll_cnt = max(0, len(rolls) - 1)
-            up_cost = f"UP費{t_data['upgrade_cost_start']}" if t_data["upgrade_cost_start"] is not None else "UP費MAX"
+            up_cost = (
+                tr["ai_up_cost"].format(cost=t_data["upgrade_cost_start"])
+                if t_data["upgrade_cost_start"] is not None
+                else tr["ai_up_cost_max"]
+            )
             tier_up_mark = " UP" if t_data["tier_end"] > t_data["tier_start"] else ""
             start_gold_s = fmt_gold(t_data["gold_start"], t_data["max_gold_start"])
 
@@ -2719,11 +3244,20 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
             if opp_entry:
                 opp_hdr = f"VS {resolve_hero(opp_entry)}(★{opp_entry['tier_start']}→★{opp_entry['tier_end']})"
             else:
-                opp_hdr = "VS 不明"
+                opp_hdr = f"VS {tr['unknown']}"
 
             lines.append(
-                f"### T{turn}｜★{t_data['tier_start']}→★{t_data['tier_end']}{tier_up_mark} ({up_cost})"
-                f"｜開始金 {start_gold_s}｜自ライフ {life_s}｜{opp_hdr}｜リロール {reroll_cnt}回"
+                tr["ai_turn_header"].format(
+                    turn=turn,
+                    t_start=t_data["tier_start"],
+                    t_end=t_data["tier_end"],
+                    up_mark=tier_up_mark,
+                    up_cost=up_cost,
+                    gold=start_gold_s,
+                    life=life_s,
+                    opp=opp_hdr,
+                    rerolls=reroll_cnt,
+                )
             )
 
             choice_events_by_roll = {}
@@ -2736,8 +3270,8 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
 
             def resolve_discover_source_ai(disc_ev):
                 src_cid = disc_ev.get("source_cid", "")
-                if src_cid in DISCOVER_SOURCE_LABELS:
-                    return DISCOVER_SOURCE_LABELS[src_cid]
+                if src_cid in discover_source_labels:
+                    return discover_source_labels[src_cid]
                 if src_cid:
                     info = by_card_id.get(src_cid)
                     if info and info.get("name"):
@@ -2745,11 +3279,15 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
                         return info["name"]
                 if disc_ev.get("source_name"):
                     return disc_ev["source_name"]
-                return src_cid or "発見"
+                return src_cid or tr["discover_default"]
 
             def append_dg_line(dg_ev):
                 r_idx = dg_ev["roll_index"]
-                timing = "リロール前" if r_idx == 0 else f"R{r_idx}後"
+                timing = (
+                    tr["ai_timing_before_reroll"]
+                    if r_idx == 0
+                    else tr["ai_timing_after_reroll"].format(n=r_idx)
+                )
                 gold_s = fmt_gold(dg_ev["gold"], dg_ev["max_gold"])
                 chosen_set = set(
                     dg_ev.get("chosen_eids")
@@ -2757,17 +3295,25 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
                 )
                 opt_parts = []
                 for opt in dg_ev["options"]:
-                    chosen_tag = "[選択]" if opt["eid"] in chosen_set else ""
-                    gold_tag = "[金]" if opt.get("golden") else ""
+                    chosen_tag = tr["ai_chosen_tag"] if opt["eid"] in chosen_set else ""
+                    gold_tag = tr["ai_gold_tag"] if opt.get("golden") else ""
                     c_name = resolve_name(opt["card_id"])
                     dg_desc = fmt_dg_names(opt.get("dark_gifts", []), with_desc=True)
                     dg_part = f"({dg_desc})" if dg_desc else ""
                     opt_parts.append(f"{chosen_tag}{gold_tag}{c_name}{dg_part}")
-                lines.append(f"- 悪夢の恵み({timing}, 金{gold_s}): {' | '.join(opt_parts)}")
+                lines.append(
+                    tr["ai_dg_line"].format(
+                        timing=timing, gold=gold_s, opts=" | ".join(opt_parts)
+                    )
+                )
 
             def append_discover_line(disc_ev):
                 r_idx = disc_ev["roll_index"]
-                timing = "リロール前" if r_idx == 0 else f"R{r_idx}後"
+                timing = (
+                    tr["ai_timing_before_reroll"]
+                    if r_idx == 0
+                    else tr["ai_timing_after_reroll"].format(n=r_idx)
+                )
                 gold_s = fmt_gold(disc_ev["gold"], disc_ev["max_gold"])
                 src_label = resolve_discover_source_ai(disc_ev)
                 chosen_set = set(
@@ -2776,30 +3322,44 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
                 )
                 opt_parts = []
                 for opt in disc_ev["options"]:
-                    chosen_tag = "[選択]" if opt["eid"] in chosen_set else ""
-                    gold_tag = "[金]" if opt.get("golden") else ""
+                    chosen_tag = tr["ai_chosen_tag"] if opt["eid"] in chosen_set else ""
+                    gold_tag = tr["ai_gold_tag"] if opt.get("golden") else ""
                     opt_cid = opt.get("card_id", "")
-                    c_name = resolve_name(opt_cid) if opt_cid else (opt.get("name") or "不明")
+                    c_name = resolve_name(opt_cid) if opt_cid else (opt.get("name") or tr["unknown"])
                     if opt_cid and c_name == opt_cid and opt.get("name"):
                         c_name = opt["name"]
                     dg_desc = fmt_dg_names(opt.get("dark_gifts", []), with_desc=True)
                     dg_part = f"({dg_desc})" if dg_desc else ""
                     opt_parts.append(f"{chosen_tag}{gold_tag}{c_name}{dg_part}")
-                lines.append(f"- 発見({src_label}, {timing}, 金{gold_s}): {' | '.join(opt_parts)}")
+                lines.append(
+                    tr["ai_discover_line"].format(
+                        src=src_label, timing=timing, gold=gold_s, opts=" | ".join(opt_parts)
+                    )
+                )
 
             rendered_choice_rolls = set()
             for roll in rolls:
                 idx = roll["roll_index"]
-                r_lbl = "R0(初期)" if idx == 0 else f"R{idx}"
+                r_lbl = tr["ai_roll_initial"] if idx == 0 else f"R{idx}"
                 g_start = fmt_gold(roll["gold_start"], roll["max_gold_start"])
                 g_end = fmt_gold(roll["gold_end"], roll["max_gold_end"])
                 g_part = f"{g_start}→{g_end}" if g_end != g_start else g_start
 
-                shop_items = [f"[凍結]{resolve_name(cid)}" for cid in roll["carried_over"]]
+                shop_items = [
+                    f"{tr['ai_frozen_tag']}{resolve_name(cid)}" for cid in roll["carried_over"]
+                ]
                 shop_items.extend(resolve_name(cid) for cid in roll["offered"])
-                shop_str = ", ".join(shop_items) if shop_items else "なし"
-                bought_str = ", ".join(resolve_name(cid) for cid in roll["bought"]) if roll["bought"] else "なし"
-                lines.append(f"- {r_lbl} ({g_part}) 酒場: {shop_str} ｜ 購入: {bought_str}")
+                shop_str = ", ".join(shop_items) if shop_items else tr["none"]
+                bought_str = (
+                    ", ".join(resolve_name(cid) for cid in roll["bought"])
+                    if roll["bought"]
+                    else tr["none"]
+                )
+                lines.append(
+                    tr["ai_roll_line"].format(
+                        r_lbl=r_lbl, gold=g_part, shop=shop_str, bought=bought_str
+                    )
+                )
 
                 if idx in choice_events_by_roll:
                     rendered_choice_rolls.add(idx)
@@ -2824,7 +3384,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
             cur_hp_keys = []
             for hp in hero_powers:
                 hp_cid = hp["card_id"]
-                hp_name = resolve_name(hp_cid) if hp_cid else (hp.get("name") or "不明")
+                hp_name = resolve_name(hp_cid) if hp_cid else (hp.get("name") or tr["unknown"])
                 if hp_cid and hp_name == hp_cid and hp.get("name"):
                     hp_name = hp["name"]
                 cur_hp_keys.append(hp_name or hp_cid)
@@ -2840,31 +3400,43 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
                 prev_hp_keys = cur_hp_tuple
             hp_str = " / ".join(hp_parts)
             if hp_str and hp_changed:
-                hp_str += " [変更]"
+                hp_str += f" {tr['ai_changed_tag']}"
             board = t_data["board_end"]
             hand = t_data["hand_end"]
-            board_str = " / ".join(fmt_minion(m, i) for i, m in enumerate(board, start=1)) if board else "なし"
-            hand_str = ", ".join(fmt_hand_card(h) for h in hand) if hand else "なし"
+            board_str = (
+                " / ".join(fmt_minion(m, i) for i, m in enumerate(board, start=1))
+                if board
+                else tr["none"]
+            )
+            hand_str = ", ".join(fmt_hand_card(h) for h in hand) if hand else tr["none"]
 
             # ロビー全員の状況（戦闘前・1行に圧縮）
             lb_list = t_data.get("leaderboard", [])
             if lb_list:
                 lb_parts = []
                 for p in lb_list:
-                    role = "[自]" if p["is_me"] else ("[敵]" if p["is_opponent"] else "")
+                    role = (
+                        tr["ai_role_me"]
+                        if p["is_me"]
+                        else (tr["ai_role_opp"] if p["is_opponent"] else "")
+                    )
                     t_s = f"★{p['tier_start']}→{p['tier_end']}" if p["tier_end"] != p["tier_start"] else f"★{p['tier_end']}"
                     tr_s = fmt_trinkets(p)
                     tr_part = f",{tr_s}" if tr_s else ""
                     lb_parts.append(
-                        f"{p['place']}位:{role}{resolve_hero(p)}({t_s},{fmt_life(p['hp'], p['armor'])},T{p['triples']}{tr_part})"
+                        f"{format_place(p['place'], lang)}:{role}{resolve_hero(p)}({t_s},{fmt_life(p['hp'], p['armor'])},T{p['triples']}{tr_part})"
                     )
-                lines.append(f"- ロビー: {' / '.join(lb_parts)}")
+                lines.append(tr["ai_lobby_line"].format(items=" / ".join(lb_parts)))
 
             # 戦闘結果・相手盤面（ターン終了時の自分の盤面・手札を内包）
             if combat:
                 res = combat["result"]
                 dmg = combat["damage"]
-                res_s = f"勝利(+{dmg})" if res == "WIN" else (f"敗北(-{dmg})" if res == "LOSS" else "引き分け")
+                res_s = (
+                    tr["ai_combat_win"].format(dmg=dmg)
+                    if res == "WIN"
+                    else (tr["ai_combat_loss"].format(dmg=dmg) if res == "LOSS" else tr["ai_combat_tie"])
+                )
                 my_before = combat.get("my_hp_before")
                 my_after = combat.get("my_hp_after")
                 if my_before and my_after:
@@ -2881,20 +3453,20 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
                 if opp_h:
                     opp_parts = [resolve_hero(opp_h)]
                     if opp_h.get("place"):
-                        opp_parts.append(f"{opp_h['place']}位")
+                        opp_parts.append(format_place(opp_h["place"], lang))
                     if "tier_start" in opp_h and "tier_end" in opp_h:
                         opp_parts.append(f"★{opp_h['tier_start']}→★{opp_h['tier_end']}")
                     if "hp" in opp_h:
                         opp_parts.append(f"HP{fmt_life(opp_h['hp'], opp_h.get('armor', 0))}")
                     if "triples" in opp_h:
-                        opp_parts.append(f"トリプル{opp_h['triples']}")
+                        opp_parts.append(tr["ai_opp_triples"].format(n=opp_h["triples"]))
                     tr_s = fmt_trinkets(opp_h)
                     if tr_s:
                         opp_parts.append(tr_s)
                     opp_hp_parts = []
                     for ohp in combat.get("opp_hero_powers", []):
                         ohp_cid = ohp["card_id"]
-                        ohp_name = resolve_name(ohp_cid) if ohp_cid else (ohp.get("name") or "不明")
+                        ohp_name = resolve_name(ohp_cid) if ohp_cid else (ohp.get("name") or tr["unknown"])
                         if ohp_cid and ohp_name == ohp_cid and ohp.get("name"):
                             ohp_name = ohp["name"]
                         ohp_info = by_card_id.get(ohp_cid)
@@ -2904,26 +3476,48 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
                         ocost_s = f"({ohp_cost}G)" if ohp_cost is not None else ""
                         opp_hp_parts.append(f"{ohp_name}{ocost_s}")
                     if opp_hp_parts:
-                        opp_parts.append(f"ヒロパ:{' / '.join(opp_hp_parts)}")
+                        opp_parts.append(f"{tr['ai_opp_hp_prefix']}{' / '.join(opp_hp_parts)}")
                     elif combat.get("opp_is_ghost"):
-                        opp_parts.append("ゴースト")
-                    opp_info = f" ｜ 相手: {' / '.join(opp_parts)}"
+                        opp_parts.append(tr["ghost"])
+                    opp_info = tr["ai_opp_info"].format(parts=" / ".join(opp_parts))
 
-                lines.append(f"- 戦闘: {res_s} ｜ 自ライフ {life_diff}{opp_info}")
+                lines.append(
+                    tr["ai_combat_line"].format(res=res_s, life=life_diff, opp_info=opp_info)
+                )
                 opp_board = combat.get("opp_board", [])
-                opp_board_str = " / ".join(fmt_minion(om, i) for i, om in enumerate(opp_board, start=1)) if opp_board else "なし"
-                lines.append(f"  - 相手盤面(左→右,{len(opp_board)}体): {opp_board_str}")
+                opp_board_str = (
+                    " / ".join(fmt_minion(om, i) for i, om in enumerate(opp_board, start=1))
+                    if opp_board
+                    else tr["none"]
+                )
+                lines.append(
+                    tr["ai_opp_board_line"].format(n=len(opp_board), board=opp_board_str)
+                )
                 if hp_str:
-                    lines.append(f"  - 自分ヒロパ: {hp_str}")
-                lines.append(f"  - 自分盤面(終了時★{t_data['tier_end']}, 残金{end_gold_s}, 左→右,{len(board)}体): {board_str}")
+                    lines.append(tr["ai_my_hp_line"].format(hp=hp_str))
+                lines.append(
+                    tr["ai_my_board_line"].format(
+                        tier=t_data["tier_end"],
+                        gold=end_gold_s,
+                        n=len(board),
+                        board=board_str,
+                    )
+                )
                 if hand:
-                    lines.append(f"  - 手札({len(hand)}枚): {hand_str}")
+                    lines.append(tr["ai_hand_line"].format(n=len(hand), hand=hand_str))
             else:
-                lines.append(f"- 終了時(★{t_data['tier_end']}, 残金{end_gold_s}) 盤面(左→右,{len(board)}体): {board_str}")
+                lines.append(
+                    tr["ai_end_turn_board_line"].format(
+                        tier=t_data["tier_end"],
+                        gold=end_gold_s,
+                        n=len(board),
+                        board=board_str,
+                    )
+                )
                 if hp_str:
-                    lines.append(f"  - 自分ヒロパ: {hp_str}")
+                    lines.append(tr["ai_my_hp_line"].format(hp=hp_str))
                 if hand:
-                    lines.append(f"  - 手札({len(hand)}枚): {hand_str}")
+                    lines.append(tr["ai_hand_line"].format(n=len(hand), hand=hand_str))
 
             lines.append("")
 
@@ -2951,26 +3545,36 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
         else:
             others_cat.append((cid, item))
 
-    lines.append("## 登場カード辞書（このログに出現したカードのみ）")
+    lines.append(tr["ai_catalog_title"])
     lines.append("")
 
     if heroes_cat:
-        lines.append("### ヒーロー・ヒーローパワー")
+        lines.append(tr["ai_cat_heroes"])
         for cid, item in sorted(heroes_cat, key=lambda x: x[1]["name"]):
             hp = item.get("hero_power")
             if hp:
                 hp_cost = f"({hp['cost']}G) " if hp.get("cost") is not None else ""
                 hp_text = hp.get("text", "")
-                lines.append(f"- {item['name']} ({cid}): ヒロパ「{hp['name']}」{hp_cost}{hp_text}")
+                lines.append(
+                    tr["ai_cat_hero_with_hp"]
+                    .format(
+                        name=item["name"],
+                        cid=cid,
+                        hp_name=hp["name"],
+                        hp_cost=hp_cost,
+                        hp_text=hp_text,
+                    )
+                    .rstrip()
+                )
             else:
                 lines.append(f"- {item['name']} ({cid})")
         lines.append("")
 
     if minions_cat:
-        lines.append("### ミニオン")
+        lines.append(tr["ai_cat_minions"])
         for cid, item in sorted(minions_cat, key=lambda x: (x[1].get("tier") or 99, x[1]["name"], cid)):
             tier_s = f"★{item['tier']} " if item.get("tier") is not None else ""
-            gold_s = "[金]" if cid.endswith("_G") or item.get("golden") else ""
+            gold_s = tr["ai_gold_tag"] if cid.endswith("_G") or item.get("golden") else ""
             tribes_s = f"[{'/'.join(item['tribes'])}] " if item.get("tribes") else ""
             stat_s = f"{item['atk']}/{item['hp']} " if "atk" in item and "hp" in item else ""
             text_s = f": {item['text']}" if item.get("text") else ""
@@ -2978,7 +3582,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
         lines.append("")
 
     if spells_cat:
-        lines.append("### 酒場の呪文")
+        lines.append(tr["ai_cat_spells"])
         for cid, item in sorted(spells_cat, key=lambda x: (x[1].get("tier") or 99, x[1]["name"], cid)):
             tier_s = f"★{item['tier']} " if item.get("tier") is not None else ""
             cost_s = f"{item['cost']}G, " if item.get("cost") is not None else ""
@@ -2987,7 +3591,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
         lines.append("")
 
     if trinkets_cat:
-        lines.append("### 装飾品")
+        lines.append(tr["ai_cat_trinkets"])
         for cid, item in sorted(trinkets_cat, key=lambda x: (x[1]["name"], cid)):
             cost_s = f"{item['cost']}G, " if item.get("cost") is not None else ""
             text_s = f": {item['text']}" if item.get("text") else ""
@@ -2995,7 +3599,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
         lines.append("")
 
     if hero_powers_cat:
-        lines.append("### ヒーローパワー")
+        lines.append(tr["ai_cat_hero_powers"])
         for cid, item in sorted(hero_powers_cat, key=lambda x: (x[1]["name"], cid)):
             cost_s = f"{item['cost']}G, " if item.get("cost") is not None else ""
             text_s = f": {item['text']}" if item.get("text") else ""
@@ -3003,7 +3607,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
         lines.append("")
 
     if others_cat:
-        lines.append("### その他カード")
+        lines.append(tr["ai_cat_others"])
         for cid, item in sorted(others_cat, key=lambda x: (x[1]["name"], cid)):
             cost_s = f"{item['cost']}G, " if item.get("cost") is not None else ""
             text_s = f": {item['text']}" if item.get("text") else ""
@@ -3011,7 +3615,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None):
         lines.append("")
 
     if used_dg_ids:
-        lines.append("### 悪夢の恵み")
+        lines.append(tr["ai_cat_dark_gifts"])
         seen_dg = set()
         for dg_cid in sorted(used_dg_ids):
             name, desc = dark_gift_db.get(dg_cid, (dg_cid, ""))
@@ -3086,6 +3690,13 @@ def main():
         action="store_true",
         help="HTMLは生成せず、AI読み込み専用の超軽量Markdown（*_ai.md）のみ出力する",
     )
+    parser.add_argument(
+        "-l",
+        "--lang",
+        choices=SUPPORTED_LANGS,
+        default="ja",
+        help="出力レポート（HTML・AI用Markdown）の言語を指定（デフォルト: ja）",
+    )
     args = parser.parse_args()
 
     emit_ai = args.ai_text or args.ai_only
@@ -3112,7 +3723,7 @@ def main():
             print(f"指定された試合番号 {args.game} は存在しません（全 {len(parsed_games)} 試合）。")
             sys.exit(1)
 
-    card_catalog = fetch_card_catalog()
+    card_catalog = fetch_card_catalog(lang=args.lang)
 
     if args.split:
         for game_idx, game in target_pairs:
@@ -3121,24 +3732,48 @@ def main():
             turns_n = len(game["turns"])
             if emit_html:
                 out_path = build_split_output_path(args.output, game_idx)
-                generate_html([game], out_path, card_catalog=card_catalog, game_numbers=[game_idx])
+                generate_html(
+                    [game],
+                    out_path,
+                    card_catalog=card_catalog,
+                    game_numbers=[game_idx],
+                    lang=args.lang,
+                )
                 size_kb = os.path.getsize(out_path) / 1024
                 print(f"HTML出力完了: {os.path.abspath(out_path)} （第 {game_idx} 試合 / {place_str}{turns_n}T / {size_kb:.1f} KB）")
             if emit_ai:
                 ai_path = build_ai_output_path(args.output, game_idx=game_idx, ai_only=args.ai_only)
-                generate_ai_text([game], ai_path, card_catalog=card_catalog, game_numbers=[game_idx])
+                generate_ai_text(
+                    [game],
+                    ai_path,
+                    card_catalog=card_catalog,
+                    game_numbers=[game_idx],
+                    lang=args.lang,
+                )
                 size_kb = os.path.getsize(ai_path) / 1024
                 print(f"AIテキスト出力完了: {os.path.abspath(ai_path)} （第 {game_idx} 試合 / {place_str}{turns_n}T / {size_kb:.1f} KB）")
     else:
         game_nums = [idx for idx, _ in target_pairs]
         games_to_write = [g for _, g in target_pairs]
         if emit_html:
-            generate_html(games_to_write, args.output, card_catalog=card_catalog, game_numbers=game_nums)
+            generate_html(
+                games_to_write,
+                args.output,
+                card_catalog=card_catalog,
+                game_numbers=game_nums,
+                lang=args.lang,
+            )
             size_kb = os.path.getsize(args.output) / 1024
             print(f"HTML出力完了: {os.path.abspath(args.output)} （{len(games_to_write)} / 全 {len(parsed_games)} 試合 / {size_kb:.1f} KB）")
         if emit_ai:
             ai_path = build_ai_output_path(args.output, game_idx=None, ai_only=args.ai_only)
-            generate_ai_text(games_to_write, ai_path, card_catalog=card_catalog, game_numbers=game_nums)
+            generate_ai_text(
+                games_to_write,
+                ai_path,
+                card_catalog=card_catalog,
+                game_numbers=game_nums,
+                lang=args.lang,
+            )
             size_kb = os.path.getsize(ai_path) / 1024
             print(f"AIテキスト出力完了: {os.path.abspath(ai_path)} （{len(games_to_write)} / 全 {len(parsed_games)} 試合 / {size_kb:.1f} KB）")
 
