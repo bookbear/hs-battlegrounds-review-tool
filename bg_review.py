@@ -6,8 +6,15 @@ import json
 import os
 import re
 import sys
+import tempfile
+import time
+import urllib.error
 import urllib.request
 
+
+# HearthstoneJSON カードマスタのローカルキャッシュ設定
+CATALOG_CACHE_VERSION = 1
+CATALOG_CACHE_TTL_SECONDS = 24 * 60 * 60
 
 # バトルグラウンド種族定義（現行プール10種族 + ナーガ復帰時用ラベル）
 BG_BASE_TRIBES = [
@@ -75,7 +82,6 @@ CARD_RACE_LABELS_BY_LANG = {
         "QUILBOAR": "Quilboar",
     },
 }
-CARD_RACE_LABELS = CARD_RACE_LABELS_BY_LANG["ja"]
 
 DISCOVER_SOURCE_LABELS_BY_LANG = {
     "ja": {
@@ -89,7 +95,6 @@ DISCOVER_SOURCE_LABELS_BY_LANG = {
         "BG30_Trinket_2nd": "Greater Trinket",
     },
 }
-DISCOVER_SOURCE_LABELS = DISCOVER_SOURCE_LABELS_BY_LANG["ja"]
 
 I18N = {
     "ja": {
@@ -454,75 +459,327 @@ def clean_card_text(raw_text, lang="ja"):
     return text
 
 
-def fetch_card_catalog(lang="ja"):
-    """HTML/Markdown生成時に HearthstoneJSON からカード・悪夢の恵み・装飾品マスタを一括取得する"""
+def safe_int(value, default=0):
+    """整数文字列を安全に int へ変換する（変換不能時は default を返す）"""
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def safe_int_or_none(value):
+    """整数文字列を安全に int へ変換する（変換不能時は None を返す）"""
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def ensure_parent_dir(file_path):
+    """出力ファイルの親ディレクトリが存在しない場合は自動作成する"""
+    parent = os.path.dirname(os.path.abspath(file_path))
+    if parent:
+        os.makedirs(parent, exist_ok=True)
+
+
+def lookup_card_entry(card_id, by_card_id):
+    """CardID（ゴールデン _G を含む）からカタログエントリを解決する"""
+    if not card_id:
+        return None
+    info = by_card_id.get(card_id)
+    if info:
+        return info
+    if card_id.endswith("_G"):
+        return by_card_id.get(card_id[:-2])
+    return None
+
+
+def lookup_card_name(card_id, by_card_id, fallback_name=""):
+    """CardID から指定言語のカード名を解決し、未登録時のみフォールバック名を返す"""
+    info = lookup_card_entry(card_id, by_card_id)
+    if info and info.get("name"):
+        return info["name"]
+    return fallback_name or card_id or ""
+
+
+def lookup_hero_name(entry, by_card_id, unknown_label, used_card_ids=None):
+    """ヒーローエントリから指定言語のヒーロー名を解決する（カタログ優先・ログ名はフォールバック）"""
+    if not entry:
+        return unknown_label
+    cid = entry.get("card_id", "")
+    if cid:
+        if used_card_ids is not None:
+            used_card_ids.add(cid)
+        info = lookup_card_entry(cid, by_card_id)
+        if info and info.get("name"):
+            return info["name"]
+    if entry.get("name"):
+        return entry["name"]
+    return cid or unknown_label
+
+
+def lookup_discover_source(disc_ev, discover_source_labels, by_card_id, default_label, used_card_ids=None):
+    """発見イベントのソースカード名を指定言語で解決する（ゴールデン _G 対応）"""
+    src_cid = disc_ev.get("source_cid", "")
+    if src_cid in discover_source_labels:
+        return discover_source_labels[src_cid]
+    if src_cid:
+        info = lookup_card_entry(src_cid, by_card_id)
+        if info and info.get("name"):
+            if used_card_ids is not None:
+                used_card_ids.add(src_cid)
+            return info["name"]
+    if disc_ev.get("source_name"):
+        return disc_ev["source_name"]
+    return src_cid or default_label
+
+
+def group_choice_events_by_roll(turn_data):
+    """ターン内の悪夢の恵み・発見イベントを roll_index ごとに時系列順でまとめる"""
+    events_by_roll = {}
+    for dg_ev in turn_data.get("dark_gifts", []):
+        events_by_roll.setdefault(dg_ev["roll_index"], []).append(("dg", dg_ev))
+    for disc_ev in turn_data.get("discovers", []):
+        events_by_roll.setdefault(disc_ev["roll_index"], []).append(("discover", disc_ev))
+    for ev_list in events_by_roll.values():
+        ev_list.sort(key=lambda item: item[1].get("seq", 0))
+    return events_by_roll
+
+
+def get_default_cache_dir():
+    """カードマスタキャッシュの保存先ディレクトリを返す"""
+    env_dir = os.environ.get("BG_REVIEW_CACHE_DIR")
+    if env_dir:
+        return os.path.expanduser(env_dir)
+    if os.name == "nt":
+        local_app_data = os.environ.get("LOCALAPPDATA")
+        if local_app_data:
+            return os.path.join(local_app_data, "bg_review", "cache")
+    xdg_cache = os.environ.get("XDG_CACHE_HOME")
+    if xdg_cache:
+        return os.path.join(os.path.expanduser(xdg_cache), "bg_review")
+    return os.path.join(os.path.expanduser("~"), ".cache", "bg_review")
+
+
+def _build_catalog_from_cards(cards, lang="ja"):
+    """HearthstoneJSON のカード配列から内部カタログ構造を構築する"""
+    lang = normalize_lang(lang)
+    race_labels = CARD_RACE_LABELS_BY_LANG[lang]
+    catalog = {"dark_gifts": {}, "by_dbf_id": {}, "by_card_id": {}}
+    for c in cards:
+        cid = c.get("id", "")
+        dbf_id = c.get("dbfId")
+        name = c.get("name", "")
+        text = clean_card_text(c.get("text", ""), lang=lang)
+        ctype = c.get("type", "")
+        raw_races = c.get("races") or ([c["race"]] if c.get("race") else [])
+        tribes = [race_labels.get(r, r) for r in raw_races if r]
+        entry = {
+            "id": cid,
+            "name": name or cid,
+            "text": text,
+            "type": ctype,
+            "tier": c.get("techLevel"),
+            "cost": c.get("cost"),
+            "atk": c.get("attack"),
+            "hp": c.get("health"),
+            "tribes": tribes,
+            "hero_power_dbf_id": c.get("heroPowerDbfId"),
+        }
+        if dbf_id is not None and cid:
+            dbf_int = safe_int_or_none(dbf_id)
+            if dbf_int is not None:
+                catalog["by_dbf_id"][dbf_int] = entry
+        if cid and name:
+            catalog["by_card_id"][cid] = entry
+
+    # 基底スペル（SPELL）を優先して登録し、該当スペルが無いIDのみ ENCHANTMENT で補完
+    dg_db = catalog["dark_gifts"]
+    for card_type in ("SPELL", "ENCHANTMENT"):
+        for c in cards:
+            cid = c.get("id", "")
+            if c.get("type") != card_type:
+                continue
+            norm = normalize_dark_gift_id(cid)
+            if not norm or norm in dg_db:
+                continue
+            name = c.get("name", cid)
+            text = clean_card_text(c.get("text", ""), lang=lang)
+            dg_db[norm] = (name, text)
+    return catalog
+
+
+def _load_catalog_cache(cache_path):
+    """ローカルキャッシュファイルから (catalog, meta) を読み込む（失敗時は (None, None)）"""
+    if not cache_path or not os.path.exists(cache_path):
+        return None, None
+    try:
+        with gzip.open(cache_path, "rt", encoding="utf-8") as f:
+            payload = json.load(f)
+        if not isinstance(payload, dict) or payload.get("version") != CATALOG_CACHE_VERSION:
+            return None, None
+        raw_cat = payload.get("catalog")
+        if not isinstance(raw_cat, dict):
+            return None, None
+        catalog = {
+            "dark_gifts": {
+                k: (v[0], v[1])
+                for k, v in raw_cat.get("dark_gifts", {}).items()
+                if isinstance(v, list) and len(v) >= 2
+            },
+            "by_dbf_id": {
+                int(k): v
+                for k, v in raw_cat.get("by_dbf_id", {}).items()
+                if safe_int_or_none(k) is not None
+            },
+            "by_card_id": dict(raw_cat.get("by_card_id", {})),
+        }
+        meta = {
+            "fetched_at": float(payload.get("fetched_at", 0.0)),
+            "etag": payload.get("etag"),
+        }
+        return catalog, meta
+    except Exception:
+        return None, None
+
+
+def _save_catalog_cache(cache_path, catalog, etag=None):
+    """構築済みカタログをローカルキャッシュへアトミックに書き出す"""
+    if not cache_path:
+        return
+    tmp_path = None
+    try:
+        cache_dir = os.path.dirname(os.path.abspath(cache_path))
+        os.makedirs(cache_dir, exist_ok=True)
+        payload = {
+            "version": CATALOG_CACHE_VERSION,
+            "fetched_at": time.time(),
+            "etag": etag,
+            "catalog": {
+                "dark_gifts": {k: [v[0], v[1]] for k, v in catalog.get("dark_gifts", {}).items()},
+                "by_dbf_id": {str(k): v for k, v in catalog.get("by_dbf_id", {}).items()},
+                "by_card_id": catalog.get("by_card_id", {}),
+            },
+        }
+        fd, tmp_path = tempfile.mkstemp(prefix=".bg_review_cache_", suffix=".tmp", dir=cache_dir)
+        os.close(fd)
+        with gzip.open(tmp_path, "wt", encoding="utf-8", compresslevel=6) as f:
+            json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
+        os.replace(tmp_path, cache_path)
+    except Exception:
+        if tmp_path and os.path.exists(tmp_path):
+            try:
+                os.remove(tmp_path)
+            except OSError:
+                pass
+
+
+def fetch_card_catalog(
+    lang="ja",
+    use_cache=True,
+    refresh_cache=False,
+    offline=False,
+    cache_dir=None,
+    cache_ttl=CATALOG_CACHE_TTL_SECONDS,
+):
+    """HTML/Markdown生成時に HearthstoneJSON からカード・悪夢の恵み・装飾品マスタを一括取得する（ローカルキャッシュ対応）"""
     lang = normalize_lang(lang)
     hs_locale = get_hs_locale(lang)
-    race_labels = CARD_RACE_LABELS_BY_LANG[lang]
     url = f"https://api.hearthstonejson.com/v1/latest/{hs_locale}/cards.json"
-    catalog = {"dark_gifts": {}, "by_dbf_id": {}, "by_card_id": {}}
+    empty_catalog = {"dark_gifts": {}, "by_dbf_id": {}, "by_card_id": {}}
+
+    cache_path = None
+    cached_catalog = None
+    cached_meta = None
+    if use_cache:
+        resolved_cache_dir = cache_dir if cache_dir is not None else get_default_cache_dir()
+        cache_path = os.path.join(resolved_cache_dir, f"cards_catalog_{hs_locale}.json.gz")
+        cached_catalog, cached_meta = _load_catalog_cache(cache_path)
+
+    if offline:
+        if cached_catalog is not None:
+            return cached_catalog
+        print("注意: オフラインモードですがローカルキャッシュが見つかりません。CardIDで表示します。")
+        return empty_catalog
+
+    if (
+        cached_catalog is not None
+        and cached_meta is not None
+        and not refresh_cache
+        and (time.time() - cached_meta["fetched_at"]) < cache_ttl
+    ):
+        return cached_catalog
+
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept-Encoding": "gzip",
+    }
+    if cached_catalog is not None and cached_meta and cached_meta.get("etag") and not refresh_cache:
+        headers["If-None-Match"] = cached_meta["etag"]
+
     try:
-        req = urllib.request.Request(
-            url,
-            headers={
-                "User-Agent": "Mozilla/5.0",
-                "Accept-Encoding": "gzip",
-            },
-        )
+        req = urllib.request.Request(url, headers=headers)
         with urllib.request.urlopen(req, timeout=15) as resp:
             raw = resp.read()
             if resp.headers.get("Content-Encoding") == "gzip":
                 raw = gzip.decompress(raw)
             cards = json.loads(raw.decode("utf-8"))
+            etag = resp.headers.get("ETag")
 
-        for c in cards:
-            cid = c.get("id", "")
-            dbf_id = c.get("dbfId")
-            name = c.get("name", "")
-            text = clean_card_text(c.get("text", ""), lang=lang)
-            ctype = c.get("type", "")
-            raw_races = c.get("races") or ([c["race"]] if c.get("race") else [])
-            tribes = [race_labels.get(r, r) for r in raw_races if r]
-            entry = {
-                "id": cid,
-                "name": name or cid,
-                "text": text,
-                "type": ctype,
-                "tier": c.get("techLevel"),
-                "cost": c.get("cost"),
-                "atk": c.get("attack"),
-                "hp": c.get("health"),
-                "tribes": tribes,
-                "hero_power_dbf_id": c.get("heroPowerDbfId"),
-            }
-            if dbf_id is not None and cid:
-                catalog["by_dbf_id"][int(dbf_id)] = entry
-            if cid and name:
-                catalog["by_card_id"][cid] = entry
-
-        # 基底スペル（SPELL）を優先して登録し、該当スペルが無いIDのみ ENCHANTMENT で補完
-        dg_db = catalog["dark_gifts"]
-        for card_type in ("SPELL", "ENCHANTMENT"):
-            for c in cards:
-                cid = c.get("id", "")
-                if c.get("type") != card_type:
-                    continue
-                norm = normalize_dark_gift_id(cid)
-                if not norm or norm in dg_db:
-                    continue
-                name = c.get("name", cid)
-                text = clean_card_text(c.get("text", ""), lang=lang)
-                dg_db[norm] = (name, text)
-    except Exception as e:
+        catalog = _build_catalog_from_cards(cards, lang=lang)
+        if use_cache and cache_path:
+            _save_catalog_cache(cache_path, catalog, etag=etag)
+        return catalog
+    except urllib.error.HTTPError as e:
+        if e.code == 304 and cached_catalog is not None:
+            if use_cache and cache_path:
+                _save_catalog_cache(cache_path, cached_catalog, etag=cached_meta.get("etag"))
+            return cached_catalog
+        if cached_catalog is not None:
+            print(f"警告: HearthstoneJSON の更新取得に失敗しました（{e}）。ローカルキャッシュを使用します。")
+            return cached_catalog
         print(f"警告: HearthstoneJSON からカードマスタの取得に失敗しました（{e}）。CardIDで表示します。")
-    return catalog
+        return empty_catalog
+    except Exception as e:
+        if cached_catalog is not None:
+            print(f"警告: HearthstoneJSON の更新取得に失敗しました（{e}）。ローカルキャッシュを使用します。")
+            return cached_catalog
+        print(f"警告: HearthstoneJSON からカードマスタの取得に失敗しました（{e}）。CardIDで表示します。")
+        return empty_catalog
 
 
 def find_latest_power_log():
-    """Windowsの標準インストール先から最新のPower.logを自動検出する"""
-    base_dir = r"C:\Program Files (x86)\Hearthstone\Logs"
-    pattern = os.path.join(base_dir, "Hearthstone_*", "Power.log")
-    logs = glob.glob(pattern)
+    """環境変数または Windows / macOS の標準インストール先から最新の Power.log を自動検出する"""
+    candidate_dirs = []
+    env_dir = os.environ.get("HEARTHSTONE_LOG_DIR")
+    if env_dir:
+        candidate_dirs.append(os.path.expanduser(env_dir))
+
+    if os.name == "nt":
+        candidate_dirs.extend([
+            r"C:\Program Files (x86)\Hearthstone\Logs",
+            r"C:\Program Files\Hearthstone\Logs",
+        ])
+    elif sys.platform == "darwin":
+        candidate_dirs.extend([
+            "/Applications/Hearthstone/Logs",
+            os.path.expanduser("~/Library/Preferences/Blizzard/Hearthstone/Logs"),
+        ])
+    else:
+        candidate_dirs.extend([
+            r"C:\Program Files (x86)\Hearthstone\Logs",
+            "/Applications/Hearthstone/Logs",
+        ])
+
+    logs = []
+    for base_dir in candidate_dirs:
+        if not base_dir:
+            continue
+        logs.extend(glob.glob(os.path.join(base_dir, "Hearthstone_*", "Power.log")))
+        direct_log = os.path.join(base_dir, "Power.log")
+        if os.path.isfile(direct_log):
+            logs.append(direct_log)
+
     if not logs:
         return None
     return max(logs, key=os.path.getmtime)
@@ -533,6 +790,7 @@ def parse_power_log(log_path):
     games = []
     current_game = None
     entities = {}
+    attached_by_target = {}  # {target_eid: {enchant_eid: None}}
     my_pid = None
     bob_pid = None
     my_name = None
@@ -557,7 +815,6 @@ def parse_power_log(log_path):
     current_choice = None
     current_chosen_id = None
     choice_seq = 0
-    prev_hero_power_cids = None
 
     # 対戦相手・戦闘・リーダーボード追跡用
     in_my_player_block = False
@@ -578,7 +835,7 @@ def parse_power_log(log_path):
     re_full_entity = re.compile(r"FULL_ENTITY - (?:Creating|Updating).*?(?:ID=|id=)(\d+).*?CardID=([^\s\]]*)")
     re_show_entity = re.compile(r"SHOW_ENTITY - Updating Entity=(?:\[.*?id=(\d+).*?\]|(\d+))\s+CardID=([^\s\]]*)")
     re_change_entity = re.compile(r"CHANGE_ENTITY - Updating Entity=(?:\[.*?id=(\d+).*?\]|(\d+))\s+CardID=([^\s\]]*)")
-    re_tag_change = re.compile(r"TAG_CHANGE Entity=(?:\[.*?id=(\d+).*?\]|(\S+))\s+tag=(\S+)\s+value=(\S+)")
+    re_tag_change = re.compile(r"TAG_CHANGE Entity=(?:\[.*?id=(\d+).*?\]|(.+?))\s+tag=(\S+)\s+value=(\S+)")
     re_sub_tag = re.compile(r"^tag=(\S+)\s+value=(\S+)")
     re_choice_id = re.compile(r"id=(\d+)")
     re_ref_card_id = re.compile(r"cardId=([^\s\]]*)")
@@ -656,61 +913,72 @@ def parse_power_log(log_path):
         elif tag == "CARDTYPE":
             ent["card_type"] = value
         elif tag == "ATK":
-            ent["atk"] = int(value)
+            ent["atk"] = safe_int(value, ent["atk"])
         elif tag == "HEALTH":
-            ent["health"] = int(value)
+            ent["health"] = safe_int(value, ent["health"])
         elif tag == "DAMAGE":
-            ent["damage"] = int(value)
+            ent["damage"] = safe_int(value, ent["damage"])
         elif tag == "ARMOR":
-            ent["armor"] = int(value)
+            ent["armor"] = safe_int(value, ent["armor"])
         elif tag == "COST":
-            ent["cost"] = int(value)
+            cost_val = safe_int_or_none(value)
+            if cost_val is not None:
+                ent["cost"] = cost_val
         elif tag == "ZONE_POSITION":
-            ent["zone_pos"] = int(value)
+            ent["zone_pos"] = safe_int(value, ent["zone_pos"])
         elif tag == "FROZEN":
-            ent["frozen"] = int(value)
+            ent["frozen"] = safe_int(value, ent["frozen"])
         elif tag == "PREMIUM":
-            ent["premium"] = int(value)
+            ent["premium"] = safe_int(value, ent["premium"])
         elif tag == "TAUNT":
-            ent["taunt"] = int(value)
+            ent["taunt"] = safe_int(value, ent["taunt"])
         elif tag == "DIVINE_SHIELD":
-            ent["divine_shield"] = int(value)
+            ent["divine_shield"] = safe_int(value, ent["divine_shield"])
         elif tag == "REBORN":
-            ent["reborn"] = int(value)
+            ent["reborn"] = safe_int(value, ent["reborn"])
         elif tag == "POISONOUS":
-            ent["poisonous"] = int(value)
+            ent["poisonous"] = safe_int(value, ent["poisonous"])
         elif tag == "VENOMOUS":
-            ent["venomous"] = int(value)
+            ent["venomous"] = safe_int(value, ent["venomous"])
         elif tag == "WINDFURY":
-            ent["windfury"] = int(value)
+            ent["windfury"] = safe_int(value, ent["windfury"])
         elif tag == "PLAYER_ID":
             ent["player_id"] = value
         elif tag == "PLAYER_TECH_LEVEL":
-            ent["tech_level"] = int(value)
+            ent["tech_level"] = safe_int(value, ent["tech_level"])
         elif tag == "PLAYER_LEADERBOARD_PLACE":
-            ent["place"] = int(value)
+            ent["place"] = safe_int(value, ent["place"])
         elif tag == "PLAYER_TRIPLES":
-            ent["triples"] = int(value)
+            ent["triples"] = safe_int(value, ent["triples"])
         elif tag == "BACON_FIRST_TRINKET_DATABASE_ID":
-            ent["trinket1"] = int(value)
+            ent["trinket1"] = safe_int(value, ent["trinket1"])
         elif tag == "BACON_SECOND_TRINKET_DATABASE_ID":
-            ent["trinket2"] = int(value)
+            ent["trinket2"] = safe_int(value, ent["trinket2"])
         elif tag == "TRANSIENT_ENTITY":
-            ent["transient"] = int(value)
+            ent["transient"] = safe_int(value, ent["transient"])
         elif tag == "BACON_LOCKED_MULLIGAN_HERO":
-            ent["locked_hero"] = int(value)
+            ent["locked_hero"] = safe_int(value, ent["locked_hero"])
         elif tag == "IS_BACON_POOL_MINION":
-            ent["is_pool_minion"] = int(value)
+            ent["is_pool_minion"] = safe_int(value, ent["is_pool_minion"])
         elif tag.startswith("BACON_SUBSET_"):
             sub = tag[len("BACON_SUBSET_"):]
             if value == "1":
                 ent["subsets"].add(sub)
         elif tag == "ATTACHED":
+            old_target = ent["attached"]
+            if old_target and old_target != value:
+                old_bucket = attached_by_target.get(old_target)
+                if old_bucket is not None:
+                    old_bucket.pop(ent["id"], None)
+                    if not old_bucket:
+                        attached_by_target.pop(old_target, None)
             ent["attached"] = value
-            if value and value != "0" and ent["card_id"]:
-                dg = normalize_dark_gift_id(ent["card_id"])
-                if dg:
-                    add_dark_gift(get_entity(value), dg)
+            if value and value != "0":
+                attached_by_target.setdefault(value, {})[ent["id"]] = None
+                if ent["card_id"]:
+                    dg = normalize_dark_gift_id(ent["card_id"])
+                    if dg:
+                        add_dark_gift(get_entity(value), dg)
         elif tag == "DARK_GIFT_ENTITY":
             if value and value != "0":
                 dg_ent = entities.get(value)
@@ -727,8 +995,9 @@ def parse_power_log(log_path):
         """エンティティ自身の継承済み恵み + 現在PLAY中で付与されている恵みエンチャントを集約する"""
         gifts = list(ent["dark_gifts"])
         target_eid = ent["id"]
-        for other in entities.values():
-            if other["attached"] == target_eid and other["zone"] == "PLAY":
+        for other_eid in attached_by_target.get(target_eid, ()):
+            other = entities.get(other_eid)
+            if other and other["attached"] == target_eid and other["zone"] == "PLAY":
                 dg = normalize_dark_gift_id(other["card_id"])
                 if dg and dg not in gifts:
                     gifts.append(dg)
@@ -749,7 +1018,6 @@ def parse_power_log(log_path):
                 "gold_end": None,
                 "max_gold_end": None,
                 "hero_powers_end": [],
-                "hero_power_changed": False,
                 "board_end": [],
                 "hand_end": [],
                 "opp_pid": None,
@@ -777,7 +1045,7 @@ def parse_power_log(log_path):
                 and e["card_id"]
             ):
                 prev = by_pid.get(e["player_id"])
-                if prev is None or int(e["id"]) > int(prev["id"]):
+                if prev is None or safe_int(e["id"]) > safe_int(prev["id"]):
                     by_pid[e["player_id"]] = e
         if my_hero_eid and my_hero_eid in entities and my_pid:
             mh = entities[my_hero_eid]
@@ -829,7 +1097,7 @@ def parse_power_log(log_path):
             and e["card_id"]
         ]
         opp_board_ents.sort(key=lambda e: e["zone_pos"])
-        opp_hp_ents.sort(key=lambda e: (e["zone_pos"], int(e["id"])))
+        opp_hp_ents.sort(key=lambda e: (e["zone_pos"], safe_int(e["id"])))
         opp_combat_hero_eid = opp_heroes[0]["id"] if opp_heroes else None
         combat_opp_board_snap = [build_minion_snapshot(e) for e in opp_board_ents]
         combat_opp_hero_powers_snap = [
@@ -933,7 +1201,7 @@ def parse_power_log(log_path):
 
     def snapshot_end_of_turn():
         """ターン終了時点の自分のヒーローパワー・盤面ミニオン・手札・残り所持金・リーダーボードを記録する"""
-        nonlocal frozen_from_prev_turn, prev_lb_tiers_end, prev_hero_power_cids
+        nonlocal frozen_from_prev_turn, prev_lb_tiers_end
         if not current_game or current_turn <= 0:
             return
         turn_data = get_turn_data(current_turn)
@@ -949,7 +1217,7 @@ def parse_power_log(log_path):
             and e["card_type"] == "HERO_POWER"
             and e["card_id"]
         ]
-        hp_ents.sort(key=lambda e: (e["zone_pos"], int(e["id"])))
+        hp_ents.sort(key=lambda e: (e["zone_pos"], safe_int(e["id"])))
         turn_data["hero_powers_end"] = [
             {
                 "card_id": e["card_id"],
@@ -958,14 +1226,6 @@ def parse_power_log(log_path):
             }
             for e in hp_ents
         ]
-        cur_hp_cids = tuple(e["card_id"] for e in hp_ents)
-        turn_data["hero_power_changed"] = bool(
-            prev_hero_power_cids is not None
-            and cur_hp_cids
-            and cur_hp_cids != prev_hero_power_cids
-        )
-        if cur_hp_cids:
-            prev_hero_power_cids = cur_hp_cids
 
         # 盤面ミニオン（左から順）
         board_ents = [
@@ -1071,6 +1331,18 @@ def parse_power_log(log_path):
                 roster.append(extra)
         current_game["active_tribes"] = [t for t in roster if t in active_set]
         current_game["banned_tribes"] = [t for t in roster if t not in active_set]
+
+    def finalize_current_game():
+        """試合終了・中断時（次試合開始またはEOF）に未確定の雇用／戦闘フェーズと種族メタを確定する"""
+        if not current_game or current_game["is_battlegrounds"] is False:
+            return
+        if is_recruit_phase and current_turn > 0:
+            snapshot_end_of_turn()
+        elif (not is_recruit_phase) and current_turn > 0:
+            if not combat_snap_done:
+                snapshot_combat_start()
+            finalize_combat_result()
+        finalize_game_meta()
 
     def evaluate_entity(eid):
         """エンティティの状態変化から『新規提示』『リロール発生』『購入』を判定する"""
@@ -1277,10 +1549,7 @@ def parse_power_log(log_path):
             line = raw_line.split("GameState.DebugPrintPower() - ", 1)[1].strip()
 
             if line.startswith("CREATE_GAME"):
-                if current_game and current_game["is_battlegrounds"] is not False:
-                    if is_recruit_phase and current_turn > 0:
-                        snapshot_end_of_turn()
-                    finalize_game_meta()
+                finalize_current_game()
                 current_game = {
                     "turns": {},
                     "hero_card_id": "",
@@ -1296,6 +1565,7 @@ def parse_power_log(log_path):
                 }
                 games.append(current_game)
                 entities = {}
+                attached_by_target = {}
                 my_pid = None
                 bob_pid = None
                 my_name = None
@@ -1314,7 +1584,6 @@ def parse_power_log(log_path):
                 current_choice = None
                 current_chosen_id = None
                 choice_seq = 0
-                prev_hero_power_cids = None
                 in_my_player_block = False
                 next_opp_pid = None
                 prev_lb_tiers_end = {}
@@ -1429,7 +1698,7 @@ def parse_power_log(log_path):
 
                 # 戦闘中のヒーロー攻撃ダメージ（PREDAMAGE）を正確に記録
                 if (not is_recruit_phase) and current_turn > 0 and tag == "PREDAMAGE":
-                    dmg_val = int(value)
+                    dmg_val = safe_int(value, 0)
                     if dmg_val > 0:
                         if combat_hero_attacker == "ME" and eid == opp_combat_hero_eid:
                             combat_dmg = dmg_val
@@ -1441,6 +1710,8 @@ def parse_power_log(log_path):
                     if is_recruit_phase and current_turn > 0:
                         snapshot_end_of_turn()
                     elif (not is_recruit_phase) and current_turn > 0:
+                        if not combat_snap_done:
+                            snapshot_combat_start()
                         finalize_combat_result()
                     current_game["game_completed"] = True
                     is_recruit_phase = False
@@ -1508,7 +1779,9 @@ def parse_power_log(log_path):
                             mh = entities.get(my_hero_eid) if my_hero_eid else None
                             combat_my_hp_before = (mh["health"] - mh["damage"], mh["armor"]) if mh else None
                     elif tag == "TURN" and is_recruit_phase:
-                        current_turn = int(value)
+                        turn_val = safe_int_or_none(value)
+                        if turn_val is not None:
+                            current_turn = turn_val
                         if current_turn > 0:
                             turn_data = get_turn_data(current_turn)
                             if prev_lb_tiers_end:
@@ -1534,9 +1807,11 @@ def parse_power_log(log_path):
                         if value == "WON":
                             current_game["final_place"] = 1
                     elif tag == "PLAYER_TECH_LEVEL" and is_recruit_phase and current_turn > 0:
-                        get_turn_data(current_turn)["tier_end"] = int(value)
+                        tier_val = safe_int_or_none(value)
+                        if tier_val is not None:
+                            get_turn_data(current_turn)["tier_end"] = tier_val
                     elif tag == "RESOURCES":
-                        resources = int(value)
+                        resources = safe_int(value, resources)
                         if is_recruit_phase and current_turn > 0:
                             turn_data = get_turn_data(current_turn)
                             if not turn_data["rolls"]:
@@ -1544,7 +1819,7 @@ def parse_power_log(log_path):
                                 turn_data["max_gold_start"] = current_max_gold()
                             update_current_roll_gold()
                     elif tag == "RESOURCES_USED":
-                        resources_used = int(value)
+                        resources_used = safe_int(value, resources_used)
                         if is_recruit_phase and current_turn > 0:
                             turn_data = get_turn_data(current_turn)
                             if not turn_data["rolls"]:
@@ -1552,7 +1827,7 @@ def parse_power_log(log_path):
                                 turn_data["max_gold_start"] = current_max_gold()
                             update_current_roll_gold()
                     elif tag == "TEMP_RESOURCES":
-                        temp_resources = int(value)
+                        temp_resources = safe_int(value, temp_resources)
                         update_current_roll_gold()
                     continue
 
@@ -1563,7 +1838,7 @@ def parse_power_log(log_path):
                         if is_recruit_phase and current_turn > 0:
                             get_turn_data(current_turn)["opp_pid"] = value
                     elif tag == "PLAYER_LEADERBOARD_PLACE":
-                        place_val = int(value)
+                        place_val = safe_int(value, 0)
                         if place_val > 0 and current_game["playstate"] != "WON":
                             current_game["final_place"] = place_val
 
@@ -1571,7 +1846,9 @@ def parse_power_log(log_path):
                 if eid and tag == "PLAYER_TECH_LEVEL" and is_recruit_phase and current_turn > 0:
                     ent = get_entity(eid)
                     if ent["controller"] == my_pid and ent["zone"] == "PLAY":
-                        get_turn_data(current_turn)["tier_end"] = int(value)
+                        tier_val = safe_int_or_none(value)
+                        if tier_val is not None:
+                            get_turn_data(current_turn)["tier_end"] = tier_val
 
                 if eid:
                     ent = get_entity(eid)
@@ -1589,10 +1866,7 @@ def parse_power_log(log_path):
                     apply_entity_tag(ent, tag, value)
                     evaluate_entity(active_entity_id)
 
-    if current_game and current_game["is_battlegrounds"] is not False:
-        if is_recruit_phase and current_turn > 0:
-            snapshot_end_of_turn()
-        finalize_game_meta()
+    finalize_current_game()
 
     bg_games = [
         g
@@ -1625,20 +1899,10 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None, lang
     used_card_ids = set()
 
     def resolve_card_entry(card_id):
-        if not card_id:
-            return None
-        info = by_card_id.get(card_id)
-        if info:
-            return info
-        if card_id.endswith("_G"):
-            return by_card_id.get(card_id[:-2])
-        return None
+        return lookup_card_entry(card_id, by_card_id)
 
     def resolve_card_name(card_id):
-        info = resolve_card_entry(card_id)
-        if info and info.get("name"):
-            return info["name"]
-        return card_id or ""
+        return lookup_card_name(card_id, by_card_id)
 
     def build_img_tag(card_id, css_class="", alt=None, lazy=True, is_hero=False):
         if card_id:
@@ -1793,14 +2057,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None, lang
         )
 
     def resolve_hero_name(entry):
-        if not entry:
-            return tr["unknown"]
-        if entry.get("name"):
-            return entry["name"]
-        cid = entry.get("card_id", "")
-        if cid in by_card_id:
-            return by_card_id[cid]["name"]
-        return cid or tr["unknown"]
+        return lookup_hero_name(entry, by_card_id, tr["unknown"], used_card_ids=used_card_ids)
 
     def render_life_span(hp, armor):
         if hp is None:
@@ -1813,7 +2070,8 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None, lang
     def render_trinket_chip(dbf_id, slot_label):
         if not dbf_id:
             return ""
-        info = by_dbf_id.get(int(dbf_id))
+        dbf_int = safe_int_or_none(dbf_id)
+        info = by_dbf_id.get(dbf_int) if dbf_int is not None else None
         if info:
             cid = info["id"]
             name = html.escape(info["name"])
@@ -2238,17 +2496,13 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None, lang
     html_parts.append("</div></div>")
 
     def resolve_discover_source_label(disc_ev):
-        src_cid = disc_ev.get("source_cid", "")
-        if src_cid in discover_source_labels:
-            return discover_source_labels[src_cid]
-        if src_cid:
-            info = resolve_card_entry(src_cid)
-            if info and info.get("name"):
-                used_card_ids.add(src_cid)
-                return info["name"]
-        if disc_ev.get("source_name"):
-            return disc_ev["source_name"]
-        return src_cid or tr["discover_default"]
+        return lookup_discover_source(
+            disc_ev,
+            discover_source_labels,
+            by_card_id,
+            tr["discover_default"],
+            used_card_ids=used_card_ids,
+        )
 
     def append_dark_gift_block(dg_ev):
         r_idx = dg_ev["roll_index"]
@@ -2456,13 +2710,7 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None, lang
         for turn in sorted(game["turns"].keys()):
             t_data = game["turns"][turn]
             rolls = t_data["rolls"]
-            choice_events_by_roll = {}
-            for dg_ev in t_data["dark_gifts"]:
-                choice_events_by_roll.setdefault(dg_ev["roll_index"], []).append(("dg", dg_ev))
-            for disc_ev in t_data.get("discovers", []):
-                choice_events_by_roll.setdefault(disc_ev["roll_index"], []).append(("discover", disc_ev))
-            for ev_list in choice_events_by_roll.values():
-                ev_list.sort(key=lambda item: item[1].get("seq", 0))
+            choice_events_by_roll = group_choice_events_by_roll(t_data)
 
             start_gold_html = render_coins(
                 t_data["gold_start"], t_data["max_gold_start"], label=tr["gold_start_label"]
@@ -2981,18 +3229,19 @@ def generate_html(games, output_path, card_catalog=None, game_numbers=None, lang
         "</html>",
     ])
 
+    ensure_parent_dir(output_path)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\n".join(html_parts))
 
 
 def build_catalog_entries(used_card_ids, card_catalog):
-    """登場した CardID の日本語名・種別・グレード・効果・ヒーローパワー辞書を構築する"""
+    """登場した CardID のカード名・種別・グレード・効果・ヒーローパワー辞書を構築する"""
     by_card_id = card_catalog.get("by_card_id", {})
     by_dbf_id = card_catalog.get("by_dbf_id", {})
     catalog_entries = {}
     for cid in sorted(used_card_ids):
         direct = by_card_id.get(cid)
-        info = direct or (by_card_id.get(cid[:-2]) if cid.endswith("_G") else None)
+        info = direct or lookup_card_entry(cid, by_card_id)
         if not info:
             continue
         item = {"name": info["name"]}
@@ -3015,7 +3264,8 @@ def build_catalog_entries(used_card_ids, card_catalog):
             item["text"] = info["text"]
         hp_dbf = info.get("hero_power_dbf_id")
         if hp_dbf is not None:
-            hp_info = by_dbf_id.get(int(hp_dbf))
+            hp_dbf_int = safe_int_or_none(hp_dbf)
+            hp_info = by_dbf_id.get(hp_dbf_int) if hp_dbf_int is not None else None
             if hp_info:
                 hp_obj = {"id": hp_info["id"], "name": hp_info["name"]}
                 if hp_info.get("cost") is not None:
@@ -3053,23 +3303,16 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None, l
         if not cid:
             return tr["unknown"]
         use_card(cid)
-        info = by_card_id.get(cid) or (by_card_id.get(cid[:-2]) if cid.endswith("_G") else None)
-        return info["name"] if info and info.get("name") else cid
+        return lookup_card_name(cid, by_card_id)
 
     def resolve_hero(entry):
-        if not entry:
-            return tr["unknown"]
-        cid = entry.get("card_id", "")
-        if cid:
-            use_card(cid)
-        if entry.get("name"):
-            return entry["name"]
-        return resolve_name(cid) if cid else tr["unknown"]
+        return lookup_hero_name(entry, by_card_id, tr["unknown"], used_card_ids=used_card_ids)
 
     def resolve_trinket(dbf_id, slot_label):
         if not dbf_id:
             return ""
-        info = by_dbf_id.get(int(dbf_id))
+        dbf_int = safe_int_or_none(dbf_id)
+        info = by_dbf_id.get(dbf_int) if dbf_int is not None else None
         if info:
             use_card(info["id"])
             return f"{slot_label}:{info['name']}"
@@ -3260,26 +3503,16 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None, l
                 )
             )
 
-            choice_events_by_roll = {}
-            for dg_ev in t_data["dark_gifts"]:
-                choice_events_by_roll.setdefault(dg_ev["roll_index"], []).append(("dg", dg_ev))
-            for disc_ev in t_data.get("discovers", []):
-                choice_events_by_roll.setdefault(disc_ev["roll_index"], []).append(("discover", disc_ev))
-            for ev_list in choice_events_by_roll.values():
-                ev_list.sort(key=lambda item: item[1].get("seq", 0))
+            choice_events_by_roll = group_choice_events_by_roll(t_data)
 
             def resolve_discover_source_ai(disc_ev):
-                src_cid = disc_ev.get("source_cid", "")
-                if src_cid in discover_source_labels:
-                    return discover_source_labels[src_cid]
-                if src_cid:
-                    info = by_card_id.get(src_cid)
-                    if info and info.get("name"):
-                        use_card(src_cid)
-                        return info["name"]
-                if disc_ev.get("source_name"):
-                    return disc_ev["source_name"]
-                return src_cid or tr["discover_default"]
+                return lookup_discover_source(
+                    disc_ev,
+                    discover_source_labels,
+                    by_card_id,
+                    tr["discover_default"],
+                    used_card_ids=used_card_ids,
+                )
 
             def append_dg_line(dg_ev):
                 r_idx = dg_ev["roll_index"]
@@ -3388,7 +3621,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None, l
                 if hp_cid and hp_name == hp_cid and hp.get("name"):
                     hp_name = hp["name"]
                 cur_hp_keys.append(hp_name or hp_cid)
-                hp_info = by_card_id.get(hp_cid)
+                hp_info = lookup_card_entry(hp_cid, by_card_id)
                 hp_cost = hp.get("cost")
                 if hp_cost is None and hp_info is not None:
                     hp_cost = hp_info.get("cost")
@@ -3469,7 +3702,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None, l
                         ohp_name = resolve_name(ohp_cid) if ohp_cid else (ohp.get("name") or tr["unknown"])
                         if ohp_cid and ohp_name == ohp_cid and ohp.get("name"):
                             ohp_name = ohp["name"]
-                        ohp_info = by_card_id.get(ohp_cid)
+                        ohp_info = lookup_card_entry(ohp_cid, by_card_id)
                         ohp_cost = ohp.get("cost")
                         if ohp_cost is None and ohp_info is not None:
                             ohp_cost = ohp_info.get("cost")
@@ -3625,6 +3858,7 @@ def generate_ai_text(games, output_path, card_catalog=None, game_numbers=None, l
             lines.append(f"- ✦ {name}: {desc}" if desc else f"- ✦ {name}")
         lines.append("")
 
+    ensure_parent_dir(output_path)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
@@ -3649,7 +3883,7 @@ def build_ai_output_path(base_output, game_idx=None, ai_only=False):
     return f"{root}_ai.md"
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(
         description="Hearthstone Power.log からバトルグラウンド振り返りHTML・AI分析用テキストを生成します。"
     )
@@ -3697,17 +3931,33 @@ def main():
         default="ja",
         help="出力レポート（HTML・AI用Markdown）の言語を指定（デフォルト: ja）",
     )
-    args = parser.parse_args()
+    parser.add_argument(
+        "--refresh-cache",
+        action="store_true",
+        help="ローカルキャッシュを無視して HearthstoneJSON から最新カードマスタを再取得する",
+    )
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="ネットワークアクセスを行わず、ローカルキャッシュ（未取得時は CardID）のみ使用する",
+    )
+    args = parser.parse_args(argv)
 
     emit_ai = args.ai_text or args.ai_only
     emit_html = not args.ai_only
 
-    log_file = args.log_file or find_latest_power_log()
-    if (not log_file or not os.path.exists(log_file)) and os.path.exists("Power.log"):
-        log_file = "Power.log"
-    if not log_file or not os.path.exists(log_file):
-        print("Power.log が見つかりませんでした。引数にファイルパスを指定してください。")
-        sys.exit(1)
+    if args.log_file is not None:
+        if not os.path.exists(args.log_file):
+            print(f"指定されたログファイルが見つかりませんでした: {args.log_file}")
+            sys.exit(1)
+        log_file = args.log_file
+    else:
+        log_file = find_latest_power_log()
+        if (not log_file or not os.path.exists(log_file)) and os.path.exists("Power.log"):
+            log_file = "Power.log"
+        if not log_file or not os.path.exists(log_file):
+            print("Power.log が見つかりませんでした。引数にファイルパスを指定してください。")
+            sys.exit(1)
 
     print(f"解析中: {log_file}")
     parsed_games = parse_power_log(log_file)
@@ -3723,12 +3973,16 @@ def main():
             print(f"指定された試合番号 {args.game} は存在しません（全 {len(parsed_games)} 試合）。")
             sys.exit(1)
 
-    card_catalog = fetch_card_catalog(lang=args.lang)
+    card_catalog = fetch_card_catalog(
+        lang=args.lang,
+        refresh_cache=args.refresh_cache,
+        offline=args.offline,
+    )
 
     if args.split:
         for game_idx, game in target_pairs:
             place = game.get("final_place")
-            place_str = f"{place}位・" if place is not None else ""
+            place_str = f"{format_place(place, args.lang)}・" if place is not None else ""
             turns_n = len(game["turns"])
             if emit_html:
                 out_path = build_split_output_path(args.output, game_idx)
