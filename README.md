@@ -41,8 +41,8 @@ Python標準ライブラリのみで動作するため、追加パッケージ�
 
 ## 必要環境
 
-- **Python 3.x**（標準ライブラリのみ使用：`argparse`, `glob`, `gzip`, `html`, `json`, `os`, `re`, `sys`, `urllib.request`）
-- **インターネット接続**（任意：HearthstoneJSON からのカードマスタ・カード画像取得に使用。オフライン時でも CardID ベースで解析・出力可能）
+- **Python 3.x**（標準ライブラリのみ使用：`argparse`, `glob`, `gzip`, `html`, `json`, `os`, `re`, `sys`, `tempfile`, `time`, `urllib.error`, `urllib.request`）
+- **インターネット接続**（任意：HearthstoneJSON からのカードマスタ・カード画像取得に使用。取得したカードマスタはローカルに24時間キャッシュされ、オフライン時や通信失敗時はローカルキャッシュまたは CardID ベースで動作します）
 
 ---
 
@@ -53,7 +53,7 @@ Hearthstone で `Power.log` を出力するには、Hearthstone の設定ファ�
 スクリプトは以下の順でログファイルを探索します。
 
 1. コマンドライン引数で指定された `log_file`
-2. Windows 標準インストール先の最新ログ（`C:\Program Files (x86)\Hearthstone\Logs\Hearthstone_*\Power.log`）
+2. 環境変数 `HEARTHSTONE_LOG_DIR`、または Windows / macOS 標準インストール先の最新ログ（`Hearthstone_*/Power.log`）
 3. カレントディレクトリの `Power.log`
 
 ---
@@ -75,6 +75,8 @@ python bg_review.py [log_file] [オプション]
 | `--ai-text` | `-a` | HTMLに加えて、AI読み込み用の軽量Markdown（`*_ai.md`）も出力 |
 | `--ai-only` | - | HTMLを生成せず、AI用Markdownのみ出力 |
 | `--lang` | `-l` | 出力レポート（HTML・AI用Markdown）の言語を指定（`ja` / `en`、デフォルト: `ja`） |
+| `--refresh-cache` | - | ローカルキャッシュを無視して HearthstoneJSON から最新カードマスタを再取得 |
+| `--offline` | - | ネットワークアクセスを行わず、ローカルキャッシュ（未取得時は CardID）のみ使用 |
 
 ### 実行例
 
@@ -96,6 +98,12 @@ python bg_review.py Power.log --game 1 3
 
 # AI分析用の軽量Markdownのみを指定ファイル名で出力
 python bg_review.py Power.log --ai-only -o review.md
+
+# パッチ直後などにカードマスタのキャッシュを強制更新して実行
+python bg_review.py Power.log --refresh-cache
+
+# ユニットテストの実行
+python -m unittest discover -s tests -v
 ```
 
 ---
